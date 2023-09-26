@@ -1,5 +1,5 @@
 import { remultNextApp } from 'remult/remult-next'
-import { Art } from '../../../shared/art'
+import { Art } from '../../shared/art'
 
 const api = remultNextApp({
     entities: [Art]
