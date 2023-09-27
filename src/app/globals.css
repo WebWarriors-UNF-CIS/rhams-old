@@ -1,27 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* needs adjustments for light mode */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
 
+@layer components {
+  .input {
+    @apply bg-gray-900 rounded-lg px-4 py-2 my-2;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
+    --background-start-rgb: 50, 50, 50;
     --background-end-rgb: 0, 0, 0;
+  }
+  @layer components {
+    .input {
+      @apply bg-gray-200 rounded-lg px-4 py-2 my-2;
+    }
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
+  height: 100vh;
   background: linear-gradient(
       to bottom,
-      transparent,
+      rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    );
 }
