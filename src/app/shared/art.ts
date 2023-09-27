@@ -1,4 +1,3 @@
-import { create } from "domain"
 import { Entity, Fields } from "remult"
 
 @Entity("art", {
