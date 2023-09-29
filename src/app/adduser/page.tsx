@@ -10,7 +10,7 @@ const userRepo = remult.repo(User);
 
 export default function UserRegistration() {
     const [formData, setFormData] = useState({
-      username: '',
+      name: '',
       email: '',
       password: '',
     });
@@ -27,6 +27,9 @@ export default function UserRegistration() {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+      userRepo.insert(formData);
+      const router = useRouter();
+      router.push('/art');
       setSuccessMessage('User account created successfully!');
     };
   
@@ -38,14 +41,14 @@ export default function UserRegistration() {
         )}
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center content-start text-slate-100'>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-sm font-medium">
+            <label htmlFor="name" className="block text-sm font-medium">
               Username
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              id="name"
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               className="bg-transparent border-b-2 border-slate-900 ml-2"
               required
