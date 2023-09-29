@@ -18,17 +18,15 @@ export default function Login() {
             email: email,
             password: password,
         };
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(loginInfo),
-        });
-        const data = await response.json();
-        if (data.success) {
-            router.replace('/art');
-        } else {
+        try {
+            userRepo.findFirst({ email: email, password: password }).then((user) => {
+                if (user) {
+                    router.push('/artist');
+                } else {
+                    alert('Login failed');
+                }
+            });
+        } catch (err) {
             alert('Login failed');
         }
     }
