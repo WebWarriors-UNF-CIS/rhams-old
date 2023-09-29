@@ -1,8 +1,12 @@
-import { redirect } from 'next/navigation'
-import Image from 'next/image'
+"use client"
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react';
 
 export default function Home() {
-  redirect('/login');
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/login');
+  });
   // redirect('/art'); once we can retrieve a login token and it is valid
   /*return (
     <div>
