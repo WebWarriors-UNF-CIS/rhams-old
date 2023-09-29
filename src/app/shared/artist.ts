@@ -1,9 +1,9 @@
 import { Entity, Fields } from "remult"
 
-@Entity("art", {
+@Entity("artist", {
   allowApiCrud: true
 })
-export class Artists {
+export class Artist {
   
   @Fields.string()
   firstName = ""
@@ -21,10 +21,10 @@ export class Artists {
   primaryMedium = ""
 
   @Fields.string()
-  biography = ""
+  website = ""
 
   @Fields.string()
-  website = ""
+  biography = ""
 
   @Fields.string()
   artistNotes = ""

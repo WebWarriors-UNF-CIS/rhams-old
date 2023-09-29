@@ -1,10 +1,10 @@
 import { remultNextApp } from 'remult/remult-next'
 import { ArtPiece } from '../../shared/art'
 import { User } from '../../shared/user'
-import { Artists } from '../../shared/artists'
+import { Artist } from '../../shared/artist'
 
 const api = remultNextApp({
-    entities: [ArtPiece, User, Artists],
+    entities: [ArtPiece, User, Artist],
     initApi: async (api) => {
         const userRepo = api.repo(User)
         await userRepo.insert({
