@@ -1,41 +1,43 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from 'next/navigation';
+import { remult } from "remult"
+import '../globals.css'
+import { Artist } from '../shared/artist';
 
+const artistRepo = remult.repo(Artist);
 
-export default function Artist() {
+export default function AddArtist() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [nationality, setNationality] = useState('');
+  const [datesLived, setDatesLived] = useState('');
+  const [primaryMedium, setPrimaryMedium] = useState('');
+  const [website, setWebsite] = useState('');
+  const [biography, setBiography] = useState('');
+  const [artistNotes, setArtistNotes] = useState('');
+  const router = useRouter();
 
-  interface FormData {
-    firstName: string;
-    lastName: string;
-    datesLived: string;
-    nationality: string;
-    primaryMedium: string;
-    website: string;
-    biography: string;
-    artistNotes: string;
-  }
-
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    datesLived: '',
-    nationality: '',
-    primaryMedium: '',
-    website: '',
-    biography: '',
-    artistNotes: ''
-  });
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const artist = async () => {
+    const artistInfo = {
+      firstName: firstName,
+      lastName: lastName,
+      nationality: nationality,
+      datesLived: datesLived,
+      primaryMedium: primaryMedium,
+      website: website,
+      biography: biography,
+      artistNotes: artistNotes,
+  };
 
     try {
      
-      const response = await fetch('/api/submitForm', {
+      const response = await fetch('/api/artist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(artistInfo),
       });
 
       if (response.ok) {
@@ -50,74 +52,75 @@ export default function Artist() {
     }
   };
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  
   return (
   <>
-    <form className="new-item-form">
+  <div className="forms-body">
+    <form className="new-artist-form">
       <div className="form-row">
-        <h1>Enter New Artist</h1>
-        <label htmlFor="item">First Name</label>
+        <h1 className="form-title">Enter New Artist</h1>
+        <br/>
+        <label htmlFor="item">First Name: </label>
         <input 
           type="text"
           name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          placeholder="firstName"/>
-        <label htmlFor="item">Last Name</label>
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          />
+        <label htmlFor="item">Last Name: </label>
         <input 
           type="text"
           name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          placeholder="Last Name"/>
-        <label htmlFor="item">Nationality</label>
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          />
+        <label htmlFor="item">Nationality: </label>
         <input 
           type="text"
           name="nationality"
-          value={formData.nationality}
-          onChange={handleChange}
-          placeholder="Nationality"/>
-        <label htmlFor="item">Dates Lived</label>
+          value={nationality}
+          onChange={(e) => setNationality(e.target.value)}
+          />
+        <label htmlFor="item">Dates Lived: </label>
         <input 
           type="text"
           name="datesLived"
-          value={formData.datesLived}
-          onChange={handleChange}
-          placeholder="Dates Lived"/>
-        <label htmlFor="item">Primary Medium</label>
+          value={datesLived}
+          onChange={(e) => setDatesLived(e.target.value)}
+          />
+        <label htmlFor="item">Primary Medium: </label>
         <input 
           type="text"
           name="primaryMedium"
-          value={formData.primaryMedium}
-          onChange={handleChange}
-          placeholder="Primary Medium"/>
-        <label htmlFor="item">Website</label>
+          value={primaryMedium}
+          onChange={(e) => setPrimaryMedium(e.target.value)}
+          />
+        <label htmlFor="item">Website: </label>
         <input 
           type="text"
           name="website"
-          value={formData.website}
-          onChange={handleChange}
-          placeholder="Website"/>
-        <label htmlFor="item">Biography</label>
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          />
+        <label htmlFor="item">Biography: </label>
         <input 
           type="text"
           name="biography"
-          value={formData.biography}
-          onChange={handleChange}
-          placeholder="Biography"/>
-        <label htmlFor="item">Notes on Artist</label>
+          value={biography}
+          onChange={(e) => setBiography(e.target.value)}
+          />
+        <label htmlFor="item">Notes on Artist: </label>
         <input 
           type="text"
           name="artistNotes"
-          value={formData.artistNotes}
-          onChange={handleChange}
-          placeholder="Notes"/>
+          value={artistNotes}
+          onChange={(e) => setArtistNotes(e.target.value)}
+          />
+          <br/>
       </div>
       <button type="submit" className="btn">Add</button>
     </form>
+  </div>
   </>
   )
 }
