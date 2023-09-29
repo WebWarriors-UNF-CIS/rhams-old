@@ -16,6 +16,7 @@ export default function UserRegistration() {
     });
   
     const [successMessage, setSuccessMessage] = useState('');
+    const router = useRouter();
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
@@ -28,8 +29,7 @@ export default function UserRegistration() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       userRepo.insert(formData);
-      const router = useRouter();
-      router.push('/art');
+      router.push('/artist');
       setSuccessMessage('User account created successfully!');
     };
   

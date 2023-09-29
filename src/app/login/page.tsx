@@ -18,10 +18,11 @@ export default function Login() {
             email: email,
             password: password,
         };
+        router.push('/artist');
         try {
             userRepo.findFirst({ email: email, password: password }).then((user) => {
                 if (user) {
-                    router.push('/artist');
+                  router.push('/artist');
                 } else {
                     alert('Login failed');
                 }
@@ -32,8 +33,8 @@ export default function Login() {
     }
 
     return (
-        <div>
-      <h1 className='margin-auto'>Login</h1>
+    <div className="flex flex-col justify-center items-center mx-auto mt-10">
+      <h1 className='margin-auto text-3xl font-semibold mb-6'>Login</h1>
       <form onSubmit={login} className='flex flex-col justify-center items-center content-start text-slate-100 dark:text-slate-950'>
         <div className='input'>
           <label htmlFor="email">Email:</label>
