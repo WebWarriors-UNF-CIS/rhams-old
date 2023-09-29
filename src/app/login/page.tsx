@@ -14,10 +14,6 @@ export default function Login() {
     const router = useRouter();
 
     const login = async () => {
-        const loginInfo = {
-            email: email,
-            password: password,
-        };
         try {
             userRepo.findFirst({ email: email, password: password }).then((user) => {
                 if (user) {
