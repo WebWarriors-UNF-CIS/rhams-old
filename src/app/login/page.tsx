@@ -13,15 +13,12 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const login = async () => {
-        const loginInfo = {
-            email: email,
-            password: password,
-        };
-        router.push('/artist');
+    const login = async (e: React.FormEvent) => {
+        e.preventDefault();
         try {
             userRepo.findFirst({ email: email, password: password }).then((user) => {
                 if (user) {
+                  alert('Login successful');
                   router.push('/artist');
                 } else {
                     alert('Login failed');
