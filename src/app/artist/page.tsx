@@ -4,6 +4,17 @@ import { useState } from "react"
 
 export default function Artist() {
 
+  interface FormData {
+    firstName: string;
+    lastName: string;
+    datesLived: string;
+    nationality: string;
+    primaryMedium: string;
+    website: string;
+    biography: string;
+    artistNotes: string;
+  }
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,7 +25,7 @@ export default function Artist() {
     biography: '',
     artistNotes: ''
   });
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     try {
@@ -39,7 +50,7 @@ export default function Artist() {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
