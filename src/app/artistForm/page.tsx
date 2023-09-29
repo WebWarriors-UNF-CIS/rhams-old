@@ -5,10 +5,10 @@ import { useState } from "react"
 export default function ArtistForm() {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [primaryMedium, setPrimaryMedium] = useState("")
-  const [nationality, setNationality] = useState("")
-  const [website, setWebsite] = useState("")
   const [datesLived, setDatesLived] = useState("")
+  const [nationality, setNationality] = useState("")
+  const [primaryMedium, setPrimaryMedium] = useState("")
+  const [website, setWebsite] = useState("")
   const [biography, setBiography] = useState("")
   const [artistNotes, setArtistNotes] = useState("")
   return (
