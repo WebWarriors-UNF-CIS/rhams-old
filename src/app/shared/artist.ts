@@ -1,4 +1,4 @@
-import { Entity, Fields } from "remult"
+import { Entity, Entity, Fields } from "remult"
 
 @Entity("artist", {
   allowApiCrud: true
@@ -11,12 +11,15 @@ export class Artist {
   @Fields.string()
   lastName = ""
 
+  // Split into Birth Year and Death Year (nullable)
+  // For now go with numbers, see if they want date pickers and all that jazz
   @Fields.string()
   datesLived = ""
   
   @Fields.string()
   nationality = ""
 
+  // Make a Mediums table, change to primaryMediumTypeId
   @Fields.string()
   primaryMedium = ""
 

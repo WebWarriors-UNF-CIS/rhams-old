@@ -10,6 +10,7 @@ export class ArtPiece {
   @Fields.string()
   title = ""
 
+  // Linked to Artist by ArtistId
   @Fields.string()
   artist = ""
 
@@ -19,18 +20,31 @@ export class ArtPiece {
   @Fields.string()
   description = ""
 
+  // Do they want multiple Images?
+  // HEY add another table... ArtImages... with ArtId, ImageUrl, and maybe a caption
+  // What abouy videos?
   @Fields.string()
   imageUrl = ""
 
+  // Does Sales History matter? Will this piece ever come back into their catalog?
+  // If so, we need to track sales history
+  // Still might want to track Sales Information in its own table... Not saying that 100% for sure, but possibly. See what they say.
   @Fields.boolean()
   isSold = false
 
+  // TODO: Follow after MediumTypes table is created
   @Fields.string()
   medium = ""
 
+  // Dimensions... might want to break this into multiple fields
+  // What about weight?
+  // Keep these columns on this table
   @Fields.string()
   size = ""
 
+  // What do they want here? This is about Exhibitions. 
+  // How detailed do they want or need this to be?
+  // Do they want to track Exhibitions and Locations?
   @Fields.string()
   location = ""
 
