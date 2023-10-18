@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import { User } from '../shared/user';
+import { User } from '../../shared/user';
 import '../globals.css'
 
 const userRepo = remult.repo(User);
@@ -54,7 +54,7 @@ export default function UserRegistration() {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="input">
             <label htmlFor="email" className="block text-sm font-medium">
               Email Address
             </label>
