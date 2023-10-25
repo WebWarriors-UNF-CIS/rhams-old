@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("art", {
+@Entity("artPiece", {
   allowApiCrud: true
 })
 export class ArtPiece {
@@ -10,27 +10,23 @@ export class ArtPiece {
   @Fields.string()
   title = ""
 
-  // Linked to Artist by ArtistId
   @Fields.string()
-  artist = ""
+  artistId = ""
 
-  @Fields.createdAt()
-  created?: Date
+  @Fields.string()
+  created?: ""
   
   @Fields.string()
   description = ""
 
   // Do they want multiple Images?
   // HEY add another table... ArtImages... with ArtId, ImageUrl, and maybe a caption
-  // What abouy videos?
+  // What about videos?
   @Fields.string()
   imageUrl = ""
 
-  // Does Sales History matter? Will this piece ever come back into their catalog?
-  // If so, we need to track sales history
-  // Still might want to track Sales Information in its own table... Not saying that 100% for sure, but possibly. See what they say.
-  @Fields.boolean()
-  isSold = false
+  @Fields.json()
+  salesIds: [] = []
 
   // TODO: Follow after MediumTypes table is created
   @Fields.string()
