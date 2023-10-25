@@ -39,8 +39,8 @@ export default function Login() {
             type="email"
             id="email"
             value={email}
+            placeholder='example@example.org'
             onChange={(e) => setEmail(e.target.value)}
-            className='bg-transparent border-b-2 border-slate-900 ml-2'
           />
         </div>
         <div className='input'>
@@ -50,10 +50,9 @@ export default function Login() {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className='bg-transparent border-b-2 border-slate-900 ml-2'
           />
         </div>
-        <button type="submit" className='bg-gray-200 p-1 px-2 rounded-lg'>Login</button>
+        <button type="submit" className='bg-emerald-500 text-white p-1 px-2 rounded-lg'>Login</button>
       </form>
     </div>
     );
