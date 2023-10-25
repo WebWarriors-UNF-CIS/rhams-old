@@ -1,4 +1,4 @@
-import { Entity, Entity, Fields } from "remult"
+import { Entity, Fields } from "remult"
 
 @Entity("artist", {
   allowApiCrud: true
@@ -6,29 +6,63 @@ import { Entity, Entity, Fields } from "remult"
 export class Artist {
   
   @Fields.string()
-  firstName = ""
+  firstName: string
 
   @Fields.string()
-  lastName = ""
+  lastName: string
 
-  // Split into Birth Year and Death Year (nullable)
-  // For now go with numbers, see if they want date pickers and all that jazz
   @Fields.string()
-  datesLived = ""
+  dob: string
+
+  @Fields.string()
+  dod: string | null = null
   
   @Fields.string()
-  nationality = ""
+  nationality?: string
 
   // Make a Mediums table, change to primaryMediumTypeId
-  @Fields.string()
-  primaryMedium = ""
+  @Fields.object()
+  primaryMedium: MediumType
 
   @Fields.string()
-  website = ""
+  website?: string
 
   @Fields.string()
-  biography = ""
+  biography?: string
 
   @Fields.string()
-  artistNotes = ""
+  notes?: string
+
+  constructor(
+    firstName: string,
+    lastName: string,
+    dob: string,
+    primaryMedium: MediumType,
+    dod?: string | null,
+    nationality?: string,
+    website?: string,
+    biography?: string,
+    notes?: string
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.dob = dob;
+    if(dod || dod === null)
+      this.dod = dod;
+    this.nationality = nationality;
+    this.primaryMedium = primaryMedium;
+    this.website = website;
+    this.biography = biography;
+    this.notes = notes;
+  }
+}
+
+export enum MediumType {
+  Painting,
+  Sculpture,
+  Photography,
+  Drawing,
+  Printmaking,
+  MixedMedia,
+  Other
 }
