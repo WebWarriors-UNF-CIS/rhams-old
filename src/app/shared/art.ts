@@ -14,6 +14,9 @@ export class ArtPiece {
   artistId = ""
 
   @Fields.string()
+  aquired?: ""
+
+  @Fields.string()
   created?: ""
   
   @Fields.string()

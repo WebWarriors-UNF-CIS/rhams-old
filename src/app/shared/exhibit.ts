@@ -10,6 +10,9 @@ export class Exhibit {
     @Fields.json()
     artIds = []
 
+    @Fields.json()
+    otherArtists = []
+
     @Fields.string()
     startDate = ""
 

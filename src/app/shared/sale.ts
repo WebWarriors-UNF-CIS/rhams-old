@@ -17,10 +17,17 @@ export class Sale {
     date: string = "";
 
     @Fields.string()
-    buyer: string = "";
+    foundry: string = ""; // what is this?
+
+    @Fields.string()
+    buyer: string = ""; // does she want to store more information about the buyer? or just the name?
 
     @Fields.string()
     location: string = "";
+
+    // rights given to the buyer
+    @Fields.string()
+    rights?: string = "";
 
     @Fields.string()
     notes: string = "";

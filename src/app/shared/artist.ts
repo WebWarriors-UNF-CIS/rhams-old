@@ -28,7 +28,10 @@ export class Artist {
   website?: string
 
   @Fields.string()
-  biography?: string
+  biography?: string // should this be a text field?
+
+  @Fields.json()
+  knownExhibits?: [] = []
 
   @Fields.string()
   notes?: string
@@ -64,5 +67,6 @@ export enum MediumType {
   Drawing,
   Printmaking,
   MixedMedia,
+  Furniture,
   Other
 }
