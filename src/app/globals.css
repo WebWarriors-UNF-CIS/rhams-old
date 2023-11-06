@@ -11,6 +11,9 @@
       dark:text-gray-800;
     }
   }
+  .form {
+    @apply flex flex-col justify-center items-center content-start text-slate-100 dark:text-slate-950;
+  }
 }
 
 .btn {
