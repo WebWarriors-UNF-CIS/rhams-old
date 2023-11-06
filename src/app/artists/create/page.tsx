@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
-import '../globals.css'
+import '../../globals.css'
 import { Artist } from '../../shared/artist';
 
 const artistRepo = remult.repo(Artist);
