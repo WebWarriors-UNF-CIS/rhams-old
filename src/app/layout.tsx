@@ -1,4 +1,5 @@
 import './globals.css'
+import Nav from './components/navbar'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -16,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + "h-full"}>{children}</body>
+      <body className={inter.className + "h-full"}>
+        <Nav></Nav>
+        {children}
+      </body>
     </html>
   )
 }
