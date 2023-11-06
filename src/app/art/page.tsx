@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { remult } from "remult"
 import { ArtPiece } from "../shared/art"
-import { Select } from "../filter"
+import { Select } from "../components/filter"
 
 const artRepo = remult.repo(ArtPiece)
 const options = [
