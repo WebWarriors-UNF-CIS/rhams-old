@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Nav() {
     return (
         <nav className="flex w-screen justify-end items-center p-4 bg-emerald-400/90 font-bold">
-            <a className="text-2xl font-bold" href="/">Logo</a>
+            <a className="text-2xl font-bold absolute left-5" href="/">Logo</a>
             <Link className="px-5" href="/art">
                 <span>Art</span>
             </Link>
