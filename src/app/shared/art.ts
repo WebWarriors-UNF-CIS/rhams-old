@@ -14,10 +14,11 @@ export class ArtPiece {
   artistId = ""
 
   @Fields.string()
-  aquired?: ""
+  aquired?: Date
 
+  // will only be a year
   @Fields.string()
-  created?: ""
+  created?: Date
   
   @Fields.string()
   description = ""

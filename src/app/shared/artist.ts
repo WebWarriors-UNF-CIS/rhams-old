@@ -12,10 +12,10 @@ export class Artist {
   lastName: string
 
   @Fields.string()
-  dob: string
+  dob: Date
 
   @Fields.string()
-  dod: string | null = null
+  dod: Date | null = null
   
   @Fields.string()
   nationality?: string
@@ -39,9 +39,9 @@ export class Artist {
   constructor(
     firstName: string,
     lastName: string,
-    dob: string,
+    dob: Date,
     primaryMedium: MediumType,
-    dod?: string | null,
+    dod?: Date | null,
     nationality?: string,
     website?: string,
     biography?: string,

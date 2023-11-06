@@ -14,10 +14,10 @@ export class Exhibit {
     otherArtists = []
 
     @Fields.string()
-    startDate = ""
+    startDate = Date
 
     @Fields.string()
-    endDate = ""
+    endDate = Date
 
     @Fields.string()
     contactName = ""
