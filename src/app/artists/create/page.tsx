@@ -55,13 +55,14 @@ export default function AddArtist() {
   
   return (
   <>
-  <div className="forms-body">
-    <form className="new-artist-form">
-      <div className="form-row">
-        <h1 className="form-title">Enter New Artist</h1>
+  <div className="bg-gray-800 text-blue-200 max-w-screen-sm p-4 mx-auto">
+    <form className=".flex .flex-col .gap-2">
+      <div className=".flex .flex-col .gap-1">
+        <h1 className="text-center text-lg font-semibold mb-4">Enter New Artist</h1>
         <br/>
         <label htmlFor="item">First Name: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="firstName"
           value={firstName}
@@ -69,6 +70,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Last Name: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="lastName"
           value={lastName}
@@ -76,6 +78,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Nationality: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="nationality"
           value={nationality}
@@ -83,6 +86,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Dates Lived: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="datesLived"
           value={datesLived}
@@ -90,6 +94,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Primary Medium: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="primaryMedium"
           value={primaryMedium}
@@ -97,6 +102,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Website: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="website"
           value={website}
@@ -104,6 +110,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Biography: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="biography"
           value={biography}
@@ -111,6 +118,7 @@ export default function AddArtist() {
           />
         <label htmlFor="item">Notes on Artist: </label>
         <input 
+          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="artistNotes"
           value={artistNotes}
@@ -118,7 +126,7 @@ export default function AddArtist() {
           />
           <br/>
       </div>
-      <button type="submit" className="btn">Add</button>
+      <button type="submit" className="bg-blue-500 bg-opacity-10 border border-blue-500 text-blue-500 px-1 py-2 rounded-md cursor-pointer focus:outline-none">Add</button>
     </form>
   </div>
   </>

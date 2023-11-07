@@ -1,5 +1,9 @@
+import Link from 'next/link';
+
 export default function ArtistsView() {
   return (
-    <h1>Artists</h1>
+    <div>
+      <h1 className="">Manage Artists</h1>
+    </div>
   );
 }
