@@ -7,7 +7,7 @@ export default function Nav() {
             <Link className="px-5" href="/art">
                 <span>Art</span>
             </Link>
-            <Link className="px-5" href="/artists">
+            <Link className="px-5" href="/artists/manage">
                 <span>Artists</span>
             </Link>
             <Link className="px-5" href="/exhibitions">
