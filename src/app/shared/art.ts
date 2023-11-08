@@ -4,6 +4,9 @@ import { Entity, Fields } from "remult"
   allowApiCrud: true
 })
 export class ArtPiece {
+  @Fields.cuid()
+  id: string = ""
+
   @Fields.integer()
   catalogNum = ""
 
@@ -47,8 +50,6 @@ export class ArtPiece {
   // Do they want to track Exhibitions and Locations?
   @Fields.string()
   location = ""
-
-
 }
 
 // sample data
