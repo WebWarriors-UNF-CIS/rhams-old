@@ -46,6 +46,27 @@ function ArtistTable() {
       <div className="flex justify-center items-center">
       <h1 className="text-3xl font-bold p-12">Manage Artists</h1>
       </div>
+      <div className="w-3/5 mx-auto">
+      <div className="flex mb-4">
+        <h1 className="text-xl font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
+        <div className="flex space-x-4 ml-auto">
+          <input
+            type="text"
+            placeholder="First Name"
+            className="px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            className="px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+          />
+          <button className="bg-emerald-500 text-white rounded-lg px-4 py-2 hover:bg-emerald-600 hover:shadow">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div className="flex justify-center items-center border-solid border-2 border-black">
       <table className="w-3/4">
         <thead>
           <tr className="bg-gray-100">
@@ -59,17 +80,18 @@ function ArtistTable() {
               <td className="px-4 py-2">{artist.firstName}</td>
               <td className="px-4 py-2">{artist.lastName}</td>
               <td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</button>
+                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">View</button>
                 </a></td>
                 <td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">Update</button>
                 </a></td><td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                 </a></td>
             </tr>
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }
