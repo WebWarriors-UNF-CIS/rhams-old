@@ -54,68 +54,73 @@ export default function AddArtist() {
 
   
   return (
-  <>
-  <div className="bg-gray-800 text-blue-200 max-w-screen-sm p-4 mx-auto">
-    <form className=".flex .flex-col .gap-2">
-      <div className=".flex .flex-col .gap-1">
-        <h1 className="text-center text-lg font-semibold mb-4">Enter New Artist</h1>
-        <br/>
+  <div className="flex flex-col justify-center items-center mx-auto mt-10">
+    <h1 className="text-xl font-semibold mb-4">Enter New Artist</h1>
+    <form className="form">
+      <div className="input">
         <label htmlFor="item">First Name: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="firstName"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Last Name: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="lastName"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Nationality: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="nationality"
           value={nationality}
           onChange={(e) => setNationality(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Dates Lived: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="datesLived"
           value={datesLived}
           onChange={(e) => setDatesLived(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Primary Medium: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="primaryMedium"
           value={primaryMedium}
           onChange={(e) => setPrimaryMedium(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Website: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="website"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Biography: </label>
         <input 
-          className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
           type="text"
           name="biography"
           value={biography}
           onChange={(e) => setBiography(e.target.value)}
-          />
+        />
+      </div>
+      <div className="input">
         <label htmlFor="item">Notes on Artist: </label>
         <input 
           className="focus:border-blue-300 .outline-none .border-2 .border-gray-300 .rounded-md .p-2 .w-1/2 .focus:border-blue-500"
@@ -123,12 +128,10 @@ export default function AddArtist() {
           name="artistNotes"
           value={artistNotes}
           onChange={(e) => setArtistNotes(e.target.value)}
-          />
-          <br/>
+        />
       </div>
       <button type="submit" className="bg-blue-500 bg-opacity-10 border border-blue-500 text-blue-500 px-1 py-2 rounded-md cursor-pointer focus:outline-none">Add</button>
     </form>
   </div>
-  </>
   )
 }

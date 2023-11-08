@@ -4,14 +4,16 @@
 
 @layer components {
   .input {
-    @apply bg-gray-300 rounded-lg px-4 py-2 my-2 text-black
-    dark:bg-gray-200;
+    label {
+      @apply block mb-2 text-sm font-medium text-white
+    }
     input {
-      @apply bg-transparent border-b-2 border-slate-900 ml-2 px-1
-      dark:text-gray-800;
+      @apply bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
+      focus:ring-black focus:border-emerald-500 block w-full p-2.5 
+      dark:bg-gray-700 dark:border-gray-600 dark:text-white;
     }
   }
-  .form {
-    @apply flex flex-col justify-center items-center content-start text-slate-100 dark:text-slate-950;
+  form {
+    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-800 rounded-xl;
   }
 }

@@ -4,7 +4,7 @@ import { remult } from 'remult';
 export default function NewArt() {
 return (
   <div className="flex flex-col justify-center items-center mx-auto mt-10">
-    <h1 className='margin-auto text-3xl font-semibold mb-6'>Add an Artwork</h1>
+    <h1 className='margin-auto text-3xl font-semibold mb-6 dark:text-white'>Add an Artwork</h1>
     <form className='form'>
       <div className='input'>
         <label htmlFor="catalogNum">Catalog Number:</label>
