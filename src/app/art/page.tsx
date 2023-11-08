@@ -21,12 +21,12 @@ export default function Todo() {
     artRepo.find().then(setArts)
   }, [])
   return (
-    <main>
+    <main className='dark:text-white'>
       <Link href="/art/create" className="absolute right-6 top-20">New Art</Link>
       <Select options={options} value={value} onChange={o => setValue(o)} />
       {Art.map((artWork) => {
         return (
-          <div key={artWork.catalogNum}>
+          <div className='dark:text-white' key={artWork.catalogNum}>
             {artWork.title}
           </div>
         )

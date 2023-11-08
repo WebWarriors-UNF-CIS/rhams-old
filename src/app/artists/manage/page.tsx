@@ -44,26 +44,33 @@ function ArtistTable() {
   return (
     <div className="p-4">
       <div className="flex justify-center items-center">
-      <h1 className="text-3xl font-bold p-12">Manage Artists</h1>
+      <h1 className="text-3xl font-bold p-12 dark:text-white">Artists</h1>
       </div>
-      <div className="w-3/5 mx-auto">
-      <div className="flex mb-4">
-        <h1 className="text-xl font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
-        <div className="flex space-x-4 ml-auto">
+      <div className="">
+      <div className="flex w-5/5 mb-10">
+        <div className=''>
+        <h1 className="dark:text-white text-xl font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
+        </div>
+        <div className="flex pl-6">
           <input
             type="text"
             placeholder="First Name"
-            className="px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+            className="px-3  border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
           />
           <input
             type="text"
             placeholder="Last Name"
-            className="px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+            className="px-3 ml-3 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
           />
-          <button className="bg-emerald-500 text-white rounded-lg px-4 py-2 hover:bg-emerald-600 hover:shadow">
+          <button className="ml-3 bg-emerald-500 text-white rounded-lg p-1 hover:bg-emerald-600 hover:shadow">
             Search
           </button>
         </div>
+        <div className='flex pl-9'>
+        <button className="ml-8 bg-emerald-500 text-white rounded-lg  p-1 hover:bg-emerald-600 hover:shadow">
+            Add New Artist
+        </button>
+      </div>
       </div>
     </div>
     <div className="flex justify-center items-center border-solid border-2 border-black">
@@ -77,15 +84,15 @@ function ArtistTable() {
         <tbody>
           {artists.map((artist) => (
             <tr key={artist.id}>
-              <td className="px-4 py-2">{artist.firstName}</td>
-              <td className="px-4 py-2">{artist.lastName}</td>
+              <td className="dark:text-white px-4 py-2">{artist.firstName}</td>
+              <td className="dark:text-white px-4 py-2">{artist.lastName}</td>
               <td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">View</button>
+                <button className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
                 </a></td>
                 <td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">Update</button>
+                <button className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-1 px-1 rounded">Update</button>
                 </a></td><td className='px-4 py-2'><a href="https://www.amazon.com">
-                <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-1 rounded">Delete</button>
                 </a></td>
             </tr>
           ))}
