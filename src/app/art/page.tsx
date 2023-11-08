@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { remult } from "remult"
 import { ArtPiece } from "../shared/art"
 import { Select } from "../components/filter"
+import Link from "next/link"
 
 const artRepo = remult.repo(ArtPiece)
 const options = [
@@ -20,18 +21,16 @@ export default function Todo() {
     artRepo.find().then(setArts)
   }, [])
   return (
-    <div>
-      <h1>All Art</h1>
+    <main>
+      <Link href="/art/create" className="absolute right-6 top-20">New Art</Link>
       <Select options={options} value={value} onChange={o => setValue(o)} />
-      <main>
-        {Art.map((artWork) => {
-          return (
-            <div key={artWork.catalogNum}>
-              {artWork.title}
-            </div>
-          )
-        })}
-      </main>
-    </div>
+      {Art.map((artWork) => {
+        return (
+          <div key={artWork.catalogNum}>
+            {artWork.title}
+          </div>
+        )
+      })}
+    </main>
   )
 }
