@@ -8,18 +8,20 @@ import React from 'react';
 import reubenPic from 'src/images/reuben.png'
 import Image from 'next/image'
 
+var artistRepo = remult.repo(Artist);
 
-
-function ArtistView({ params }: { params: { artist: string } }) {
+async function ArtistView({ params }: { params: { artist: string } }) {
+    //let currentArtist = await artistRepo.findId(params.artist);
+  //{currentArtist.firstName + " " + currentArtist.lastName}
   return (
     <div className="mt-8 grid grid-cols-2 gap-5">
         <div>
-            <h1 className="dark:text-white text-2xl"  >Reuben Hale</h1>
+            <h1 className="dark:text-white text-2xl"  >artist name</h1>
             <Image className="max-w-xs"src={reubenPic} alt="Reuben Hale" />
         </div>
         <div>
             <div>
-                <h1 className="dark:text-white text-2xl">Artworks</h1>
+                <h1 className="dark:text-white text-2xl">{params.artist}</h1>
                 <table>
                     <thead>
                     <tr className="border border-solid ">
