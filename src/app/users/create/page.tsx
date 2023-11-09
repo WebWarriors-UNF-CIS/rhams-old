@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
@@ -29,18 +28,18 @@ export default function UserRegistration() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       userRepo.insert(formData);
-      router.push('/artist');
+      router.push('/artists');
       setSuccessMessage('User account created successfully!');
     };
   
     return (
       <div className="flex flex-col justify-center items-center mx-auto mt-10">
-        <h1 className="text-3xl font-semibold mb-6">New User Registration</h1>
+        <h1 className="text-3xl font-semibold mb-6 text-white">New User Registration</h1>
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center content-start text-slate-100'>
-          <div className="mb-4">
+          <div className="input">
             <label htmlFor="name" className="block text-sm font-medium">
               Username
             </label>
@@ -68,7 +67,7 @@ export default function UserRegistration() {
               required
             />
           </div>
-          <div className="mb-4">
+          <div className="input">
             <label htmlFor="password" className="block text-sm font-medium">
               Password
             </label>
