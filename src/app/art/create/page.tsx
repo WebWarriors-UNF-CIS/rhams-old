@@ -1,11 +1,37 @@
-import { User } from '../../shared/user';
+"use client"
+
+import { useState } from 'react';
 import { remult } from 'remult';
+import { ArtPiece } from '../../shared/art';
 
 export default function NewArt() {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [art, setArt] = useState<ArtPiece | undefined>(undefined);
+  const artRepo = remult.repo(ArtPiece);
+
+  let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const artPiece = {
+      catalogNum: form.catalogNum.value,
+      title: form.artTitle.value,
+      artist: form.artist.value,
+      created: new Date(form.created.value),
+      description: form.description.value,
+      imageUrl: form.imageUrl.value,
+      isSold: false,
+      medium: form.medium.value,
+      size: form.size.value,
+      location: form.location.value
+    };
+    await artRepo.save(artPiece);
+  }
+
 return (
   <div className="flex flex-col justify-center items-center mx-auto mt-10">
     <h1 className='margin-auto text-3xl font-semibold mb-6 dark:text-white'>Add an Artwork</h1>
-    <form className='form'>
+    <form className='form' onSubmit={handleSubmit}>
       <div className='input'>
         <label htmlFor="catalogNum">Catalog Number:</label>
         <input
@@ -15,10 +41,10 @@ return (
         />
       </div>
       <div className='input'>
-        <label htmlFor="title">Title:</label>
+        <label htmlFor="artTitle">Title:</label>
         <input
           type="text"
-          id="title"
+          id="artTitle"
           placeholder='Title'
         />
       </div>
@@ -79,6 +105,7 @@ return (
           placeholder='Location'
         />
       </div>
+      <button type="submit" className="bg-emerald-500 rounded-lg p-2">Submit</button>
     </form>
   </div>
 );
