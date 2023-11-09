@@ -29,26 +29,29 @@
     }
     
   }
-  .btn-green {
+  button
+  {
+    @apply text-white font-semibold px-4 py-2 rounded-lg
+  }
+  .btn-green 
+  {
     @apply bg-emerald-500 dark:bg-emerald-600;
   }
-  .btn-green:hover {
+  .btn-green:hover 
+  {
     @apply  hover:bg-emerald-600 dark:hover:bg-emerald-700;
   }
-  .btn-gray {
+  .btn-gray 
+  {
     @apply bg-gray-500  dark:bg-gray-600;
   }
-  .btn-gray:hover {
+  .btn-gray:hover
+  {
     @apply  hover:bg-gray-600 dark:hover:bg-gray-700;
   }
   form 
   {
     @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl;
-
-    button
-    {
-      @apply text-white font-semibold px-4 py-2 rounded-lg
-    }
   }
   
 }
