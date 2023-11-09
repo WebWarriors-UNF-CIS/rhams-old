@@ -91,9 +91,9 @@ function ArtistTable() {
                 </a></td>
                 <td className='px-4 py-2'><a href="../artists/artistview">
                 <button className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-1 px-1 rounded">Update</button>
-                </a></td><td className='px-4 py-2'><a href="../artists/artistview">
+                </a></td><td className='px-4 py-2'><Link href="../artists/artistview">
                 <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-1 rounded">Delete</button>
-                </a></td>
+                </Link></td>
             </tr>
           ))}
         </tbody>
