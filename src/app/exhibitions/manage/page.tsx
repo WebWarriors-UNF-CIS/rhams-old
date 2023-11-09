@@ -11,6 +11,7 @@ const exhibitRepo = remult.repo(Exhibit);
 
 export default function ExhibitPage() {
   const [exhibits, setExhibits] = useState<Exhibit[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchExhibits() {
@@ -23,31 +24,24 @@ export default function ExhibitPage() {
   return (
     <div>
       <Head>
-        <title>Exhibits</title>
+        <title>Manage Exhibitions</title>
       </Head>
-      <div className='flex flex-col mx-auto mt-10 pl-8'><h1>Exhibits</h1></div>
-      <div className="p-4 flex items-center justify-between">
-        <div>
-          <div className="input">
-            <label htmlFor="date-filter" className="text-gray-600">Date:</label>
-            <input
-            type="date"
-            id="date-filter"
-            placeholder="Select date"
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="location-filter">Location:</label>
-            <input
-            type="text"
-            id="location-filter"
-            placeholder="Enter location"
-            />
-          </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
+      <div className='flex flex-col mx-auto mt-10 pl-8'><h1>Manage Exhibitions</h1></div>
+      <div className="p-4 flex items-end justify-start">
+          <div className="grid grid-cols-3">
+
+          <button className="btn-green mx-4 w-20" onClick={() => router.push('./create')}>
+              Create
+          </button>
+
+          <button className="btn-gray mx-4 w-20" onClick={() => router.push('exhibitions/')}>
               Edit
           </button>
-        </div>
+          
+          <button className="btn-red mx-4 w-20" onClick={() => router.push('exhibitions/')}>
+              Delete
+          </button>
+          </div>
       </div>
 
       <div className='flex flex-col justify-center items-center mx-auto mt-10'>
