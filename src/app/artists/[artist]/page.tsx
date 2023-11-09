@@ -10,7 +10,7 @@ import Image from 'next/image'
 
 
 
-function ArtistView() {
+function ArtistView({ params }: { params: { artist: string } }) {
   return (
     <div className="mt-8 grid grid-cols-2 gap-5">
         <div>
