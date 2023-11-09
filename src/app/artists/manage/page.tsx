@@ -86,12 +86,12 @@ function ArtistTable() {
             <tr key={artist.id}>
               <td className="dark:text-white px-4 py-2">{artist.firstName}</td>
               <td className="dark:text-white px-4 py-2">{artist.lastName}</td>
-              <td className='px-4 py-2'><a href="https://www.amazon.com">
+              <td className='px-4 py-2'><a href="../artists/artistview">
                 <button className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
                 </a></td>
-                <td className='px-4 py-2'><a href="https://www.amazon.com">
+                <td className='px-4 py-2'><a href="../artists/artistview">
                 <button className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-1 px-1 rounded">Update</button>
-                </a></td><td className='px-4 py-2'><a href="https://www.amazon.com">
+                </a></td><td className='px-4 py-2'><a href="../artists/artistview">
                 <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-1 rounded">Delete</button>
                 </a></td>
             </tr>
