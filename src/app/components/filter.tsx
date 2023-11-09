@@ -40,7 +40,8 @@ function isOptionSelected(option: SelectOption) {
             <div className={styles.caret}></div> 
             <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}> 
                 {options.map((option) => (
-                    <li onClick={e => {
+                    <li key={option.label}
+                        onClick={e => {
                         selectOption(option)
                         setIsOpen(true) /*to close after choosing option*/
                     }} className={`${styles.option} ${isOptionSelected(option) ? styles.selected : ""}`}>{option.label}</li>
