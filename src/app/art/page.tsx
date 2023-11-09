@@ -26,7 +26,7 @@ export default function Todo() {
       <Select options={options} value={value} onChange={o => setValue(o)} />
       {Art.map((artWork) => {
         return (
-          <div className='dark:text-white' key={artWork.catalogNum}>
+          <div key={artWork.catalogNum}>
             {artWork.title}
           </div>
         )
