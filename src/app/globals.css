@@ -18,7 +18,7 @@
   }
   h1
   {
-    @apply block mb-2 text-2xl font-medium dark:text-white
+    @apply block mb-4 text-4xl font-medium dark:text-white
   }
   h3
   {
