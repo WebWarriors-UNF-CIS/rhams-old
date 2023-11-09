@@ -10,7 +10,7 @@
   }
   h3
   {
-    @apply block mb-2 text-lg font-medium dark:text-white
+    @apply block text-lg font-medium dark:text-white
   }
 }
 @layer components
