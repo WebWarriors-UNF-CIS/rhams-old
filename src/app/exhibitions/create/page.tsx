@@ -39,9 +39,9 @@ export default function ExhibitRegistration() {
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
-        <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center content-start dark:text-slate-100'>
+        <form onSubmit={handleSubmit}>
           <div className="input">
-            <label htmlFor="name" className="block text-sm dark:text-white font-medium">
+            <label htmlFor="name">
               Name of Exhibition
             </label>
             <input
@@ -50,12 +50,11 @@ export default function ExhibitRegistration() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="bg-transparent border-b-2 dark:text-white border-slate-900 ml-2"
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="email" className="block text-sm dark:text-white font-medium">
+            <label htmlFor="email">
               Location of Exhibition
             </label>
             <input
@@ -64,12 +63,11 @@ export default function ExhibitRegistration() {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              className="bg-transparent border-b-2 dark:text-white border-slate-900 ml-2"
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="startDate" className="block text-sm dark:text-white font-medium">
+            <label htmlFor="startDate">
               Exhibition Start Date
             </label>
             <input
@@ -77,12 +75,11 @@ export default function ExhibitRegistration() {
               id="startDate"
               name="startDate"
               onChange={handleChange}
-              className="bg-transparent border-b-2 dark:text-white border-slate-900 ml-2"
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="endDate" className="block text-sm dark:text-white font-medium">
+            <label htmlFor="endDate">
               Exhibition End Date
             </label>
             <input
@@ -90,7 +87,6 @@ export default function ExhibitRegistration() {
               id="endDate"
               name="endDate"
               onChange={handleChange}
-              className="bg-transparent border-b-2 dark:text-white border-slate-900 ml-2"
               required
             />
           </div>

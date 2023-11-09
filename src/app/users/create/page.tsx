@@ -38,9 +38,9 @@ export default function UserRegistration() {
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
-        <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center content-start text-slate-100'>
+        <form onSubmit={handleSubmit}>
           <div className="input">
-            <label htmlFor="name" className="block text-sm font-medium">
+            <label htmlFor="name">
               Username
             </label>
             <input
@@ -49,12 +49,11 @@ export default function UserRegistration() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="bg-transparent border-b-2 border-slate-900 ml-2"
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="email" className="block text-sm font-medium">
+            <label htmlFor="email">
               Email Address
             </label>
             <input
@@ -63,12 +62,11 @@ export default function UserRegistration() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="bg-transparent border-b-2 border-slate-900 ml-2"
               required
             />
           </div>
           <div className="input">
-            <label htmlFor="password" className="block text-sm font-medium">
+            <label htmlFor="password">
               Password
             </label>
             <input
@@ -77,7 +75,6 @@ export default function UserRegistration() {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="bg-transparent border-b-2 border-slate-900 ml-2"
               required
             />
           </div>

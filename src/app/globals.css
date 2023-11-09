@@ -5,7 +5,7 @@
 @layer components {
   .input {
     label {
-      @apply block mb-2 text-sm font-medium text-white
+      @apply block mb-2 text-sm font-medium text-black dark:text-white
     }
     input {
       @apply bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
