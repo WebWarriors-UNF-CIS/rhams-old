@@ -14,6 +14,14 @@
     }
   }
   form {
-    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-800 rounded-xl;
+    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl;
+  }
+  h1
+  {
+    @apply block mb-4 text-4xl font-medium dark:text-white
+  }
+  h3
+  {
+    @apply block mb-2 text-lg font-medium dark:text-white
   }
 }

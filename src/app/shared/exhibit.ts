@@ -4,33 +4,18 @@ import { Entity, Fields } from "remult"
   allowApiCrud: true
 })
 export class Exhibit {
-    @Fields.cuid()
-    id = ""
-
-    @Fields.json()
-    artIds = []
-
-    @Fields.json()
-    otherArtists = []
+    @Fields.autoIncrement()
+    id!:number
 
     @Fields.string()
-    startDate = Date
-
-    @Fields.string()
-    endDate = Date
-
-    @Fields.string()
-    contactName = ""
-
-    @Fields.string()
-    contactEmail = ""
-
-    @Fields.string()
-    contactPhone = ""
+    name = ""
 
     @Fields.string()
     location = ""
 
-    @Fields.string()
-    notes = ""
+    @Fields.dateOnly()
+    startDate = new Date
+
+    @Fields.dateOnly()
+    endDate = new Date
 }
