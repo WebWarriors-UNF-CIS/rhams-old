@@ -6,6 +6,7 @@ import '../../globals.css'
 import { Artist } from '../../shared/artist';
 import React from 'react';
 
+
 const artists = [
   { id: 1, firstName: 'Reuben', lastName: 'Hale' },
   { id: 2, firstName: 'Frida', lastName: 'Kahlo' },
@@ -42,65 +43,65 @@ const artists = [
 
 function ArtistTable() {
   return (
-    <div className="p-4">
-      <div className="flex justify-center items-center">
-      <h1 className="text-3xl font-bold p-12 dark:text-white">Artists</h1>
-      </div>
-      <div className="">
-      <div className="flex w-5/5 mb-10">
-        <div className=''>
-        <h1 className="dark:text-white text-xl font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
+    <div>
+        <h1 className="text-center justify-text-3xl font-bold p-12 dark:text-white">Artists</h1>
+      <div className="grid grid-cols-7">
+        <div className='col-span-1'>
+          <h1 className="ml-10 dark:text-white text-xl  font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
         </div>
-        <div className="flex pl-6">
+        <div className="mt-3">
           <input
             type="text"
             placeholder="First Name"
-            className="px-3  border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+            className="px-1  border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
           />
+          </div>
+        <div className="mt-3">
           <input
             type="text"
             placeholder="Last Name"
-            className="px-3 ml-3 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
+            className="px-1 ml-3 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
           />
-          <button className="ml-3 bg-emerald-500 text-white rounded-lg p-1 hover:bg-emerald-600 hover:shadow">
+        </div>
+        <div className="mt-3">
+          <button className="ml-3 bg-emerald-500 text-white rounded-md p-1 hover:bg-emerald-600 hover:shadow">
             Search
           </button>
         </div>
-        <div className='flex pl-9'>
-        <button className="ml-8 bg-emerald-500 text-white rounded-lg  p-1 hover:bg-emerald-600 hover:shadow">
-            Add New Artist
-        </button>
+        <div className="col-span-3">
+          <a href="../artists/create"><button className="ml-10 bg-emerald-500 text-white rounded-md  mt-3 p-1 hover:bg-emerald-600 hover:shadow">
+              Add Artist
+          </button></a>
+        </div>
       </div>
-      </div>
-    </div>
-    <div className="flex justify-center items-center border-solid border-2 border-black">
-      <table className="w-3/4">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="px-4 py-2">First Name</th>
-            <th className="px-4 py-2">Last Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {artists.map((artist) => (
-            <tr key={artist.id}>
-              <td className="dark:text-white px-4 py-2">{artist.firstName}</td>
-              <td className="dark:text-white px-4 py-2">{artist.lastName}</td>
-              <td className='px-4 py-2'><a href="../artists/artistview">
-                <button className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
-                </a></td>
-                <td className='px-4 py-2'><a href="../artists/artistview">
-                <button className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-1 px-1 rounded">Update</button>
-                </a></td><td className='px-4 py-2'><Link href="../artists/artistview">
-                <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-1 rounded">Delete</button>
-                </Link></td>
+      <div className="flex justify-center items-center border-solid border-2 border-black">
+        <table className="w-3/4">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="px-4 py-2">First Name</th>
+              <th className="px-4 py-2">Last Name</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {artists.map((artist) => (
+              <tr key={artist.id}>
+                <td className="dark:text-white px-4 py-2">{artist.firstName}</td>
+                <td className="dark:text-white px-4 py-2">{artist.lastName}</td>
+                <td className='px-4 py-2'><a href="../artists/artistview">
+                  <button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
+                  </a></td>
+                  <td className='px-4 py-2'><a href="../artists/artistview">
+                  <button className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-1 px-1 rounded">Update</button>
+                  </a></td><td className='px-4 py-2'><Link href="../artists/artistview">
+                  <button className="bg-red-400 hover:bg-red-700 text-white font-bold py-1 px-1 rounded">Delete</button>
+                  </Link></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default ArtistTable;

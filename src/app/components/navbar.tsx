@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import reubenLogo from '../src/images/ReubenLogo.jpg'
 
 export default function Nav() {
     return (
