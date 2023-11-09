@@ -35,7 +35,7 @@ export default function ExhibitRegistration() {
   
     return (
       <div className="flex flex-col justify-center items-center mx-auto mt-10">
-        <h1 className="text-3xl font-semibold mb-6 dark:text-white">Add Exhibition</h1>
+        <h1>Add Exhibition</h1>
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
@@ -48,6 +48,7 @@ export default function ExhibitRegistration() {
               type="text"
               id="name"
               name="name"
+              placeholder='Name'
               value={formData.name}
               onChange={handleChange}
               required
@@ -61,6 +62,7 @@ export default function ExhibitRegistration() {
               type="text"
               id="location"
               name="location"
+              placeholder='Location'
               value={formData.location}
               onChange={handleChange}
               required
@@ -90,12 +92,8 @@ export default function ExhibitRegistration() {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Add Exhibition
-          </button>
+          <button type="submit" className="btn-green">Add Exhibition</button>
+          <button type="button" className="btn-gray" onClick={() => router.push('./')}>Back</button>
         </form>
       </div>
     );

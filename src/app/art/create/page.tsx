@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import { remult } from 'remult';
+import { useRouter } from 'next/navigation';
 import { ArtPiece } from '../../shared/art';
 
 export default function NewArt() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [art, setArt] = useState<ArtPiece | undefined>(undefined);
+  const router = useRouter();
   const artRepo = remult.repo(ArtPiece);
 
   let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +32,7 @@ export default function NewArt() {
 
 return (
   <div className="flex flex-col justify-center items-center mx-auto mt-10">
-    <h1 className='margin-auto text-3xl font-semibold mb-6 dark:text-white'>Add an Artwork</h1>
+    <h1>Add an Artwork</h1>
     <form className='form' onSubmit={handleSubmit}>
       <div className='input'>
         <label htmlFor="catalogNum">Catalog Number:</label>
@@ -105,7 +107,8 @@ return (
           placeholder='Location'
         />
       </div>
-      <button type="submit" className="bg-emerald-500 rounded-lg p-2">Submit</button>
+      <button type="submit" className="btn-green">Add Artwork</button>
+      <button type="button" className="btn-gray" onClick={() => router.push('./')}>Back</button>
     </form>
   </div>
 );

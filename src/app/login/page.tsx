@@ -32,14 +32,14 @@ export default function Login() {
     return (
     <div className="flex flex-col justify-center items-center mx-auto mt-10">
       <h1 className='dark:text-white margin-auto text-3xl font-semibold mb-6'>Login</h1>
-      <form onSubmit={login} className='form'>
+      <form onSubmit={login}>
         <div className='input'>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"
             value={email}
-            placeholder='example@example.org'
+            placeholder='johndoe@gmail.com'
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -48,11 +48,13 @@ export default function Login() {
           <input
             type="password"
             id="password"
+            placeholder='********'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className='bg-emerald-500 text-white p-1 px-2 rounded-lg'>Login</button>
+        <button type="submit" className="btn-green">Login</button>
+        <button type="button" className="btn-gray" onClick={() => router.push('./users/create')}>Back</button>
       </form>
     </div>
     );
