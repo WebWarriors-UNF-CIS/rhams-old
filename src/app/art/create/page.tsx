@@ -11,7 +11,7 @@ return (
         <input
           type="text"
           id="catalogNum"
-          className='w-1/12'
+          placeholder='001'
         />
       </div>
       <div className='input'>
@@ -37,11 +37,14 @@ return (
           id="created"
         />
       </div>
-      <div className='input'>
+      <div className='input col-span-2'>
         <label htmlFor="description">Description:</label>
         <textarea
           id="description"
           placeholder='Description'
+          className="bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
+          focus:ring-black focus:border-emerald-500 block w-full p-2.5 
+          dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         />
       </div>
       <div className='input'>
