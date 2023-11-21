@@ -4,6 +4,9 @@ import { Entity, Fields } from 'remult';
   allowApiCrud: true
 })
 export class User {
+    @Fields.cuid()
+    id = ''
+
     @Fields.string()
     name = ''
     
