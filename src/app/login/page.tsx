@@ -13,7 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const router = useRouter();
 
-    const login = async (e: React.FormEvent) => {
+    async function login(e: React.FormEvent) {
         e.preventDefault();
         try {
             userRepo.findFirst({ email: email, password: password }).then((user) => {
