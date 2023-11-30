@@ -5,6 +5,9 @@ import { Entity, Fields } from "remult"
 })
 export class Artist {
   
+  @Fields.cuid()
+  id: string=''
+
   @Fields.string()
   firstName: string
 
