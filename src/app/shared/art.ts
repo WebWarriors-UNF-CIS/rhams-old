@@ -33,7 +33,10 @@ export class ArtPiece {
   imageUrl = ""
 
   @Fields.json()
-  salesIds: [] = []
+  salesIds = []
+
+  @Fields.string()
+  type = ""
 
   // TODO: Follow after MediumTypes table is created
   @Fields.string()
