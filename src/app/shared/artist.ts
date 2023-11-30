@@ -28,6 +28,9 @@ export class Artist {
   primaryMedium: MediumType
 
   @Fields.string()
+  imageString?: string
+
+  @Fields.string()
   website?: string
 
   @Fields.string()
