@@ -4,8 +4,8 @@ import { Entity, Fields } from "remult"
   allowApiCrud: true
 })
 export class ArtPiece {
-  @Fields.cuid()
-  id: string = ""
+  @Fields.autoIncrement()
+  id = 0
 
   @Fields.integer()
   catalogNum = ""

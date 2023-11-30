@@ -4,6 +4,10 @@ import { Entity, Fields } from 'remult';
   allowApiCrud: true
 })
 export class User {
+
+    @Fields.autoIncrement()
+    id = 0
+    
     @Fields.string()
     name = ''
     

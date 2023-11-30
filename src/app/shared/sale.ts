@@ -4,8 +4,8 @@ import { Entity, Fields } from "remult";
   allowApiCrud: true
 })
 export class Sale {
-    @Fields.cuid()
-    id: string = "";
+    @Fields.autoIncrement()
+    id = 0;
 
     @Fields.string()
     artId: string = "";
