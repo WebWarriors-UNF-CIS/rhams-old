@@ -18,4 +18,7 @@ export class Exhibit {
 
     @Fields.dateOnly()
     endDate = new Date
+
+    @Fields.json()
+    artIds = []
 }
