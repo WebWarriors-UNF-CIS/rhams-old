@@ -2,26 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .input {
-    label {
-      @apply block mb-2 text-sm font-medium text-black dark:text-white
-    }
-    input {
-      @apply bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
-      focus:ring-black focus:border-emerald-500 block w-full p-2.5 
-      dark:bg-gray-700 dark:border-gray-600 dark:text-white;
-    }
-  }
-  form {
-    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl;
-  }
+@layer base
+{
   h1
   {
     @apply block mb-4 text-4xl font-medium dark:text-white
   }
   h3
   {
-    @apply block mb-2 text-lg font-medium dark:text-white
+    @apply block text-lg font-medium dark:text-white
   }
+}
+@layer components
+{
+  .input 
+  {
+    label 
+    {
+      @apply block mb-2 text-sm font-medium text-black dark:text-white
+    }
+    input 
+    {
+      @apply bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
+      focus:ring-black focus:border-emerald-500 block w-full p-2.5 
+      dark:bg-gray-700 dark:border-gray-600 dark:text-white;
+    }
+    
+  }
+  button
+  {
+    @apply text-white font-semibold px-4 py-2 rounded-lg
+  }
+  .btn-green 
+  {
+    @apply bg-emerald-500 dark:bg-emerald-600;
+  }
+  .btn-green:hover 
+  {
+    @apply  hover:bg-emerald-600 dark:hover:bg-emerald-700;
+  }
+  .btn-gray 
+  {
+    @apply bg-gray-500  dark:bg-gray-600;
+  }
+  .btn-gray:hover
+  {
+    @apply  hover:bg-gray-600 dark:hover:bg-gray-700;
+  }
+  .btn-red 
+  {
+    @apply bg-red-500  dark:bg-red-600;
+  }
+  .btn-red:hover
+  {
+    @apply  hover:bg-red-600 dark:hover:bg-red-700;
+  }
+  form 
+  {
+    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl;
+  }
+  
 }

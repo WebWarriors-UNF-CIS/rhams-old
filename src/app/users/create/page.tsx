@@ -34,11 +34,11 @@ export default function UserRegistration() {
   
     return (
       <div className="flex flex-col justify-center items-center mx-auto mt-10">
-        <h1 className="text-3xl font-semibold mb-6 text-white">New User Registration</h1>
+        <h1>New User Registration</h1>
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form className="md:grid-cols-1" onSubmit={handleSubmit}>
           <div className="input">
             <label htmlFor="name">
               Username
@@ -47,6 +47,7 @@ export default function UserRegistration() {
               type="text"
               id="name"
               name="name"
+              placeholder='username'
               value={formData.name}
               onChange={handleChange}
               required
@@ -60,6 +61,7 @@ export default function UserRegistration() {
               type="email"
               id="email"
               name="email"
+              placeholder='johndoe@gmail.com'
               value={formData.email}
               onChange={handleChange}
               required
@@ -73,17 +75,13 @@ export default function UserRegistration() {
               type="password"
               id="password"
               name="password"
+              placeholder='********'
               value={formData.password}
               onChange={handleChange}
               required
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-          >
-            Create Account
-          </button>
+          <button type="submit" className="btn-green">Create Account</button>
         </form>
       </div>
     );
