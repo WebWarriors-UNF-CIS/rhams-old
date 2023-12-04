@@ -1,4 +1,5 @@
 import { Entity, Fields } from "remult"
+import { Type } from "./artist"
 
 @Entity("artPiece", {
   allowApiCrud: true
@@ -35,8 +36,8 @@ export class ArtPiece {
   @Fields.json()
   salesIds = []
 
-  @Fields.string()
-  type = ""
+  @Fields.object()
+  type = Type
 
   // TODO: Follow after MediumTypes table is created
   @Fields.string()
