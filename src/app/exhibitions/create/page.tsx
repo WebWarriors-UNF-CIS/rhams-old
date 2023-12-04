@@ -93,7 +93,7 @@ export default function ExhibitRegistration() {
             />
           </div>
           <button type="submit" className="btn-green">Add Exhibition</button>
-          <button type="button" className="btn-gray" onClick={() => router.push('./')}>Back</button>
+          <button type="button" className="btn-gray" onClick={() => router.push('/exhibitions/manage')}>Back</button>
         </form>
       </div>
     );
