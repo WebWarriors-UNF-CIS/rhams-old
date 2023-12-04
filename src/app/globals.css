@@ -17,49 +17,40 @@
 {
   .input 
   {
+    @apply max-sm:grow;
     label 
     {
-      @apply block mb-2 text-sm font-medium text-black dark:text-white
+      @apply block mb-2 text-sm font-medium text-black dark:text-white text-center
     }
     input 
     {
-      @apply bg-gray-50 border-2 text-sm rounded-lg focus:outline-none
-      focus:ring-black focus:border-emerald-500 block w-full p-2.5 
+      @apply bg-white border border-emerald-950 text-sm rounded focus:outline-none
+      focus:ring-black focus:border-emerald-500 block w-full p-1.5 
       dark:bg-gray-700 dark:border-gray-600 dark:text-white;
     }
     
   }
   button
   {
-    @apply text-white font-semibold px-4 py-2 rounded-lg
+    @apply text-white font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]
   }
   .btn-green 
   {
-    @apply bg-emerald-500 dark:bg-emerald-600;
-  }
-  .btn-green:hover 
-  {
-    @apply  hover:bg-emerald-600 dark:hover:bg-emerald-700;
+    @apply bg-emerald-500 dark:bg-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-700;
   }
   .btn-gray 
   {
-    @apply bg-gray-500  dark:bg-gray-600;
-  }
-  .btn-gray:hover
-  {
-    @apply  hover:bg-gray-600 dark:hover:bg-gray-700;
+    @apply bg-gray-500  dark:bg-gray-600
+    hover:bg-gray-600 dark:hover:bg-gray-700;
   }
   .btn-red 
   {
-    @apply bg-red-500  dark:bg-red-600;
-  }
-  .btn-red:hover
-  {
-    @apply  hover:bg-red-600 dark:hover:bg-red-700;
+    @apply bg-red-500  dark:bg-red-600
+    hover:bg-red-600 dark:hover:bg-red-700;
   }
   form 
   {
-    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl;
+    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-100 border-2 border-black dark:bg-slate-800 rounded-xl;
   }
   
 }
