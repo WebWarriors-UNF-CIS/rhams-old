@@ -1,7 +1,6 @@
 import React from 'react';
 import { Exhibit } from '../shared/exhibit';
 import { useRouter } from 'next/navigation';
-import { Chip } from "@material-tailwind/react";
 
 interface ExhibitCardProps {
   exhibit: Exhibit;
