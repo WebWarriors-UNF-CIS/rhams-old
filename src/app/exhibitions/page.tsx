@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { Exhibit } from '../shared/exhibit';
 import Head from 'next/head';
-import ExhibitCard from '../components/ExhibitCard';
+import ExhibitCard from '../components/card-exhibit';
 import '../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
