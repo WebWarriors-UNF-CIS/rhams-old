@@ -46,7 +46,7 @@ export default function ExhibitPage() {
       </div>
 
       <div className='flex flex-col justify-around items-center mx-auto mt-10'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 min-w-fit mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 min-w-fit mx-auto">
             {exhibits.map((exhibit) => (
             <ExhibitCard key={exhibit.id} exhibit={exhibit} />
             ))}
