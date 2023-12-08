@@ -9,13 +9,13 @@ export class Artist {
   id = 0
 
   @Fields.string()
-  firstName: string
+  firstName?: string
 
   @Fields.string()
-  lastName: string
+  lastName?: string
 
   @Fields.string()
-  dob: Date
+  dob?: Date
 
   @Fields.string()
   dod: Date | null = null
@@ -23,47 +23,27 @@ export class Artist {
   @Fields.string()
   nationality?: string
 
-  // Make a Mediums table, change to primaryMediumTypeId
+  // Make a Type table, change to primaryTypeId
   @Fields.object()
-  primaryMedium: MediumType
+  primaryType?: Type
+
+  @Fields.string()
+  imageString?: string
 
   @Fields.string()
   website?: string
 
   @Fields.string()
-  biography?: string // should this be a text field?
+  biography?: string
 
   @Fields.json()
-  knownExhibits?: [] = []
+  knownExhibits: number[] = []
 
   @Fields.string()
   notes?: string
-
-  constructor(
-    firstName: string,
-    lastName: string,
-    dob: Date,
-    primaryMedium: MediumType,
-    dod?: Date | null,
-    nationality?: string,
-    website?: string,
-    biography?: string,
-    notes?: string
-  ) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.dob = dob;
-    if(dod || dod === null)
-      this.dod = dod;
-    this.nationality = nationality;
-    this.primaryMedium = primaryMedium;
-    this.website = website;
-    this.biography = biography;
-    this.notes = notes;
-  }
 }
 
-export enum MediumType {
+export enum Type {
   Painting,
   Sculpture,
   Photography,

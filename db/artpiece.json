@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "catalogNum": 1,
     "title": "The Scream",
     "created": "1893-01-01",
@@ -9,11 +10,14 @@
     "medium": "Oil, tempera, pastel and crayon on cardboard",
     "size": "91 cm × 73.5 cm (36 in × 28.9 in)",
     "location": "National Gallery, Oslo, Norway",
-    "id": "",
     "artistId": "",
-    "aquired": ""
+    "aquired": "",
+    "height": "",
+    "width": "",
+    "depth": ""
   },
   {
+    "id": 2,
     "catalogNum": 2,
     "title": "Mona Lisa",
     "created": "1503-01-01",
@@ -23,11 +27,14 @@
     "medium": "Oil on poplar panel",
     "size": "77 cm × 53 cm (30 in × 21 in)",
     "location": "Musée du Louvre, Paris, France",
-    "id": "",
     "artistId": "",
-    "aquired": ""
+    "aquired": "",
+    "height": "",
+    "width": "",
+    "depth": ""
   },
   {
+    "id": 3,
     "catalogNum": 3,
     "title": "The Starry Night",
     "created": "1889-01-01",
@@ -37,8 +44,10 @@
     "medium": "Oil on canvas",
     "size": "73.7 cm × 92.1 cm (28.7 in × 36.3 in)",
     "location": "Museum of Modern Art, New York City, United States",
-    "id": "",
     "artistId": "",
-    "aquired": ""
+    "aquired": "",
+    "height": "",
+    "width": "",
+    "depth": ""
   }
 ]
