@@ -9,10 +9,10 @@ export class Exhibit {
     id!:number
 
     @Fields.string()
-    name = ""
+    name? = ""
 
     @Fields.string()
-    location = ""
+    location? = ""
 
     @Fields.dateOnly()
     startDate = new Date

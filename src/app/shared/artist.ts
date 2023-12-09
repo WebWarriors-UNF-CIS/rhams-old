@@ -3,44 +3,45 @@ import { Entity, Fields } from "remult"
 @Entity("artist", {
   allowApiCrud: true
 })
+
 export class Artist {
-  
   @Fields.autoIncrement()
-  id = 0
+  id!:number
 
   @Fields.string()
-  firstName?: string
+  firstName? = ""
 
   @Fields.string()
-  lastName?: string
+  lastName? = ""
 
-  @Fields.string()
-  dob?: Date
+  @Fields.dateOnly()
+  dob = new Date
 
-  @Fields.string()
-  dod: Date | null = null
+  @Fields.dateOnly()
+  dod = new Date
   
   @Fields.string()
-  nationality?: string
+  nationality? = ""
 
   // Make a Type table, change to primaryTypeId
-  @Fields.object()
-  primaryType?: Type
+  @Fields.string()
+  primaryType? = ""
 
   @Fields.string()
-  imageString?: string
+  imageString? = ""
 
   @Fields.string()
-  website?: string
+  website? = ""
 
   @Fields.string()
-  biography?: string
+  biography? = ""
 
-  @Fields.json()
-  knownExhibits: number[] = []
+  // Fix dat pls
+  @Fields.string()
+  knownExhibits? = "" //number[] = []
 
   @Fields.string()
-  notes?: string
+  notes? = ""
 }
 
 export enum Type {
