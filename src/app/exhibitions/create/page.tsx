@@ -7,7 +7,8 @@ import '../../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
 
-export default function ExhibitRegistration() {
+export default function ExhibitRegistration() 
+{
     const [formData, setFormData] = useState({
       name: '',
       location: '',
@@ -18,7 +19,8 @@ export default function ExhibitRegistration() {
     const [successMessage, setSuccessMessage] = useState('');
     const router = useRouter();
   
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
+    {
       const {name, value} = e.target;
       setFormData((prevData) => ({
         ...prevData,
@@ -26,10 +28,11 @@ export default function ExhibitRegistration() {
       }));
     };
   
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => 
+    {
       e.preventDefault();
       exhibitRepo.insert(formData);
-      router.push('/exhibitions');
+      router.push('/exhibitions/manage');
       setSuccessMessage('Exhibition created successfully!');
     };
   
