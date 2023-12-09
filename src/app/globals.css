@@ -14,7 +14,7 @@
   }
   p
   {
-    @apply text-base items-center text-gray-600 dark:text-gray-400
+    @apply text-base items-center text-gray-600 dark:text-white
   }
 }
 @layer components
@@ -36,11 +36,15 @@
   }
   button
   {
-    @apply text-white font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]
+    @apply text-white text-center font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]
   }
   .chip
   {
-    @apply bg-gray-200 text-gray-800 justify-end font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300
+    @apply bg-gray-200 text-gray-800 justify-end font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-300 dark:text-gray-700
+  }
+  .modal
+  {
+    @apply bg-slate-200 dark:bg-slate-800 p-6 rounded-md absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
   }
   .btn-green 
   {
@@ -48,7 +52,7 @@
   }
   .btn-gray 
   {
-    @apply bg-gray-500  dark:bg-gray-600  hover:bg-gray-600 dark:hover:bg-gray-700
+    @apply bg-gray-500  dark:bg-gray-400  hover:bg-gray-600 dark:hover:bg-gray-500
   }
   .btn-red 
   {
