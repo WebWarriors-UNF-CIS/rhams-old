@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { Exhibit } from '../../shared/exhibit';
 import Head from 'next/head';
-import ExhibitCard from '../../components/ExhibitCard';
+import ExhibitCard from '../../components/card-exhibit';
 import '../../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
@@ -26,28 +26,23 @@ export default function ExhibitPage() {
       <Head>
         <title>Manage Exhibitions</title>
       </Head>
-      <div className='flex flex-col mx-auto mt-10 pl-8'><h1>Manage Exhibitions</h1></div>
+      <div className='flex flex-row flex-wrap mx-auto mt-10 pl-8'>
+        <h1 className='mr-4'>Manage Exhibitions</h1>
+        <button className="ml-4 max-h-10 btn-green" onClick={() => router.push('./create')}>
+            Create New Exhibition
+        </button>
+      </div>
       <div className="p-4 flex items-end justify-start">
           <div className="grid grid-cols-3">
 
-          <button className="btn-green mx-4 w-20" onClick={() => router.push('./create')}>
-              Create
-          </button>
-
-          <button className="btn-gray mx-4 w-20" onClick={() => router.push('exhibitions/')}>
-              Edit
-          </button>
           
-          <button className="btn-red mx-4 w-20" onClick={() => router.push('exhibitions/')}>
-              Delete
-          </button>
           </div>
       </div>
 
-      <div className='flex flex-col justify-center items-center mx-auto mt-10'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-8 m-8">
+      <div className='flex flex-col justify-around items-center mx-auto mt-10'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 min-w-fit mx-auto">
             {exhibits.map((exhibit) => (
-            <ExhibitCard key={exhibit.id} exhibit={exhibit} />
+            <ExhibitCard key={exhibit.id} exhibit={exhibit} canEditAndDelete={true} UIRefresh={function (): void {} } />
             ))}
         </div>
       </div>

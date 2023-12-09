@@ -15,7 +15,7 @@ function NavLink({ href, inner }: { href: string, inner: string | JSX.Element}) 
 
 export default function Nav() {
     return (
-        <nav className= "sticky top-0 w-screen px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-500 text-black ">
+        <nav className= "sticky top-0 w-screen px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 text-black ">
             <Link className="text-2xl font-bold absolute left-5" href="/">
                 <Image className="p-1" width={150} height={150} src={logo} alt="Temporary Logo"/>
             </Link>
@@ -26,11 +26,11 @@ export default function Nav() {
                 <NavLink href="/literature" inner="Literature"/>
                 <NavLink href="/media" inner="Media"/>
                 <NavLink href="/sales" inner="Sales"/>
-                <NavLink href="/login" inner={<Image width={30} height={30} src={userico} alt="User Icon White"/>}/>
+                <NavLink href="/login" inner={<Image width={30} height={30} src={userico} alt="User Icon"/>}/>
             </ul>
             {/*<button id="nav-toggle" aria-controls="navigation" aria-expanded="false" className='!shadow-none'>
                 <span className="sr-only">Menu</span>
             </button>*/}
         </nav>
     );
-}
+} 
