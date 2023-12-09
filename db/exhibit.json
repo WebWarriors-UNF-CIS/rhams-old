@@ -47,5 +47,13 @@
     "location": "Greg Town",
     "startDate": "2023-07-11",
     "endDate": "2024-01-25"
+  },
+  {
+    "id": 8,
+    "name": "Exhibit H",
+    "location": "Area 51",
+    "startDate": "2023-12-05",
+    "endDate": "2023-12-27",
+    "artIds": []
   }
 ]
