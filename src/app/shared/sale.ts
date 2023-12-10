@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult";
 
-@Entity("Sale", {
+@Entity("sale", {
   allowApiCrud: true
 })
 export class Sale {
