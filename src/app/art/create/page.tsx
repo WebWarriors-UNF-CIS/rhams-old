@@ -34,8 +34,9 @@ export default function NewArt() {
   }
 
 return (
-  <div className="flex flex-col justify-center items-center mx-auto mt-10">
+  <main className="flex flex-col justify-center items-center mx-auto mt-10">
     <h1>Add an Artwork</h1>
+      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
     <form className='form !flex flex-wrap w-3/5 md:w-[600px] grow' onSubmit={handleSubmit}>
       <div className='input w-32'>
         <label htmlFor="catalogNum">Catalog Number</label>
@@ -120,8 +121,7 @@ return (
         />
       </div>
       <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Artwork</button>
-      <button type="button" className="btn-gray h-fit self-end" onClick={() => router.push('./')}>Back</button>
     </form>
-  </div>
+  </main>
 );
 }
