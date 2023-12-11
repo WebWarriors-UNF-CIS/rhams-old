@@ -14,8 +14,8 @@ export class ArtPiece {
   @Fields.string()
   title = ""
 
-  @Fields.string()
-  artistId = ""
+  @Fields.number()
+  artistId?: number
 
   @Fields.string()
   aquired?: Date
