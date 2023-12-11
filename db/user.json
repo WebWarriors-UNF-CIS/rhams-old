@@ -1,32 +1,46 @@
 [
   {
+    "id": "",
     "name": "John Doe",
     "email": "john@mail.com",
     "password": "1234",
     "role": "admin"
   },
   {
+    "id": "",
     "name": "Test",
     "email": "test@gmail.com",
     "password": "test",
     "role": "admin"
   },
   {
+    "id": "",
     "name": "Test 2",
     "email": "test2@gmail.com",
     "password": "test",
     "role": "admin"
   },
   {
+    "id": "",
     "name": "a",
     "email": "a@gmail.com",
     "password": "a",
     "role": "admin"
   },
   {
+    "id": "",
     "name": "test 3",
     "email": "test3@gmail.com",
     "password": "test",
     "role": "admin"
+  },
+  {
+    "id": "eu5b1ylnb3u2hwsjxt2j6svx",
+    "name": "Brendon",
+    "email": "me@mail.com",
+    "password": "hush",
+    "roles": [
+      0
+    ]
   }
 ]

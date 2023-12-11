@@ -3,9 +3,11 @@ import { ArtPiece } from '../../shared/art'
 import { User } from '../../shared/user'
 import { Artist } from '../../shared/artist'
 import { Exhibit } from '../../shared/exhibit'
+import { getUserOnServer } from '../auth/[...nextauth]/route'
 
 const api = remultNextApp({
-    entities: [ArtPiece, User, Artist, Exhibit]
+    entities: [ArtPiece, User, Artist, Exhibit],
+    getUser: getUserOnServer
 })
 
 export const { POST, PUT, DELETE, GET } = api
