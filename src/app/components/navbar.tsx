@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import userico from 'src/images/user-icon-lg-b.png'
+import userico from 'src/images/user-icon-lg-w.png'
 import logo from 'src/images/temp-logo.png'
 
 function NavLink({ href, inner }: { href: string, inner: string | JSX.Element}) {
@@ -21,13 +21,15 @@ export default function Nav() {
             </Link>
             <ul id="navigation" className="flex justify-end items-center">
                 <NavLink href="/art" inner="Art"/>
-                <NavLink href="/artists/manage" inner="Artists"/>
+                <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
                 <NavLink href="/literature" inner="Literature"/>
                 <NavLink href="/media" inner="Media"/>
                 <NavLink href="/sales" inner="Sales"/>
-                <NavLink href="/login" inner={<Image width={30} height={30} src={userico} alt="User Icon"/>}/>
             </ul>
+            <Link className="p-1 ml-40 flex-shrink-0" href="/">
+                <Image width={30} height={30} src={userico} alt="User Icon"/>
+            </Link>
             {/*<button id="nav-toggle" aria-controls="navigation" aria-expanded="false" className='!shadow-none'>
                 <span className="sr-only">Menu</span>
             </button>*/}
