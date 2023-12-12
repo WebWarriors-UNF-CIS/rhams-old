@@ -4,12 +4,14 @@ import { ArtPiece } from '../../shared/art';
 import { remult } from 'remult';
 import Image from 'next/image';
 import { Artist } from '../../shared/artist';
+import { useRouter } from 'next/navigation';
 
 export default function ArtPage({params} : { params: {art: string}}) {
   const [art, setArt] = useState<ArtPiece>();
   const [artist, setArtist] = useState<Artist>();
   const artRepo = remult.repo(ArtPiece);
   const artistRepo = remult.repo(Artist);
+  const router = useRouter();
 
   useEffect(() => {
     let artId = parseInt(params.art);
@@ -31,6 +33,7 @@ export default function ArtPage({params} : { params: {art: string}}) {
       <div>{art.description}</div>
       <div>{}</div>
       <div>{art.medium}</div>
+      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
     </div>
   );
 }
