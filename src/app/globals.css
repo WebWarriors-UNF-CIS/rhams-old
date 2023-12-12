@@ -66,4 +66,8 @@
   {
     @apply border whitespace-nowrap rounded-md border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-300 p-4 min-h-fit dark:bg-gray-600 cursor-pointer
   }
+  .artist-card
+  {
+    @apply border rounded-md border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-300 p-4 min-h-fit min-w-full dark:bg-gray-600 cursor-pointer
+  }
 }

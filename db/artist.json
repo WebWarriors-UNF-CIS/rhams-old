@@ -1,34 +1,21 @@
 [
   {
     "id": 1,
-    "firstName": "Reuban",
-    "lastName": "Hale",
-    "dob": "1938-06-15",
-    "dod": "2021-09-08",
-    "nationality": "USA",
+    "firstName": "Amber",
+    "lastName": "Readmond",
+    "dob": "2023-12-14",
+    "dod": "2023-12-12",
+    "nationality": "American",
     "primaryType": "Painter",
     "imageString": "test",
     "website": "test",
-    "biography": "test",
+    "biography": "s",
     "knownExhibits": "test",
-    "notes": "test"
-  },
-  {
-    "id": 2,
-    "firstName": "Amber",
-    "lastName": "Readmond",
-    "dob": "2023-12-04",
-    "dod": "2023-12-21",
-    "nationality": "USA",
-    "primaryType": "Coder",
-    "imageString": "test",
-    "website": "test",
-    "biography": "test",
-    "knownExhibits": "test",
-    "notes": "test"
+    "notes": "a"
   },
   {
     "id": 3,
+<<<<<<< HEAD
     "firstName": "Amber",
     "lastName": "Readmond",
     "dob": "1979-07-03",
@@ -39,6 +26,18 @@
     "website": "www.amberdidwhat.com",
     "biography": "I am awesome",
     "knownExhibits": "This website",
+=======
+    "firstName": "Beckett",
+    "lastName": "Redmond",
+    "dob": "2023-12-07",
+    "dod": "2023-12-12",
+    "nationality": "American",
+    "primaryType": "Painter",
+    "imageString": "test",
+    "website": "www.amberdidwhat.com",
+    "biography": "sdf",
+    "knownExhibits": "sdf",
+>>>>>>> 026e8df (added artist-card to globalcss, styled card-artist)
     "notes": "This coding stuff is hard."
   }
 ]
