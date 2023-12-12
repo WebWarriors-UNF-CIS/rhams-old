@@ -21,7 +21,7 @@ export default function Nav() {
             </Link>
             <ul id="navigation" className="flex flex-grow justify-between items-center text-l font-bold max-sm:absolute max-sm:inset">
                 <NavLink href="/art" inner="Art"/>
-                <NavLink href="/artists/manage" inner="Artists"/>
+                <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
                 <NavLink href="/literature" inner="Literature"/>
                 <NavLink href="/media" inner="Media"/>
