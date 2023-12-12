@@ -24,8 +24,8 @@ export class Artist {
   nationality? = ""
 
   // Make a Type table, change to primaryTypeId
-  @Fields.string()
-  primaryType? = ""
+  @Fields.object()
+  primaryType?: Type
 
   @Fields.string()
   imageString? = ""
@@ -36,9 +36,8 @@ export class Artist {
   @Fields.string()
   biography? = ""
 
-  // Fix dat pls
-  @Fields.string()
-  knownExhibits? = "" //number[] = []
+  @Fields.json()
+  knownExhibits: number[] = []
 
   @Fields.string()
   notes? = ""
