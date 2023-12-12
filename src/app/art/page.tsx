@@ -4,7 +4,6 @@ import { remult } from "remult"
 import { ArtPiece } from "../shared/art"
 import Link from "next/link"
 import ArtCard from "../components/card-art"
-import { Type } from "../shared/artist"
 
 const artRepo = remult.repo(ArtPiece)
 
