@@ -8,7 +8,7 @@ import { User } from '../shared/user';
 
 const userRepo = remult.repo(User);
 
-export default function userDashboard() {
+export default function UserDashboard() {
     const [users, setUsers] = useState<User[]>([]);
     const router = useRouter();
     
