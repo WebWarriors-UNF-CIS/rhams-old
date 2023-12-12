@@ -111,7 +111,9 @@ return (
           placeholder='Oil'
         />
       </div>
-      <SizeInput />
+      <SizeInput id='Height' />
+      <SizeInput id='Width' />
+      <SizeInput id='Depth' />
       <div className='input'>
         <label htmlFor="location">Location</label>
         <input
