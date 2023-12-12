@@ -21,7 +21,7 @@ export default function UserPage() {
         <div>
 
             <div>
-                <h1 className="margin-auto my-8 flex justify-center items-center text-3xl font-medium text-black ">Edit User</h1>
+                <h1 className="margin-auto my-8 flex justify-center items-center text-3xl font-medium text-black ">View/Edit User</h1>
             </div>
             <div>
                 <h2 className="margin-auto my-8 flex justify-center items-center text-xl font-medium text-black">User Info:</h2>
