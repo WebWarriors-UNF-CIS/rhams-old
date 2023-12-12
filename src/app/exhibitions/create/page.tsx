@@ -42,7 +42,7 @@ export default function ExhibitRegistration()
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
         )}
-        <form onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <div className="input">
             <label htmlFor="name">
               Name of Exhibition
