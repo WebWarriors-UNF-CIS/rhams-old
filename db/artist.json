@@ -1,44 +1,30 @@
 [
   {
     "id": 1,
-    "firstName": "Reuban",
-    "lastName": "Hale",
-    "dob": "1938-06-15",
-    "dod": "2021-09-08",
-    "nationality": "USA",
+    "firstName": "Amber",
+    "lastName": "Readmond",
+    "dob": "2023-12-14",
+    "dod": "2023-12-12",
+    "nationality": "American",
     "primaryType": "Painter",
     "imageString": "test",
     "website": "test",
-    "biography": "test",
+    "biography": "s",
     "knownExhibits": "test",
-    "notes": "test"
-  },
-  {
-    "id": 2,
-    "firstName": "Amber",
-    "lastName": "Readmond",
-    "dob": "2023-12-04",
-    "dod": "2023-12-21",
-    "nationality": "USA",
-    "primaryType": "Coder",
-    "imageString": "test",
-    "website": "test",
-    "biography": "test",
-    "knownExhibits": "test",
-    "notes": "test"
+    "notes": "a"
   },
   {
     "id": 3,
-    "firstName": "Test",
-    "lastName": "Value",
-    "dob": "2001-01-01",
-    "dod": "",
-    "nationality": "Techland",
-    "primaryType": "AI Generator",
+    "firstName": "Beckett",
+    "lastName": "Redmond",
+    "dob": "2023-12-07",
+    "dod": "2023-12-12",
+    "nationality": "American",
+    "primaryType": "Painter",
     "imageString": "test",
-    "website": "test",
-    "biography": "test",
-    "knownExhibits": "test",
-    "notes": "test"
+    "website": "www.amberdidwhat.com",
+    "biography": "sdf",
+    "knownExhibits": "sdf",
+    "notes": "This coding stuff is hard."
   }
 ]
