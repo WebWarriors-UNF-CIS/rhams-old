@@ -26,5 +26,19 @@
     "biography": "test",
     "knownExhibits": [],
     "notes": "test"
+  },
+  {
+    "id": 3,
+    "firstName": "Pablo",
+    "lastName": "Picasso",
+    "dob": "1881-10-25",
+    "dod": "1973-04-08",
+    "nationality": "Spain",
+    "primaryType": "Paint",
+    "imageString": "",
+    "website": "",
+    "biography": "",
+    "knownExhibits": [],
+    "notes": ""
   }
 ]
