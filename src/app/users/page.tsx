@@ -20,13 +20,6 @@ export default function userDashboard() {
         fetchUsers();
       }, []);
 
-      function confirmation(){
-        var result = confirm("Are you sure you want to delete this user?");
-        if(result){
-            console.log("User deleted");
-        }
-    }
-
     return (
         <div>
             

@@ -10,7 +10,13 @@ const userRepo = remult.repo(User);
 
 export default function UserPage() {
 
-    
+    function confirmation(){
+        var result = confirm("Are you sure you want to delete this user?");
+        if(result){
+            console.log("User deleted");
+        }
+    }
+
     return (
         <div>
 
@@ -34,7 +40,7 @@ export default function UserPage() {
             <br></br>
 
             <div className="mx-32">
-                <button className="btn-red">Delete User</button>
+                <button className="btn-red" onClick={confirmation}>Delete User</button>
             </div>
         
         </div>
