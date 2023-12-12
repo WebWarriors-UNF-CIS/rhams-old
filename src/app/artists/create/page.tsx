@@ -1,5 +1,5 @@
 "use client"
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
 import '../../globals.css'
@@ -16,14 +16,14 @@ export default function AddArtist() {
     dob: new Date,
     dod: new Date,
     nationality: '',
-    primaryType: '',
+    primaryType: Type,
     imageString: '',
     website: '',
     biography: '',
-    knownExhibits: '',
+    knownExhibits: [] as number[],
     notes: '',
   });
- 
+  const [exhibits, setExhibits] = useState<Exhibit[]>([]);
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
 
@@ -40,18 +40,13 @@ export default function AddArtist() {
   {
     e.preventDefault();
     artistRepo.insert(formData);
-    router.push('/artists');
+    router.push('/artists/manage');
     setSuccessMessage('Artist profile created successfully!');
   };
-  
-  //TODO: import exhibits from db
-  /*
-  useEffect(() => {
-    async function getExhibits() {setExhibits(await exhibitsRepo.find()) }
-    getExhibits();
-  }, []);
-  */
 
+  useEffect(() => {
+    exhibitsRepo.find().then(setExhibits);
+  }, []);
   
   return (
     <div className="flex flex-col justify-center items-center mx-auto mt-10">
@@ -61,83 +56,72 @@ export default function AddArtist() {
     )}
     <form className="form" onSubmit={handleSubmit}>
       <div className="input">
-      <label htmlFor="firstName">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder='First Name'
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="firstName"> First Name </label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder='First Name'
+          value={formData.firstName}
+          onChange={handleChange}
+          required
+        />
       </div>
       <div className="input">
-      <label htmlFor="lastName">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder='Last Name'
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="lastName"> Last Name </label>
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder='Last Name'
+          value={formData.lastName}
+          onChange={handleChange}
+          required
+        />
       </div>
       <div className="input">
-            <label htmlFor="dob">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="dob"> Date of Birth </label>
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          onChange={handleChange}
+        />
       </div>
       <div className="input">
-            <label htmlFor="dod">
-              Date of Death (if applicable)
-            </label>
-            <input
-              type="date"
-              id="dod"
-              name="dod"
-              onChange={handleChange}
-            />
+        <label htmlFor="dod"> Date of Death (if applicable) </label>
+        <input
+          type="date"
+          id="dod"
+          name="dod"
+          onChange={handleChange}
+        />
       </div>
       <div className="input">
-      <label htmlFor="nationality">
-              Nationality
-            </label>
-            <input
-              type="text"
-              id="nationality"
-              name="nationality"
-              placeholder='Country of Origin'
-              value={formData.nationality}
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="nationality"> Nationality </label>
+        <input
+          type="text"
+          id="nationality"
+          name="nationality"
+          placeholder='Country of Origin'
+          value={formData.nationality}
+          onChange={handleChange}
+        />
       </div>
       <div className="input">
-      <label htmlFor="primaryType">
-              Primary Medium
-            </label>
-            <input
-              type="text"
-              id="primaryType"
-              name="primaryType"
-              placeholder='Painter, Sculptor, etc.'
-              value={formData.primaryType}
-              onChange={handleChange}
-              required
-            />
+      <label htmlFor="primaryType">Primary Art Type </label>
+        <select
+          className="bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          name="primaryType"
+          onChange={(e) => setFormData({ ...formData, primaryType: e.target.value as unknown as Type})}
+        >
+          {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+          <option value={Type.Drawing}>Drawing</option>
+        </select>
       </div>
       <div className="input">
       <label htmlFor="imageString">
@@ -150,7 +134,6 @@ export default function AddArtist() {
               placeholder='TODO-WIP'
               value={formData.imageString}
               onChange={handleChange}
-              required
             />
       </div>
       <div className="input">
@@ -164,50 +147,45 @@ export default function AddArtist() {
               placeholder='TODO-WIP'
               value={formData.website}
               onChange={handleChange}
-              required
             />
       </div>
       <div className="input">
-      <label htmlFor="biography">
-              Biography
-            </label>
-            <input
-              type="text"
-              id="biography"
-              name="biography"
-              placeholder='TODO-WIP'
-              value={formData.biography}
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="biography"> Biography </label>
+        <input
+          type="text"
+          id="biography"
+          name="biography"
+          placeholder='TODO-WIP'
+          value={formData.biography}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="input">{/* TODO: make this into a multi-select */} 
+        <label htmlFor="exhibits">Known Exhibits </label>
+        <select
+          name="exhibits"
+          onChange={(e) => setFormData({ ...formData, knownExhibits: [parseInt(e.target.value)] })}
+          className="bg-white border border-emerald-950 text-sm rounded focus:outline-none
+          focus:ring-black focus:border-emerald-500 block w-full p-1.5 
+          dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        >
+          {exhibits.map((exhibit) => (
+            <option key={exhibit.id} value={exhibit.id}>
+              {exhibit.name}
+            </option>
+          ))} //TODO: fix this
+        </select>
       </div>
       <div className="input">
-      <label htmlFor="knownExhibits">
-              Exhibits
-            </label>
-            <input
-              type="text"
-              id="knownExhibits"
-              name="knownExhibits"
-              placeholder='TODO-WIP'
-              value={formData.knownExhibits}
-              onChange={handleChange}
-              required
-            />
-      </div>
-      <div className="input">
-      <label htmlFor="notes">
-              Notes
-            </label>
-            <input
-              type="text"
-              id="notes"
-              name="notes"
-              placeholder='TODO-WIP'
-              value={formData.notes}
-              onChange={handleChange}
-              required
-            />
+        <label htmlFor="notes"> Notes </label>
+        <input
+          type="text"
+          id="notes"
+          name="notes"
+          placeholder='TODO-WIP'
+          value={formData.notes}
+          onChange={handleChange}
+        />
       </div>
       <button type="submit" className="btn-green">Add Artist</button>
       <button type="button" className="btn-gray" onClick={() => router.push('/artists')}>Back</button>
