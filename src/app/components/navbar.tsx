@@ -15,11 +15,11 @@ function NavLink({ href, inner }: { href: string, inner: string | JSX.Element}) 
 
 export default function Nav() {
     return (
-        <nav className= "sticky top-0 w-screen px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 text-black ">
+        <nav className= "sticky top-0 w-screen h-[78px] px-4 bg-gradient-to-r from-emerald-800 via-emerald-700 via-[160px] to-[320px] to-emerald-400 text-black">
             <Link className="text-2xl font-bold absolute left-5" href="/">
                 <Image className="p-1" width={150} height={150} src={logo} alt="Temporary Logo"/>
             </Link>
-            <ul id="navigation" className="flex justify-end items-center max-sm:absolute max-sm:inset">
+            <ul id="navigation" className="flex justify-end items-center">
                 <NavLink href="/art" inner="Art"/>
                 <NavLink href="/artists/manage" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
