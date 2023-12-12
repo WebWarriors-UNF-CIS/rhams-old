@@ -26,5 +26,19 @@
     "biography": "sdf",
     "knownExhibits": "sdf",
     "notes": "This coding stuff is hard."
+  },
+  {
+    "id": 4,
+    "firstName": "Dolly",
+    "lastName": "Parton",
+    "dob": "2023-12-06",
+    "dod": "2023-12-12",
+    "nationality": "USA",
+    "primaryType": "Painter",
+    "imageString": "test",
+    "website": "test",
+    "biography": "I am awesome",
+    "knownExhibits": "test",
+    "notes": "This coding stuff is hard."
   }
 ]
