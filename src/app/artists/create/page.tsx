@@ -173,7 +173,7 @@ export default function AddArtist() {
             <option key={exhibit.id} value={exhibit.id}>
               {exhibit.name}
             </option>
-          ))} //TODO: fix this
+          ))}
         </select>
       </div>
       <div className="input">
