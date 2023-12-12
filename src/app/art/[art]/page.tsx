@@ -15,7 +15,6 @@ export default function ArtPage({params} : { params: {art: string}}) {
 
   useEffect(() => {
     let artId = parseInt(params.art);
-    [params.art, artRepo, artId, artistRepo]
     if (artId && typeof artId === 'number')
       artRepo.findFirst({ id: artId }).then(setArt);
     if (art?.artistId)
