@@ -26,5 +26,19 @@
     "biography": "test",
     "knownExhibits": [],
     "notes": "test"
+  },
+  {
+    "id": 3,
+    "firstName": "Amber",
+    "lastName": "Readmond",
+    "dob": "1979-07-03",
+    "dod": "2023-12-11",
+    "nationality": "American",
+    "primaryType": "Painter",
+    "imageString": "picofme.jpg",
+    "website": "www.amberdidwhat.com",
+    "biography": "I am awesome",
+    "knownExhibits": "This website",
+    "notes": "This coding stuff is hard."
   }
 ]
