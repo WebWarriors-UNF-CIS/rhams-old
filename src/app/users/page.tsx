@@ -36,51 +36,45 @@ export default function UserDashboard() {
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
                         <th>Role</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody className="bg-slate-50">
                     <tr className="border border-solid text-center">
-                        <td></td>
+                        <td>1</td>
                         <td>John Doe</td>
                         <td>john@mail.com</td>
-                        <td>1234</td>
                         <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>Edit</button></td>
+                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
                     </tr>
                     <tr className="border border-solid text-center">
-                        <td></td>
+                        <td>2</td>
                         <td>Test</td>
                         <td>test@gmail.com</td>
-                        <td>test</td>
                         <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>Edit</button></td>
+                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
                     </tr>
                     <tr className="border border-solid text-center">
-                        <td></td>
+                        <td>3</td>
                         <td>Test 2</td>
                         <td>test2@gmail.com</td>
-                        <td>test</td>
                         <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>Edit</button></td>
+                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
                     </tr>
                     <tr className="border border-solid text-center">
-                        <td></td>
+                        <td>4</td>
                         <td>a</td>
                         <td>a@gmail.com</td>
-                        <td>a</td>
                         <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>Edit</button></td>
+                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
                     </tr>
                     <tr className="border border-solid text-center">
-                        <td></td>
+                        <td>5</td>
                         <td>test 3</td>
                         <td>test3@gmail.com</td>
-                        <td>test</td>
                         <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>Edit</button></td>
+                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
                     </tr>
                 </tbody>
             </table>
