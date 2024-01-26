@@ -4,6 +4,7 @@ import { remult } from "remult"
 import { ArtPiece } from "../shared/art"
 import Link from "next/link"
 import ArtCard from "../components/card-art"
+import { Type } from "../shared/artist"
 
 const artRepo = remult.repo(ArtPiece)
 
@@ -32,7 +33,7 @@ export default function ManageArtists() {
         ))}
       </div>
       <div>
-        <button className="p-1 px-2 btn-gray" onClick={toggleFilters}> Filters </button>
+        <button className="p-1 px-2 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
         <div className="relative flex-wrap w-3/4 m-2 left-4 hidden border border-black rounded-2xl" id="filters">
           <div>
             <label className="m-3 p-1"> Catalog # </label>

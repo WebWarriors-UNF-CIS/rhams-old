@@ -19,7 +19,7 @@ export default function ArtPage({params} : { params: {art: string}}) {
       artRepo.findFirst({ id: artId }).then(setArt);
     if (art?.artistId)
       artistRepo.findFirst({ id: art.artistId }).then(setArtist);
-  });
+  }, [params.art, artRepo, art?.artistId, artistRepo]);
 
   if (!art) {
     return <div>Loading...</div>;
