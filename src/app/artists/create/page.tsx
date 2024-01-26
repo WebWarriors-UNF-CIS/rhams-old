@@ -16,7 +16,7 @@ export default function AddArtist() {
     dob: new Date,
     dod: new Date,
     nationality: '',
-    primaryType: Type,
+    primaryType: Type.Painting,
     imageString: '',
     website: '',
     biography: '',
