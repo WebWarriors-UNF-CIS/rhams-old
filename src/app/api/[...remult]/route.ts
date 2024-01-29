@@ -4,8 +4,8 @@ import { User } from '../../shared/user'
 import { Artist } from '../../shared/artist'
 import { Exhibit } from '../../shared/exhibit'
 
-const api = remultNextApp({
+export const api = remultNextApp({
     entities: [ArtPiece, User, Artist, Exhibit]
 })
 
-export const { POST, PUT, DELETE, GET } = api
+export const { GET, POST, PUT, DELETE } = api
