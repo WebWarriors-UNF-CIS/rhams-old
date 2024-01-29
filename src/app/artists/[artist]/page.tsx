@@ -1,7 +1,7 @@
 import { remult } from "remult"
 import { Artist } from '../../shared/artist';
 import React from 'react';
-import reubenPic from '../../../images/reuben.png'
+import reubenPic from 'public/images/reuben.png'
 import Image from 'next/image'
 
 var artistRepo = remult.repo(Artist);
