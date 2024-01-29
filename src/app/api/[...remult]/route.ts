@@ -12,7 +12,7 @@ const dataProvider = createPostgresDataProvider({
     },
   })
 
-const api = remultNextApp({
+export const api = remultNextApp({
     entities: [ArtPiece, User, Artist, Exhibit],
     dataProvider: createPostgresDataProvider()
 })
