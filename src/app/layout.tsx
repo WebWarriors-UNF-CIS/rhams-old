@@ -1,6 +1,7 @@
 import './globals.css'
 import Nav from './components/navbar'
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Nav></Nav>
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
