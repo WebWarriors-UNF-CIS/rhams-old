@@ -1,8 +1,4 @@
-import Link from 'next/link';
-import { useState } from "react"
-import { useRouter } from 'next/navigation';
 import { remult } from "remult"
-import 'src/app/globals.css'
 import { Artist } from '../../shared/artist';
 import React from 'react';
 import reubenPic from 'src/images/reuben.png'
