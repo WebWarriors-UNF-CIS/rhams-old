@@ -24,8 +24,8 @@ export class User {
 }
 
 export enum Role {
-  Admin, // = 0
-  Student, // = 1
-  Teacher,
-  Volunteer
+  Admin = "administrator", 
+  Student = "student",
+  Teacher = "teacher",
+  Volunteer = "volunteer",
 }
