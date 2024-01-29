@@ -8,22 +8,21 @@ import { Type } from "../shared/artist"
 
 const artRepo = remult.repo(ArtPiece)
 
-export default function ManageArtists() {
+export default function ManageArt() {
   const [Art, setArts] = useState<ArtPiece[]>([])
 
   function toggleFilters() {
     let filters = document.getElementById("filters");
-    if (filters!.style.display === "none") {
+    if (filters!.style.display === "none")
       filters!.style.display = "flex";
-    } else {
+    else
       filters!.style.display = "none";
-    }
   }
   
-
   useEffect(() => {
     artRepo.find().then(setArts)
   }, [])
+
   return (
     <main className='dark:text-white mt-2'>
       <Link href="/art/create" className="fixed btn-green h-fit self-end right-5 top-24 text-white text-center font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]">New Art</Link>
