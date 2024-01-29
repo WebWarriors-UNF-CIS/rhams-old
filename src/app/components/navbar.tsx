@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image'
-import userico from 'src/images/user-icon-lg-w.png'
-import logo from 'src/images/temp-logo.png'
+import userico from '../../../user-icon-lg-w.png'
+import logo from '../../../temp-logo.png'
 
 function NavLink({ href, inner }: { href: string, inner: string | JSX.Element}) {
     return(
