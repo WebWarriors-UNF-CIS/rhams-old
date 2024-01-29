@@ -32,6 +32,7 @@ export default function UserDashboard() {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Roles</th>
+                        <th>Roles</th>
                         <th></th>
                     </tr>
                 </thead>
