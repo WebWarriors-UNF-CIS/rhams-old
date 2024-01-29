@@ -13,12 +13,8 @@ export default function UserDashboard() {
     const router = useRouter();
     
     useEffect(() => {
-        async function fetchUsers() {
-          const allUsers = await userRepo.find();
-          setUsers(allUsers);
-        }
-        fetchUsers();
-      }, []);
+        userRepo.find().then(setUsers);
+    }, []);
 
     return (
         <div>
@@ -33,49 +29,21 @@ export default function UserDashboard() {
             <table className="w-10/12 mx-32 border-collapse border-black table-fixed">
                 <thead className="bg-slate-200">
                     <tr className="border-solid text-center font-bold text-xl">
-                        <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th>Roles</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody className="bg-slate-50">
-                    <tr className="border border-solid text-center">
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>john@mail.com</td>
-                        <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
-                    </tr>
-                    <tr className="border border-solid text-center">
-                        <td>2</td>
-                        <td>Test</td>
-                        <td>test@gmail.com</td>
-                        <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
-                    </tr>
-                    <tr className="border border-solid text-center">
-                        <td>3</td>
-                        <td>Test 2</td>
-                        <td>test2@gmail.com</td>
-                        <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
-                    </tr>
-                    <tr className="border border-solid text-center">
-                        <td>4</td>
-                        <td>a</td>
-                        <td>a@gmail.com</td>
-                        <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
-                    </tr>
-                    <tr className="border border-solid text-center">
-                        <td>5</td>
-                        <td>test 3</td>
-                        <td>test3@gmail.com</td>
-                        <td>admin</td>
-                        <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
-                    </tr>
+                    {users.map((user) => (
+                        <tr className="border border-solid text-center" key={user.id}>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.roles}</td>
+                            <td><button className="btn-gray" onClick={() => router.push('users/manage')}>View</button></td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
   
