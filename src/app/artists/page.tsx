@@ -13,13 +13,7 @@ export default function ArtistPage() {
   const [artists, setArtists] = useState<Artist[]>([]);
   const router = useRouter();
 
-  useEffect(() => {
-    async function fetchArtists() {
-      const allArtists = await artistRepo.find();
-      setArtists(allArtists);
-    }
-    fetchArtists();
-  }, []);
+  useEffect(() => { artistRepo.find().then(setArtists) }, [artistRepo]);
 
   return (
     <div>
