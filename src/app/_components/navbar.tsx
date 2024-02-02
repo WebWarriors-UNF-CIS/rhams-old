@@ -23,7 +23,7 @@ export default function Nav() {
     };
 
     return (
-        <nav className= "sticky flex top-0 justify-end md:justify-between w-screen items-center px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 text-black">
+        <nav className="sticky flex top-0 justify-end md:justify-between w-screen items-center px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 text-black max-md:dark:text-white md:dark:text-bold">
             <Link className="p-1 mr-32 grow shrink-0 justify-self-start" href="/">
                 <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
             </Link>
