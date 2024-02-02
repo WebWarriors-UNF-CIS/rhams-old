@@ -187,8 +187,10 @@ export default function AddArtist() {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className="btn-green">Add Artist</button>
-      <button type="button" className="btn-gray" onClick={() => router.push('/artists')}>Back</button>
+      <div className="sm:col-span-2 flex flex-row justify-between">
+        <button type="submit" className="btn-green">Add Artist</button>
+        <button type="button" className="btn-gray" onClick={() => router.push('/artists')}>Back</button>
+      </div>
     </form>
   </div>
   )

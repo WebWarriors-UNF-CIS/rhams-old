@@ -95,8 +95,10 @@ export default function ExhibitRegistration()
               required
             />
           </div>
-          <button type="submit" className="btn-green">Add Exhibition</button>
-          <button type="button" className="btn-gray" onClick={() => router.push('/exhibitions/manage')}>Back</button>
+          <div className="sm:col-span-2 flex flex-row justify-between">
+            <button type="submit" className="btn-green">Add</button>
+            <button type="button" className="btn-gray" onClick={() => router.push('/exhibitions/manage')}>Back</button>
+          </div>
         </form>
       </div>
     );

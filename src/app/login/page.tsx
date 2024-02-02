@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { User } from '../shared/user';
 import '../globals.css'
+import Link from 'next/link';
 
 const userRepo = remult.repo(User);
 
@@ -30,9 +31,9 @@ export default function Login() {
     }
 
     return (
-    <div className="flex flex-col justify-center items-center mx-auto mt-10">
+    <div className="flex flex-col items-center mx-auto mt-10">
       <h1 className='dark:text-white margin-auto text-3xl font-semibold mb-6'>Login</h1>
-      <form onSubmit={login}>
+      <form onSubmit={login} className='!flex flex-col'>
         <div className='input'>
           <label htmlFor="email">Email:</label>
           <input
@@ -53,8 +54,11 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn-green">Login</button>
-        <button type="button" className="btn-gray" onClick={() => router.push('./users/create')}>Back</button>
+        <div className="flex flex-row justify-between">
+          <button type="submit" className="btn-green">Login</button>
+          <button type="button" className="btn-gray" onClick={() => router.push('./users/create')}>Back</button>
+        </div>
+        <Link href="/reset" className='hover:text-blue-600 dark:text-white'>Forgot your password?</Link>
       </form>
     </div>
     );

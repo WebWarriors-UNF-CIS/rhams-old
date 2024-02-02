@@ -36,7 +36,7 @@
   }
   button
   {
-    @apply text-white text-center font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]
+    @apply text-white text-center w-fit h-fit px-2 py-1 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]
   }
   .chip
   {
@@ -48,19 +48,19 @@
   }
   .btn-green 
   {
-    @apply bg-emerald-500 dark:bg-emerald-600 hover:bg-emerald-600 dark:hover:bg-emerald-700
+    @apply bg-emerald-500 hover:bg-emerald-600
   }
   .btn-gray 
   {
     @apply bg-gray-500  dark:bg-gray-400  hover:bg-gray-600 dark:hover:bg-gray-500
   }
-  .btn-red 
+  .btn-red /* currently unused, if for delete buttons, maybe we could use a trash can icon instead */
   {
     @apply bg-red-500  dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-700
   }
   form 
   {
-    @apply grid gap-6 mb-6 md:grid-cols-2 p-8 bg-slate-200 dark:bg-slate-800 rounded-xl
+    @apply grid gap-6 mb-6 md:grid-cols-2 px-8 p-6 bg-slate-200 dark:bg-slate-800 rounded-xl
   }
   .card
   {
