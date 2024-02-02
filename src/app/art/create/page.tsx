@@ -5,7 +5,7 @@ import { remult } from 'remult';
 import { useRouter } from 'next/navigation';
 import { ArtPiece } from '../../shared/art';
 import { Artist } from '../../shared/artist';
-import SizeInput from '../../components/sizeInput';
+import SizeInput from '../../_components/sizeInput';
 
 export default function NewArt() {
 

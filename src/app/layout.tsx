@@ -1,5 +1,5 @@
 import './globals.css'
-import Nav from './components/navbar'
+import Nav from './_components/navbar'
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next'

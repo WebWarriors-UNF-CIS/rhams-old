@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { Artist } from '../shared/artist';
 import Head from 'next/head';
-import ArtistCard from '../components/card-artist';
+import ArtistCard from '../_components/card-artist';
 import '../globals.css'
 
 const artistRepo = remult.repo(Artist);
