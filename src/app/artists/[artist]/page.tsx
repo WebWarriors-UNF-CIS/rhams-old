@@ -2,7 +2,7 @@ import { remult } from "remult"
 import { Artist } from '../../shared/artist';
 import React from 'react';
 import Image from 'next/image'
-
+import reubenPic from '/public/images/reuben.png'
 var artistRepo = remult.repo(Artist);
 
 async function ArtistView({ params }: { params: { artist: string } }) {
@@ -13,7 +13,7 @@ async function ArtistView({ params }: { params: { artist: string } }) {
         <div className="mt-8 mx-5 grid grid-cols-2 gap-5">
             <div>
                 <h1 className="dark:text-white text-2xl"  >Reuben Aldridge Hale, Jr.</h1>
-                <Image className="max-w-xs"src={'public/images/reuben.png'} alt="Reuben Hale" />
+                <Image className="max-w-xs"src={reubenPic} alt="Reuben Hale" />
             </div>
             <div>
                 <div>
