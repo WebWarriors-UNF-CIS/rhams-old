@@ -10,13 +10,13 @@ export class User {
     //id = 0
     
     @Fields.string()
-    name = ""
+    name?: ""
     
     @Fields.string()
-    email = ""
+    email?: ""
     
     @Fields.string()
-    password = ""
+    password?: ""
 
     @Fields.object()
     roles = [Role.Admin] // default is admin for V1, since those will be the only users

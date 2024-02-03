@@ -9,13 +9,13 @@
     ]
   },
   {
+    "id": 1,
     "name": "Test",
     "email": "test@gmail.com",
     "password": "test",
     "roles": [
       "administrator"
-    ],
-    "id": 1
+    ]
   },
   {
     "id": 2,
