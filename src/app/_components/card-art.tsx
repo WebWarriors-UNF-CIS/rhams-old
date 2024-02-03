@@ -1,6 +1,6 @@
 "use client" 
-import { ArtPiece } from '../shared/art';
-import { Artist } from '../shared/artist';
+import { ArtPiece } from '../_shared/art';
+import { Artist } from '../_shared/artist';
 import { useState, useEffect } from 'react';
 import { remult } from 'remult';
 import Link from 'next/link';

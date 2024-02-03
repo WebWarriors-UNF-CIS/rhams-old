@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import { Exhibit } from '../../shared/exhibit';
+import { Exhibit } from '../../_shared/exhibit';
 import '../../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);

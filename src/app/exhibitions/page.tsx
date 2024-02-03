@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import { Exhibit } from '../shared/exhibit';
+import { Exhibit } from '../_shared/exhibit';
 import Head from 'next/head';
 import ExhibitCard from '../_components/card-exhibit';
 import '../globals.css'

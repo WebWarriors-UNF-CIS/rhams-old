@@ -1,10 +1,10 @@
 "use client"
 import { useEffect, useState } from "react"
 import { remult } from "remult"
-import { ArtPiece } from "../shared/art"
+import { ArtPiece } from "../_shared/art"
 import Link from "next/link"
 import ArtCard from "../_components/card-art"
-import { Type } from "../shared/artist"
+import { Type } from "../_shared/artist"
 
 const artRepo = remult.repo(ArtPiece)
 

@@ -1,5 +1,5 @@
 import { remult } from "remult"
-import { Artist } from '../../shared/artist';
+import { Artist } from '../../_shared/artist';
 import React from 'react';
 import Image from 'next/image'
 import reubenPic from '/public/images/reuben.png'

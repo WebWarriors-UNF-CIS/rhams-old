@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { ArtPiece } from '../../shared/art';
+import { ArtPiece } from '../../_shared/art';
 import { remult } from 'remult';
 import Image from 'next/image';
-import { Artist } from '../../shared/artist';
+import { Artist } from '../../_shared/artist';
 import { useRouter } from 'next/navigation';
 
 export default function ArtPage({params} : { params: {art: string}}) {

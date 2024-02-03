@@ -2,9 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import '../globals.css'
 import Link from 'next/link';
-import { User } from '../shared/user';
+import { User } from '../_shared/user';
 
 const userRepo = remult.repo(User);
 
@@ -12,9 +11,7 @@ export default function UserDashboard() {
     const [users, setUsers] = useState<User[]>([]);
     const router = useRouter();
     
-    useEffect(() => {
-        userRepo.find().then(setUsers);
-    }, []);
+    useEffect(() => { userRepo.find().then(setUsers) }, []);
 
     return (
         <div>

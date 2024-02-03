@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { remult } from 'remult';
 import { useRouter } from 'next/navigation';
-import { ArtPiece } from '../../shared/art';
-import { Artist } from '../../shared/artist';
+import { ArtPiece } from '../../_shared/art';
+import { Artist } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
 
 export default function NewArt() {

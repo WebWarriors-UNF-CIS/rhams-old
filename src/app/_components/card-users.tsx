@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../shared/user';
+import { User } from '../_shared/user';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { remult } from 'remult';

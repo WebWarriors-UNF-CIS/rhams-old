@@ -1,9 +1,8 @@
 import React from 'react';
-import { Artist } from '../shared/artist';
+import { Artist } from '../_shared/artist';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { remult } from 'remult';
-import Modal from 'react-modal';
 import '../globals.css'
 
 

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
 import '../../globals.css'
-import { Artist, Type } from '../../shared/artist';
-import { Exhibit } from "../../shared/exhibit";
+import { Artist, Type } from '../../_shared/artist';
+import { Exhibit } from "../../_shared/exhibit";
 
 const artistRepo = remult.repo(Artist);
 const exhibitsRepo = remult.repo(Exhibit);

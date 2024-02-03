@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import { Artist } from '../shared/artist';
+import { Artist } from '../_shared/artist';
 import Head from 'next/head';
 import ArtistCard from '../_components/card-artist';
 import '../globals.css'
@@ -13,7 +13,7 @@ export default function ArtistPage() {
   const [artists, setArtists] = useState<Artist[]>([]);
   const router = useRouter();
 
-  useEffect(() => { artistRepo.find().then(setArtists) }, [artistRepo]);
+  useEffect(() => { artistRepo.find().then(setArtists) }, []);
 
   return (
     <div>

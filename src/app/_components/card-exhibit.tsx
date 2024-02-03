@@ -1,5 +1,5 @@
 import React from 'react';
-import { Exhibit } from '../shared/exhibit';
+import { Exhibit } from '../_shared/exhibit';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { remult } from 'remult';

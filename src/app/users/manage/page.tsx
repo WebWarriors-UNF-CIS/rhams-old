@@ -1,16 +1,13 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
-import { User } from '../../shared/user';
-import Head from 'next/head';
-import '../../globals.css'
+import { User } from '../../_shared/user';
 
 const userRepo = remult.repo(User);
 
 export default function UserPage() {
 
-    function confirmation(){
+    function confirmation() {
         var result = confirm("Are you sure you want to delete this user?");
         if(result){
             console.log("User deleted");
