@@ -27,7 +27,7 @@ export default function UserRegistration() {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      await userRepo.insert(formData);
+      await userRepo.insert(formData as User);
       router.push('/artists');
       setSuccessMessage('User account created successfully!');
     };
