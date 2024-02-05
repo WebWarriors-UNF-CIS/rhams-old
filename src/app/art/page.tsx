@@ -5,18 +5,18 @@ import { ArtPiece } from "../_shared/art"
 import Link from "next/link"
 import ArtCard from "../_components/card-art"
 import { Type } from "../_shared/artist"
+import { useRouter } from "next/navigation"
 
 const artRepo = remult.repo(ArtPiece)
 
 export default function ManageArt() {
   const [Art, setArts] = useState<ArtPiece[]>([])
+  const router = useRouter();
 
   function toggleFilters() {
     let filters = document.getElementById("filters");
-    if (filters!.style.display === "none")
-      filters!.style.display = "flex";
-    else
-      filters!.style.display = "none";
+    filters?.classList.toggle("hidden");
+    filters?.classList.toggle("grid");
   }
   
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function ManageArt() {
 
   return (
     <main className='dark:text-white mt-2'>
-      <Link href="/art/create" className="fixed btn-green h-fit self-end right-5 top-24 text-white text-center font-semibold px-4 py-2 rounded-lg shadow-slate-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.25)]">New Art</Link>
+      <button onClick={() => router.push("/art/create")} className="fixed btn-green h-fit self-end right-5 top-24">New Art</button>
       <div className="float-left ml-6 mt-12 border-[3px] border-black dark:border-slate-400 rounded-lg">
         {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
           <div className="text-center p-4 border-y border-black dark:border-slate-400 first:border-0 first:border-b last:border-0 last:border-t" key={type}> {type} </div>
@@ -33,51 +33,52 @@ export default function ManageArt() {
       </div>
       <div>
         <button className="p-1 px-2 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
-        <div className="relative flex-wrap w-3/4 m-2 left-4 hidden border border-black rounded-2xl" id="filters">
+        <div className="relative grid-cols-3 gap-2 w-3/4 m-2 p-2 left-4 hidden border border-black rounded-lg" id="filters">
           <div>
             <label className="m-3 p-1"> Catalog # </label>
-            <input/>
+            <input type="number" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Title </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Artist </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>{/*should be a drop-down menu of artists*/}
           </div>
           <div>
             <label className="m-3 p-1"> Aquired </label>
-            <input/>
+            <input type="date" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Created </label>
-            <input/>
+            <input type="date" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Medium </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Height </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Width </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Depth </label>
-            <input/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Location </label>
-            <input className="m-3 p-1"/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
           <div>
             <label className="m-3 p-1"> Exhibit </label>
-            <input className="m-3 p-1"/>
+            <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
           </div>
+          <button className="btn-green justify-self-end self-end">Apply Filters</button>
         </div>
         <div className="flex mx-12 flex-wrap">
           {Art.map(art => {
