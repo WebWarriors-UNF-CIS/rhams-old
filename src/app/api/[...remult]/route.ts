@@ -6,13 +6,7 @@ import { Artist } from '../../_shared/artist'
 import { Exhibit } from '../../_shared/exhibit'
 
 const api = remultNextApp({
-    entities: [ArtPiece, User, Artist, Exhibit],
-    dataProvider: createPostgresDataProvider({
-      connectionString: process.env["POSTGRES_URL"],
-      configuration: {
-        ssl: process.env.DATABASE_URL ? true : false
-      }
-    })
+    entities: [ArtPiece, User, Artist, Exhibit]
 })
 
 export const { GET, POST, PUT, DELETE } = api;
