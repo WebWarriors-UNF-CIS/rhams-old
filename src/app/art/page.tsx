@@ -5,13 +5,11 @@ import { ArtPiece } from "../_shared/art"
 import Link from "next/link"
 import ArtCard from "../_components/card-art"
 import { Type } from "../_shared/artist"
-import { useRouter } from "next/navigation"
 
 const artRepo = remult.repo(ArtPiece)
 
 export default function ManageArt() {
   const [Art, setArts] = useState<ArtPiece[]>([])
-  const router = useRouter();
 
   function toggleFilters() {
     let filters = document.getElementById("filters");
@@ -25,7 +23,9 @@ export default function ManageArt() {
 
   return (
     <main className='dark:text-white mt-2'>
-      <button onClick={() => router.push("/art/create")} className="fixed btn-green h-fit self-end right-5 top-24">New Art</button>
+      <Link href="/art/create" className="fixed right-5">
+        <button className="btn-green">Create New Art</button>
+      </Link>
       <div className="float-left ml-6 mt-12 border-[3px] border-black dark:border-slate-400 rounded-lg">
         {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
           <div className="text-center p-4 border-y border-black dark:border-slate-400 first:border-0 first:border-b last:border-0 last:border-t" key={type}> {type} </div>
