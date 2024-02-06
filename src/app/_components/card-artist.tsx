@@ -10,6 +10,8 @@ interface ArtistCardProps
 {
   artist: Artist;
   revalidate: 1;
+  canEditAndDelete: boolean;
+  UIRefresh: () => void;
 }
 
 const artistRepo = remult.repo(Artist);
