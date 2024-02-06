@@ -39,7 +39,7 @@ export default function AddArtist() {
   const handleSubmit = async (e: React.FormEvent) => 
   {
     e.preventDefault();
-    artistRepo.insert(formData);
+    artistRepo.insert(formData as Artist);
     router.push('/artists/manage');
     setSuccessMessage('Artist profile created successfully!');
   };
