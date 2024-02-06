@@ -57,12 +57,13 @@ export default function ArtistPage() {
 
       
 
-      
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 mx-auto">
+      <div className='flex flex-col justify-around items-center mx-auto mt-10'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mx-auto">
             {artists.map((artist) => (
-            <ArtistCard key={artist.id} artist={artist} revalidate={1}/>
+            <ArtistCard key={artist.id} artist={artist} canEditAndDelete={false} revalidate={1} UIRefresh={function (): void {} } />
             ))}
         </div>
+      </div>
       </div>
     
   );
