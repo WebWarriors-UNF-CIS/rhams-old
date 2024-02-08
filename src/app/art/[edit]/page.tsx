@@ -13,6 +13,12 @@ export default function ArtPage({params} : { params: {edit: string}}) {
   const artistRepo = remult.repo(Artist);
   const router = useRouter();
 
+  async function deleteArt() {
+    try { await artRepo.delete(art!) }
+    catch (error) { console.error(error)}
+      router.push('./');
+  }
+
   useEffect(() => {
     let artId = parseInt(params.edit);
     if (artId && typeof artId === 'number')
@@ -33,7 +39,8 @@ export default function ArtPage({params} : { params: {edit: string}}) {
       <div>{art.description}</div>
       <div>{}</div>
       <div>{art.medium}</div>
-      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
+      <button className="btn-red fixed h-fit self-end right-3 top-[104px]" onClick={deleteArt}>Delete</button>
+      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
     </div>
   );
 }
