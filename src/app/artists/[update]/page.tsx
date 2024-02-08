@@ -50,7 +50,7 @@ export default function UpdateArtist() {
   
   return (
     <div className="flex flex-col justify-center items-center mx-auto mt-10">
-    <h1>Enter New Artist</h1>
+    <h1>Update Artist</h1>
     {successMessage && (
       <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
     )}
