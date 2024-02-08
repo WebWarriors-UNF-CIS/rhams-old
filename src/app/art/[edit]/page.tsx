@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Artist } from '../../_shared/artist';
 import { useRouter } from 'next/navigation';
 
-export default function ArtPage({params} : { params: {art: string}}) {
+export default function ArtPage({params} : { params: {edit: string}}) {
   const [art, setArt] = useState<ArtPiece>();
   const [artist, setArtist] = useState<Artist>();
   const artRepo = remult.repo(ArtPiece);
@@ -14,15 +14,15 @@ export default function ArtPage({params} : { params: {art: string}}) {
   const router = useRouter();
 
   useEffect(() => {
-    let artId = parseInt(params.art);
+    let artId = parseInt(params.edit);
     if (artId && typeof artId === 'number')
       artRepo.findFirst({ id: artId }).then(setArt);
     if (art?.artistId)
       artistRepo.findFirst({ id: art.artistId }).then(setArtist);
-  }, [params.art, artRepo, art?.artistId, artistRepo]);
+  }, [params.edit, artRepo, art?.artistId, artistRepo]);
 
   if (!art) {
-    return <div>Loading...</div>;
+    return <div className='flex font-bold text-2xl items-center justify-center h-96'><div>Loading...</div></div>;
   }
   return (
     <div className='w-3/4 m-auto pt-4'>
