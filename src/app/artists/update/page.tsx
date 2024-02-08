@@ -9,7 +9,7 @@ import { Exhibit } from "../../_shared/exhibit";
 const artistRepo = remult.repo(Artist);
 const exhibitsRepo = remult.repo(Exhibit);
 
-export default function AddArtist() {
+export default function UpdateArtist() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -188,7 +188,7 @@ export default function AddArtist() {
         />
       </div>
       <div className="sm:col-span-2 flex flex-row justify-between">
-        <button type="submit" className="btn-green">Add Artist</button>
+        <button type="submit" className="btn-green">Update Artist</button>
         <button type="button" className="btn-gray" onClick={() => router.push('/artists')}>Back</button>
       </div>
     </form>
