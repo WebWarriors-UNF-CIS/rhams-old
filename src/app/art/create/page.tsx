@@ -36,6 +36,7 @@ export default function NewArt() {
       location: form.location.value
     };
     await artRepo.save(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
+    router.push('./');
   }
 
 return (
