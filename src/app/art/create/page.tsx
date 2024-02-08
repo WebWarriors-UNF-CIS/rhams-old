@@ -16,6 +16,11 @@ export default function NewArt() {
   let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    // check for exisiting catalog number
+    // let dates be input as just years/months
+    // let artist and type be dropdowns
+    // imageURL be a file upload
+    // option for adding a sale
     const artPiece = {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
@@ -125,7 +130,9 @@ return (
           placeholder='Location'
         />
       </div>
-      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Artwork</button>
+      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
+      {/* create and add sale button, takes user to new sale form once art is inserted
+      <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
     </form>
   </main>
 );
