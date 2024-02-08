@@ -8,7 +8,7 @@ import { Artist } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
 
 export default function NewArt() {
-
+  const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
   const artRepo = remult.repo(ArtPiece);
   const artists = remult.repo(Artist);
@@ -30,14 +30,17 @@ export default function NewArt() {
       height: form.height.value,
       location: form.location.value
     };
-    await artRepo.save(artPiece);
+    await artRepo.save(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
   }
 
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
     <h1>Add an Artwork</h1>
       <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
-    <form className='form !flex flex-wrap w-3/5 md:w-[600px] grow' onSubmit={handleSubmit}>
+        {successMessage && (
+          <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
+        )}
+    <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
       <div className='input w-32'>
         <label htmlFor="catalogNum">Catalog Number</label>
         <input
@@ -47,7 +50,7 @@ return (
           className="text-center"
         />
       </div>
-      <div className='input col-span-3 grow'>
+      <div className='input col-span-3 man grow'>
         <label htmlFor="artTitle">Title</label>
         <input
           type="text"
