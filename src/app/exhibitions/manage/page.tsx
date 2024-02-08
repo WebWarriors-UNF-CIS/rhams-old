@@ -31,6 +31,9 @@ export default function ExhibitPage() {
         <button className="ml-4 max-h-10 btn-green" onClick={() => router.push('./create')}>
             Create New Exhibition
         </button>
+        <button className="ml-4 max-h-10 btn-gray" onClick={() => router.push('./')}>
+            Back
+        </button>
       </div>
       <div className="p-4 flex items-end justify-start">
           <div className="grid grid-cols-3">
