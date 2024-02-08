@@ -8,7 +8,7 @@ import { Artist } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
 
 export default function NewArt() {
-
+  const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
   const artRepo = remult.repo(ArtPiece);
   const artists = remult.repo(Artist);
@@ -16,6 +16,11 @@ export default function NewArt() {
   let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    // check for exisiting catalog number
+    // let dates be input as just years/months
+    // let artist and type be dropdowns
+    // imageURL be a file upload
+    // option for adding a sale
     const artPiece = {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
@@ -30,14 +35,18 @@ export default function NewArt() {
       height: form.height.value,
       location: form.location.value
     };
-    await artRepo.save(artPiece);
+    await artRepo.save(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
+    router.push('./');
   }
 
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
     <h1>Add an Artwork</h1>
       <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
-    <form className='form !flex flex-wrap w-3/5 md:w-[600px] grow' onSubmit={handleSubmit}>
+        {successMessage && (
+          <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
+        )}
+    <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
       <div className='input w-32'>
         <label htmlFor="catalogNum">Catalog Number</label>
         <input
@@ -47,7 +56,7 @@ return (
           className="text-center"
         />
       </div>
-      <div className='input col-span-3 grow'>
+      <div className='input col-span-3 man grow'>
         <label htmlFor="artTitle">Title</label>
         <input
           type="text"
@@ -122,7 +131,9 @@ return (
           placeholder='Location'
         />
       </div>
-      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Artwork</button>
+      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
+      {/* create and add sale button, takes user to new sale form once art is inserted
+      <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
     </form>
   </main>
 );

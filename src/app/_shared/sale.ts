@@ -7,8 +7,8 @@ export class Sale {
     @Fields.autoIncrement()
     id = 0;
 
-    @Fields.string()
-    artId: string = "";
+    @Fields.number()
+    artId!: number;
 
     @Fields.string()
     price: string = "";

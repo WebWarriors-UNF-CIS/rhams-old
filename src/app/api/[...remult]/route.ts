@@ -10,7 +10,7 @@ const api = remultNextApp({
     dataProvider: createPostgresDataProvider({
       connectionString: process.env["POSTGRES_URL"],
       configuration: {
-        ssl: process.env.DATABASE_URL ? true : true
+        ssl: process.env.POSTGRES_URL ? true : false
       }
     })
 })

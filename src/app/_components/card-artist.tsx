@@ -1,10 +1,10 @@
+"use client"
 import React from 'react';
 import { Artist } from '../_shared/artist';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { remult } from 'remult';
-import '../globals.css'
-
+import Link from 'next/link';
 
 interface ArtistCardProps 
 {
@@ -29,13 +29,15 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) =>
         window.location.reload();
      }
     return (
-        <div className="artist-card my-10" onClick={handleCardClick}>
-            <h3>{artist.firstName} {artist.lastName}</h3><br/>
+        <div className='m-4 w-72 p-4 border border-black rounded-lg' key={artist.id}/*onClick={handleCardClick}*/>
+            <h3>{artist.firstName} {artist.lastName} {artist.id}</h3><br/>
             <div className="flex justify-center">
-                <a href="../artists/viewArtist"><button className="btn-green mx-5">
-                View
-                </button></a>
-                <button className="btn-gray mx-5" onClick={deleteArtist}>Update</button>
+                <button className="btn-green mx-5">
+                    <Link href={`/artists/${artist.id}`}>View</Link>
+                </button>
+                <button className="btn-green mx-5">
+                    <Link href={`/artists/${artist.id}`}>Update</Link>
+                </button>
                 <button className="btn-red mx-5" onClick={deleteArtist}>Delete</button>
             </div>
         </div>
