@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: 'upload.wikimedia.org',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.thenounproject.com',
+        port: '',
+      }
     ],
   },
 }
