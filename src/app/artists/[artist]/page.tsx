@@ -28,47 +28,122 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
     
 
     return (
-        <div className='w-3/4 m-auto pt-4'>
-            <h1>Artist: {artist?.firstName} {artist?.lastName}</h1>
-            <h2>{artist?.dob.toDateString()}</h2>
-            <h2>{artist?.dod.toDateString()}</h2>
-            <h2>{artist?.nationality}</h2>
-            <div>
-    {(() => {
-      switch (artist?.primaryType) {
-        case 0:
-            return "Painting";
-        case 1:
-            return "Sculpture";
-        case 2:
-            return "Photography";
-        case 3:
-            return "Drawing";
-        case 4:
-            return "Printmaking";
-        case 5:
-            return "Mixed Media";
-        case 6:
-            return "Furniture";
-        case 7:
-            return "Other";
-        default:
-            return "Unknown Type";
-    }
-    })()}
-  </div>
-            <h2>{artist?.biography}</h2>
-            <h2>{artist?.website}</h2>
-            <h2>{artist?.notes}</h2>
-        </div>
-    );
-
-    if (!artist) {
-        return <div>Loading...</div>;
-    }
-    return (
-        <div className='w-3/4 m-auto pt-4'>
-            <h1>Artist: {artist?.firstName} {artist?.lastName}</h1>
+        <div>
+       <div className="mt-8 mx-5 grid grid-cols-2 gap-5">
+           <div>
+           <h1>{artist?.firstName} {artist?.lastName}</h1>
+               <Image className="max-w-xs"src={reubenPic} alt="Reuben Hale" />
+           </div>
+           <div>
+               <div>
+                   <h1 className="dark:text-white text-2xl">Artworks</h1>
+                   <table>
+                       <thead>
+                       <tr className="border border-solid ">
+                           <th className="border border-solid p-4">Title</th>
+                           <th className="border border-solid p-4">Date</th>
+                           <th className="border border-solid p-4">Medium</th>
+                           <td className="border border-solid p-4">
+                           </td>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                           <td className="border border-solid p-4">Sculpture of a Woman</td>
+                           <td className="border border-solid p-4">1973</td>
+                           <td className="border border-solid p-4">Clay Sculpture</td>
+                           <td className='border border-solid p-4 px-4 py-2'><a href="../art">
+                               <button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
+                               </a>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td className="border border-solid p-4">Painting of a Prince</td>
+                           <td className="border border-solid p-4">1984</td>
+                           <td className="border border-solid p-4">Oil on Canvas</td>
+                           <td className='border border-solid p-4 px-4 py-2'><a href="../art">
+                               <button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
+                               </a>
+                           </td>
+                       </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+       <div className="mt-8 mx-5 grid grid-cols-2 gap-3">
+           <div className="mx-5 grid grid-cols-2">
+               <div className="col-span-1">
+                   <h1 className="dark:text-white text-2xl">Biography</h1>
+                   <p className="dark:text-white text-lg"><h2>{artist?.biography}</h2></p><br></br>
+                   <p className="dark:text-white text-lg"><h2>Born: {artist?.dob.toDateString()}</h2></p> 
+                   <p className="dark:text-white text-lg"><h2>Died: {artist?.dod.toDateString()}</h2></p> 
+                   <p className="dark:text-white text-lg"><h2>{artist?.nationality}</h2></p><br></br>
+                   <div> <h2>Primary Medium:</h2>
+                    {(() => {
+                    switch (artist?.primaryType) {
+                        case 0:
+                            return "Painting";
+                        case 1:
+                            return "Sculpture";
+                        case 2:
+                            return "Photography";
+                        case 3:
+                            return "Drawing";
+                        case 4:
+                            return "Printmaking";
+                        case 5:
+                            return "Mixed Media";
+                        case 6:
+                            return "Furniture";
+                        case 7:
+                            return "Other";
+                        default:
+                            return "Unknown Type";
+                    }
+                    })()}
+                    </div>
+               </div>
+           </div>
+           <div className="mx-5 grid grid-cols-2 gap-2">
+               <div className="col-span-1">
+                   <h1 className="dark:text-white text-2xl">Notes</h1>
+                   <p className="dark:text-white text-lg"><h2>{artist?.notes}</h2></p>
+               </div>
+               <div className="col-span-1">
+                   <h1 className="dark:text-white text-2xl">Exhibitions</h1>
+                   <table>
+                       <thead>
+                       <tr className="border border-solid ">
+                           <th className="border border-solid p-4">Exhibit</th>
+                           <th className="border border-solid p-4">Location</th>
+                           <td className="border border-solid p-4">
+                           </td>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                           <td className="border border-solid p-4">Cummer Museum</td>
+                           <td className="border border-solid p-4">Jacksonville, FL</td>
+                           <td className='border border-solid p-4 px-4 py-2'><a href="../exhibitions">
+                               <button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
+                               </a>
+                           </td>
+                       </tr>
+                       <tr>
+                           <td className="border border-solid p-4">Museum of Art</td>
+                           <td className="border border-solid p-4">Nashville, TN</td>
+                           <td className='border border-solid p-4 px-4 py-2'><a href="../exhibitions">
+                               <button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button>
+                               </a>
+                           </td>
+                       </tr>
+                       </tbody>
+                   </table>
+                  
+               </div>
+           </div>
+       </div>
         </div>
     );
 }
