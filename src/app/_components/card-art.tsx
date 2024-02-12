@@ -18,7 +18,7 @@ export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: 
   }, [art.artistId]);
   
   return (
-    <div className='m-4 w-72 p-2 border border-black rounded-md' key={art.id}>
+    <div className='m-4 w-72 p-2 border border-slate-400 dark:border-slate-600 bg-slate-200 dark:bg-gray-700 rounded-md' key={art.id}>
       <h3>{art.title}</h3>
       <Image src={art.imageUrl} width={100} height={200} alt={art.title} className='float-right relative -top-8 border border-black' priority={true} />
       <p className='overflow-hidden h-16'>{art.description}</p>
