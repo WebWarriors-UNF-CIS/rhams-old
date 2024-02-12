@@ -9,9 +9,9 @@ export default function Nav() {
     const [isExpanded, setExpanded] = useState(false);
 
     function NavLink({ href, inner }: { href: string, inner: string }) { return (
-        <li className='py-4 pt-[17px] hover:bg-emerald-500'>
-            <Link href={href} className='px-3'>
-                <span onClick={toggleNav}>{inner}</span>
+        <li className='hover:bg-emerald-500/60'>
+            <Link onClick={toggleNav} href={href} className='block py-4 px-3'>
+                <span>{inner}</span>
             </Link>
         </li>
     )}
@@ -23,11 +23,11 @@ export default function Nav() {
     };
 
     return (
-        <nav className="sticky flex top-0 justify-end md:justify-between w-screen items-center px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 text-black max-md:dark:text-white md:dark:text-bold">
+        <nav className="z-30 sticky flex top-0 justify-end md:justify-between w-screen items-center px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 font-bold text-lg">
             <Link className="p-1 mr-32 grow shrink-0 justify-self-start" href="/">
                 <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
             </Link>
-            <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400/75 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
+            <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
                 <NavLink href="/art" inner="Art"/>
                 <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
