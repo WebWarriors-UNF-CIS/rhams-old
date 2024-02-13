@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { remult } from 'remult';
 import { Exhibit } from '../../_shared/exhibit';
 import { ArtPiece } from '../../_shared/art';
+import Image from 'next/image';
 
 const ExhibitionView = () => {
   const [exhibit, setExhibit] = useState<Exhibit | null>(null);
@@ -40,7 +41,7 @@ const ExhibitionView = () => {
       <div className="grid grid-cols-3 gap-4">
         {arts.map((art, index) => (
           <div key={index}>
-            <img src={art.imageUrl} alt={art.title} />
+            <Image src={art.imageUrl} alt={art.title} width={300} height={300} />
             <p>{art.title}</p>
           </div>
         ))}

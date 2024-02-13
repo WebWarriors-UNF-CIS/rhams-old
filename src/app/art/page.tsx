@@ -11,7 +11,7 @@ import { ArtPiece } from "../_shared/art"
 const artRepo = remult.repo(ArtPiece)
 const artistRepo = remult.repo(Artist);
 
-export function convertDate(date: Date) {
+function convertDate(date: Date) {
   // original format: weekday mmm yyyy dd hh:mm:ss GMT-0000 (Coordinated Universal Time)
   // new format: yyyy
   return date.toString().split(' ')[3]
