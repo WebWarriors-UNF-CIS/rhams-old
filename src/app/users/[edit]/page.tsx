@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 const userRepo = remult.repo(User);
 
-export default function UserPage(params: {name: string}) {
+export default function UserPage({params} : { params: {name: string}}) {
     const [user, setUser] = useState<User>();
     const router = useRouter();
     
@@ -25,17 +25,17 @@ export default function UserPage(params: {name: string}) {
 
     return (
         <main>
+            <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
             <h1 className="margin-auto my-8 flex justify-center items-center text-3xl font-medium">Edit User</h1>
             <div className="float-left ml-6 flex flex-col w-40 border-2 border-black rounded-xl">
-                <p className="text-center p-4">ID:</p>
-                <p className="text-center p-4">Name:</p>
-                <p className="text-center p-4">Email:</p>
-                <p className="text-center p-4">Role:</p>
+                <p className="text-center p-4">ID: {user.id} </p>
+                <p className="text-center p-4">Name: {user.name}</p>
+                <p className="text-center p-4">Email: {user.email}</p>
+                <p className="text-center p-4">Role: {user.roles}</p>
             </div>
             <div className="mx-32">
                 <button className="btn-red" onClick={() => confirmDelete(user)}>Delete User</button>
             </div>
-        
         </main>
 
     );
