@@ -37,7 +37,7 @@ export class ArtPiece {
   salesIds = []
 
   @Fields.object()
-  type = Type
+  type = Type.Other
 
   // TODO: Follow after MediumTypes table is created
   @Fields.string()
