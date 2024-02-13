@@ -9,22 +9,18 @@ const artistRepo = remult.repo(Artist);
 
 export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: (id: number) => void}) {
   const [artist, setArtist] = useState<Artist>();
-  useEffect(() => {
-    try {
-      artistRepo.findFirst({ id: art.artistId }).then(setArtist);
-    } catch (error) {
-      console.error(error);
-    }
-  }, [art.artistId]);
+  useEffect(() => { artistRepo.findFirst({ id: art.artistId }).then(setArtist) }, [art.artistId]);
   
   return (
-    <div className='m-4 w-72 p-2 border border-slate-400 dark:border-slate-600 bg-slate-200 dark:bg-gray-700 rounded-md' key={art.id}>
-      <h3>{art.title}</h3>
-      <Image src={art.imageUrl} width={100} height={200} alt={art.title} className='float-right relative -top-8 border border-black' priority={true} />
-      <p className='overflow-hidden h-16'>{art.description}</p>
-      <p>{artist?.firstName}</p>
-      <p>{art.medium}</p>
-      <button className='btn-gray' onClick={() => showModal(art.id)}>View</button>
-    </div>
+    <div className='card min-h-[168px] grid gap-x-1 grid-cols-[auto_100px] grid-rows-[1rem_1rem_1.4rem_auto]' key={art.id} onClick={() => showModal(art.id)}>
+        <h3 className='whitespace-pre'>{art.title}</h3>
+        <div className="group relative row-span-3">
+          <Image src={art.imageUrl} width={100} height={100} alt={art.description} className='relative peer border border-black' priority={true} />
+          <p className='hidden group-hover:block absolute top-0 bg-slate-900/80 text-white p-1'>{art.description}</p>
+        </div>
+        <p>{artist?.firstName}</p>
+        <p>{art.medium}</p>
+        <p>{art.location}</p>
+      </div>
   )
 }
