@@ -1,15 +1,31 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { ArtPiece } from '../../_shared/art';
 import { remult } from 'remult';
-import Image from 'next/image';
-import { Artist } from '../../_shared/artist';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { ArtPiece } from '../../_shared/art';
+import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
 
-export default function ArtPage({params} : { params: {edit: string}}) {
+export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
-  const [art, setArt] = useState<ArtPiece>();
+  const [art, setArt] = useState<ArtPiece>({
+    id: 0,
+    catalogNum: '',
+    title: '',
+    artistId: 0,
+    aquired: new Date,
+    created: new Date,
+    description: '',
+    imageUrl: '',
+    type: Type.Painting,
+    medium: '',
+    height: '',
+    width: '',
+    depth: '',
+    location: '',
+    salesIds: []
+  });
   const [artist, setArtist] = useState<Artist>();
   const artRepo = remult.repo(ArtPiece);
   const artistRepo = remult.repo(Artist);
@@ -18,18 +34,25 @@ export default function ArtPage({params} : { params: {edit: string}}) {
   async function deleteArt() {
     try { await artRepo.delete(art!) }
     catch (error) { console.error(error)}
-      router.push('./');
+  }
+  
+  function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
+    const {name, value} = e.target;
+    setArt((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   }
 
-  let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     // check for exisiting catalog number
     // let dates be input as just years/months
     // let artist and type be dropdowns
     // imageURL be a file upload
-    // option for adding a sale
-    const artPiece = {
+    setArt({
+      ...art!,
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
       artistId: form.artist.value,
@@ -37,13 +60,14 @@ export default function ArtPage({params} : { params: {edit: string}}) {
       created: new Date(form.created.value),
       description: form.description.value,
       imageUrl: form.imageUrl.value,
-      salesIds: [],
       type: form.artType.value,
       medium: form.medium.value,
       height: form.height.value,
+      width: form.width.value,
+      depth: form.depth.value,
       location: form.location.value
-    };
-    await artRepo.save(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
+    });
+    await artRepo.save(art!).then(() => setSuccessMessage('Exhibition created successfully!'));
     router.push('./');
   }
 
@@ -53,11 +77,12 @@ export default function ArtPage({params} : { params: {edit: string}}) {
       artRepo.findFirst({ id: artId }).then(setArt);
     if (art?.artistId)
       artistRepo.findFirst({ id: art.artistId }).then(setArtist);
-  }, [params.edit, artRepo, art?.artistId, artistRepo]);
+  }, [params.edit, art?.artistId]);
 
   if (!art) {
-    return <div className='flex font-bold text-2xl items-center justify-center h-96'><div>Loading...</div></div>;
+    return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
   }
+  
   return (
     <main className="mx-auto p-10">
       <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
@@ -74,6 +99,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             placeholder='001'
             className="text-center"
             value={art.catalogNum}
+            onChange={handleChange}
           />
         </div>
         <div className='input col-span-3 man grow'>
@@ -83,6 +109,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             id="artTitle"
             placeholder='Title'
             value={art.title}
+            onChange={handleChange}
           />
         </div>
         <div className='input grow'> {/* will be a dropdown of artists names */}
@@ -116,6 +143,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             placeholder='Image URL'
             value={art.imageUrl}
             className='overflow-visible'
+            onChange={handleChange}
           />
         </div>
         <div className='input w-full'>
@@ -127,6 +155,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             focus:ring-black focus:border-emerald-500 block w-full p-2.5 
             dark:bg-gray-700 dark:border-gray-600 dark:text-white !min-h-[52px]"
             value={art.description}
+            onChange={() => handleChange}
           />
         </div>
         <div className='input'>
@@ -145,6 +174,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             id="medium"
             placeholder='Oil'
             value={art.medium}
+            onChange={handleChange}
           />
         </div>
         <SizeInput id='Height' />
@@ -157,6 +187,7 @@ export default function ArtPage({params} : { params: {edit: string}}) {
             id="location"
             placeholder='Location'
             value={art.location}
+            onChange={handleChange}
           />
         </div>
         <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
@@ -164,13 +195,12 @@ export default function ArtPage({params} : { params: {edit: string}}) {
         {/* create and add sale button, takes user to new sale form once art is inserted
         <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
       </form>
-    {/*<div className='w-3/4 m-auto pt-4'>
+    {/*
       <h1 className='font-bold text-2xl'>{art.title}</h1>
-      <div>Artist: {artist?.firstName + ' ' + artist?.lastName}</div>
+      artist
       aquired and created dates
       size values
-      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
-    </div>*/}
+    */}
   </main>
   );
 }
