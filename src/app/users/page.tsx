@@ -14,37 +14,30 @@ export default function UserDashboard() {
     useEffect(() => { userRepo.find().then(setUsers) }, []);
 
     return (
-        <div>
-            
-            <div>
-                <h1 className="margin-auto my-8 flex justify-center items-center text-3xl font-medium text-black ">Manage Users</h1>
-            </div>
-            <div className="mx-32">
-                <Link href="/users/create"><button className="btn-green">Create User</button></Link>
-            </div>
-            <br></br>
-            <table className="w-10/12 mx-32 border-collapse border-black table-fixed">
+        <main className='mx-8 h-full'>
+            <Link href="/users/create" className='absolute right-5'><button className="btn-green">Create User</button></Link>
+            <h1 className="margin-auto my-8 text-3xl text-black ">Manage Users</h1>
+            <table className="w-10/12 mt-3 border-collapse border-black table-auto">
                 <thead className="bg-slate-200">
-                    <tr className="border-solid text-center font-bold text-xl">
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Roles</th>
-                        <th>Roles</th>
-                        <th></th>
+                    <tr className="border-solid text-left font-bold text-xl">
+                        <th className='px-1'>Name</th>
+                        <th className='px-1'>Email</th>
+                        <th className='px-1'>Roles</th>
+                        <th className='px-1 text-center'>Update</th>
                     </tr>
                 </thead>
                 <tbody className="bg-slate-50">
                     {users.map((user) => (
-                        <tr className="border border-solid text-center even:bg-slate-100" key={user.id}>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.roles}</td>
-                            <td><Link className="underline" href='users/manage'>View</Link></td>
+                        <tr className="border border-solid even:bg-slate-100" key={user.id}>
+                            <td className='px-1'>{user.name}</td>
+                            <td className='px-1'>{user.email}</td>
+                            <td className='px-1'>{user.roles}</td>
+                            <td className='px-1 text-center underline cursor-pointer'><span className="px-1" onClick={() => router.push(`users/${user.name}`)}>View</span></td>
                         </tr>
                     ))}
                 </tbody>
-            </table>            
-        </div>
+            </table>
+        </main>
 
     );
 }

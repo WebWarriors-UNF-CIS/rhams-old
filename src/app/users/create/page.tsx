@@ -33,7 +33,8 @@ export default function UserRegistration() {
     };
   
     return (
-      <div className="flex flex-col justify-center items-center mx-auto mt-10">
+      <main className="flex flex-col justify-center items-center mx-auto mt-10">
+        <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
         <h1>New User Registration</h1>
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
@@ -83,6 +84,6 @@ export default function UserRegistration() {
           </div>
           <button type="submit" className="btn-green">Create Account</button>
         </form>
-      </div>
+      </main>
     );
   }
