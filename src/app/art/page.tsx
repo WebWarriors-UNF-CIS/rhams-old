@@ -2,7 +2,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { remult } from "remult"
 import ArtCard from "../_components/card-art"
 import { Artist, Type } from "../_shared/artist"
@@ -14,8 +14,7 @@ const artistRepo = remult.repo(Artist);
 export function convertDate(date: Date) {
   // original format: weekday mmm yyyy dd hh:mm:ss GMT-0000 (Coordinated Universal Time)
   // new format: yyyy
-  let year = date.toString().split(' ')[3];
-  return year;
+  return date.toString().split(' ')[3]
 }
 
 export default function ManageArt() {
@@ -23,7 +22,17 @@ export default function ManageArt() {
   const [modalArt, setModalArt] = useState<ArtPiece>();
   const [modalArtist, setModalArtist] = useState<Artist>();
   const router = useRouter();
-  const focus = useRef<HTMLDivElement | null>(null);
+  const [title, setTitle] = useState('');
+  const [artist, setArtist] = useState('');
+  const [aquired, setAquired] = useState('');
+  const [created, setCreated] = useState('');
+  const [type, setType] = useState('');
+  const [medium, setMedium] = useState('');
+  const [height, setHeight] = useState('');
+  const [width, setWidth] = useState('');
+  const [depth, setDepth] = useState('');
+  const [location, setLocation] = useState('');
+  const [exhibit, setExhibit] = useState('');
 
   function toggleFilters() {
     let filters = document.getElementById("filters");
@@ -31,10 +40,32 @@ export default function ManageArt() {
     filters?.classList.toggle("grid");
   }
 
+  async function typeFilter(filter: string) {
+    setTitle('');     setArtist('');    setAquired('');   setCreated('');
+    setType(filter);  setMedium('');    setHeight('');    setWidth('');
+    setDepth('');     setLocation('');  setExhibit('');   
+    await artRepo.find({ where: { type: { $contains:filter } } }).then(setArts);
+  }
+
+  async function filterChanged(e: React.ChangeEvent<HTMLInputElement>) {
+    const {name, value} = e.target;
+    switch (name) {
+      case 'title': setTitle(value); break;
+      case 'artist': setArtist(value); break;
+      case 'aquired': setAquired(value); break;
+      case 'created': setCreated(value); break;
+      case 'medium': setMedium(value); break;
+      case 'height': setHeight(value); break;
+      case 'width': setWidth(value); break;
+      case 'depth': setDepth(value); break;
+      case 'location': setLocation(value); break;
+      case 'exhibit': setExhibit(value); break;
+    }
+  }
+
   async function showModal(id: number) {
     setModalArt(Art.find(art => art.id === id));
     await artistRepo.findFirst({ id: modalArt?.artistId }).then(setModalArtist);
-    focus.current?.focus();
   }
   
   function hideModal() {
@@ -42,67 +73,110 @@ export default function ManageArt() {
     setModalArtist(undefined);
   }
 
-  useEffect(() => { artRepo.find().then(setArts) }, [])
-
+  useEffect(() => {
+    artRepo.find({ where: {
+      title: { $contains:title },
+      //aquired: { $contains:aquired },
+      //created: { $contains:created },
+      type: { $contains:type },
+      medium: { $contains:medium },
+      height: { $contains:height },
+      width: { $contains:width },
+      depth: { $contains:depth },
+      location: { $contains:location },
+      //exhibit: { $contains:exhibit
+    }}).then(setArts);
+  }, [title, medium, location, type, height, width, depth])
+  
   return (
     <main className='dark:text-white mt-2'>
-      <Link href="/art/create" className="fixed right-5">
-        <button className="btn-green">New Art</button>
-      </Link>
-      <div className="max-sm:hidden float-left ml-6 mt-12 border-[3px] border-black dark:border-slate-400 rounded-lg">
+      <button className="relative p-1 px-2 m-2 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
+      <Link href="/art/create" className="absolute my-2 right-5"><button className="btn-green">New Art</button></Link>
+      <div className="max-sm:hidden absolute float-left ml-4 mr-3 mt-2 border-[3px] border-black dark:border-slate-400 rounded-lg">
         {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
-          <div className="text-center p-3 text-lg border-y border-black dark:border-slate-400 first:border-0 first:border-b last:border-0 last:border-t" key={type}> {type} </div>
+          <div className="cursor-pointer text-center m-1 p-2 text-lg hover:bg-slate-200 border-y border-black dark:border-slate-400 first:!mt-0 first:border-0 first:border-b" onClick={() => typeFilter(type as string)} key={type}> {type} </div>
         ))}
+        <div className="cursor-pointer text-center m-1 mb-0 p-2 text-lg hover:bg-slate-200 border-t border-black dark:border-slate-400" onClick={() => typeFilter('')}> All </div>
       </div>
-      <button className="p-1 px-2 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
-      <div className="relative grid-cols-2 md:grid-cols-3 gap-2 sm:w-3/4 bg-slate-200 dark:bg-slate-800 dark:border-slate-600 m-2 p-2 left-4 hidden border border-slate-400 rounded-lg" id="filters">
+      <div className="grid-cols-2 my-2 sm:ml-[170px] p-2 max-sm:mx-4 sm:w-2/3 md:w-3/4 max-sm:max-h-52 md:grid-cols-3 gap-x-2 max-sm:overflow-y-scroll bg-slate-100 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 hidden rounded-lg" id="filters">
         <div>
-          <label className="m-3 p-1"> Catalog # </label>
-          <input type="number" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="title" className="m-3 p-1"> Title </label>
+          <input
+          type="text"
+          name="title"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+        </div>
+        {/*<div>
+          <label htmlFor="artist" className="m-3 p-1"> Artist </label>
+          <input
+          type="text"
+          name="artist"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>{/*should be a drop-down menu of artists/}
+        </div>*/}
+        <div>
+          <label htmlFor="aquired" className="m-3 p-1"> Aquired </label>
+          <input
+          type="date"
+          name="aquired"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Title </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="created" className="m-3 p-1"> Created </label>
+          <input
+          type="date"
+          name="created"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Artist </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>{/*should be a drop-down menu of artists*/}
+          <label htmlFor="medium" className="m-3 p-1"> Medium </label>
+          <input
+          type="text"
+          name="medium"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Aquired </label>
-          <input type="date" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="height" className="m-3 p-1"> Height </label>
+          <input
+          type="text"
+          name="height"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Created </label>
-          <input type="date" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="width" className="m-3 p-1"> Width </label>
+          <input
+          type="text"
+          name="width"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Medium </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="depth" className="m-3 p-1"> Depth </label>
+          <input
+          type="text"
+          name="depth"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Height </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="location" className="m-3 p-1"> Location </label>
+          <input
+          type="text"
+          name="location"
+          onChange={filterChanged}
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
-          <label className="m-3 p-1"> Width </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+          <label htmlFor="exhibit" className="m-3 p-1"> Exhibit </label>
+          <input
+          type="text"
+          name="exhibit"
+          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
-        <div>
-          <label className="m-3 p-1"> Depth </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label className="m-3 p-1"> Location </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label className="m-3 p-1"> Exhibit </label>
-          <input type="text" className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <button className="btn-green justify-self-end self-end">Apply Filters</button>
       </div>
-      <div className="flex mx-12 flex-wrap">
+      <div className="flex flex-wrap max-sm:justify-center sm:ml-40">
         {Art.map(art => {
           return (
             <div key={art.id}>
@@ -112,8 +186,8 @@ export default function ManageArt() {
         })}
       </div>
       {modalArt && 
-        <div id='modal' onBlur={hideModal} className='absolute w-screen h-screen top-0 right-0 bg-black/80'>
-          <div tabIndex={-1} ref={focus} className='absolute w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-4 border border-black rounded-lg'>
+        <div id='modal' className='fixed w-screen h-screen top-0 right-0 bg-black/80'>
+          <div tabIndex={-1} onBlur={hideModal} className='absolute w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-4 border border-black rounded-lg focus-visible:outline-none'>
             <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />
             <h1 className='font-bold text-2xl'>{modalArt.title}</h1>
             <div>Catalog # {modalArt.catalogNum}</div>
