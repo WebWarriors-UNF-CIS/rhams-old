@@ -23,8 +23,8 @@ title? = ""
   datePublished = new Date
 
   // Make a Type table, change to mediaTypeId
-  @Fields.object()
-  mediaType?: Type
+  @Fields.string()
+  mediaType? = ""
 
   @Fields.string()
   imageString? = ""
@@ -40,9 +40,3 @@ title? = ""
   notes? = ""
 }
 
-export enum Type {
-  Literature,
-  Video,
-  Image,
-  Other
-}

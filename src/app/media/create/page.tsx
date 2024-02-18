@@ -3,20 +3,25 @@ import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
 import '../../globals.css'
-import { Collection} from '../../_shared/collection';
+import {Media} from '../../_shared/media';
 
 
-const collectionRepo = remult.repo(Collection);
 
-export default function AddCollection() {
+const mediaRepo = remult.repo(Media);
+
+export default function AddMedia() {
   const [formData, setFormData] = useState({
     title: '',
     location: '',
-    dateAcquired: new Date,
-    owner: '',
+    author: '',
+    datePublished: new Date,
+    mediaType: '',
+    imageString: '',
+    website: '',
+    videoString: '',
     notes: '',
   });
-  const [collections, setCollection] = useState<Collection[]>([]);
+  const [media, setMedia] = useState<Media[]>([]);
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
 
@@ -32,18 +37,18 @@ export default function AddCollection() {
   const handleSubmit = async (e: React.FormEvent) => 
   {
     e.preventDefault();
-    collectionRepo.insert(formData);
-    router.push('/collection/');
-    setSuccessMessage('Collection created successfully!');
+    mediaRepo.insert(formData);
+    router.push('/media/');
+    setSuccessMessage('Media added successfully!');
   };
 
   useEffect(() => {
-    collectionRepo.find().then(setCollection);
+    mediaRepo.find().then(setMedia);
   }, []);
   
   return (
     <div className="flex flex-col justify-center items-center mx-auto mt-10">
-    <h1>Enter New Collection</h1>
+    <h1>Enter New Media</h1>
     {successMessage && (
       <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
     )}
@@ -72,30 +77,78 @@ export default function AddCollection() {
           required
         />
       </div>
+
       <div className="input">
-        <label htmlFor="dateAcquired"> Date Acquired </label>
-        <input
-          type="date"
-          id="dateAcquired"
-          name="dateAcquired"
-          onChange={handleChange}
-        />
-      </div>
-      
-      <div className="input">
-        <label htmlFor="owner"> Owned By </label>
+        <label htmlFor="owner"> Author </label>
         <input
           type="text"
-          id="owner"
-          name="owner"
-          placeholder='Owned By'
-          value={formData.owner}
+          id="author"
+          name="author"
+          placeholder='Author'
+          value={formData.author}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input">
+        <label htmlFor="datePublished"> Date Published </label>
+        <input
+          type="date"
+          id="datePublished"
+          name="datePublished"
           onChange={handleChange}
         />
       </div>
       
+        <div className="input">
+            <label htmlFor="mediaType"> Media Type </label>
+            <input
+            type="text"
+            id="mediaType"
+            name="mediaType"
+            placeholder='Media Type'
+            value={formData.mediaType}
+            onChange={handleChange}
+            />
+        </div>
       
+      <div className="input">
+        <label htmlFor="imageString"> Image </label>
+        <input
+          type="text"
+          id="imageString"
+          name="imageString"
+          placeholder='Image URL'
+          value={formData.imageString}
+          onChange={handleChange}
+        />
+      </div>
      
+      <div className="input">
+        <label htmlFor="website"> Website </label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          placeholder='Website URL'
+          value={formData.website}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input">
+        <label htmlFor="owner"> Video </label>
+        <input
+          type="text"
+          id="videoString"
+          name="videoString"
+          placeholder='Video URL'
+          value={formData.videoString}
+          onChange={handleChange}
+        />
+      </div>
+
+
       <div className="input">
         <label htmlFor="notes"> Notes </label>
         <input
@@ -108,8 +161,8 @@ export default function AddCollection() {
         />
       </div>
       <div className="sm:col-span-2 flex flex-row justify-between">
-        <button type="submit" className="btn-green">Add Collection</button>
-        <button type="button" className="btn-gray" onClick={() => router.push('/collection')}>Back</button>
+        <button type="submit" className="btn-green">Add Media</button>
+        <button type="button" className="btn-gray" onClick={() => router.push('/media')}>Back</button>
       </div>
     </form>
   </div>

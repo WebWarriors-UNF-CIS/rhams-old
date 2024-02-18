@@ -24,6 +24,11 @@ export default function MediaPage() {
       <div>
         <h1 className="text-center justify-text-3xl font-bold p-12 dark:text-white">Media will go here!</h1>
       </div>
-      </div>
+      <div className="col-span-3">
+          <a href="../media/create"><button className="ml-10 bg-emerald-500 text-white rounded-md  mt-3 p-1 hover:bg-emerald-600 hover:shadow">
+              Add Media
+          </button></a>
+        </div>
+    </div>
   );
 }
