@@ -1,7 +1,7 @@
 import { Entity, Fields } from "remult"
 import { Type } from "./artist"
 
-@Entity("artPiece", {
+@Entity("Artworks", {
   allowApiCrud: true
 })
 export class ArtPiece {
@@ -34,7 +34,10 @@ export class ArtPiece {
   imageUrl = ""
 
   @Fields.json()
-  salesIds = []
+  salesIds = [] as number[]
+
+  @Fields.json()
+  exhibitIds = [] as number[]
 
   @Fields.object()
   type = Type.Other

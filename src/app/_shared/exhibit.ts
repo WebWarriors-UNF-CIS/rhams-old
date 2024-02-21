@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("Exhibit", {
+@Entity("Exhibits", {
   allowApiCrud: true
 })
 
@@ -21,5 +21,5 @@ export class Exhibit {
     endDate = new Date
 
     @Fields.json()
-    artIds = []
+    artIds = [] as number []
 }

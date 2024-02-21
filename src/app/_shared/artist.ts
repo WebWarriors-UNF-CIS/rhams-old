@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("artist", {
+@Entity("Artists", {
   allowApiCrud: true
 })
 
@@ -37,7 +37,7 @@ export class Artist {
   biography? = ""
 
   @Fields.json()
-  knownExhibits: number[] = []
+  knownExhibits = [] as number[]
 
   @Fields.string()
   notes? = ""
