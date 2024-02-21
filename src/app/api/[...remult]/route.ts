@@ -4,9 +4,12 @@ import { ArtPiece } from '../../_shared/art'
 import { User } from '../../_shared/user'
 import { Artist } from '../../_shared/artist'
 import { Exhibit } from '../../_shared/exhibit'
+import { Media } from '../../_shared/media'
+import { Sale } from '../../_shared/sale'
+import { Collection } from '../../_shared/collection'
 
 const api = remultNextApp({
-    entities: [ArtPiece, User, Artist, Exhibit],
+    entities: [ArtPiece, User, Artist, Exhibit, Media, Sale, Collection],
     dataProvider: createPostgresDataProvider({
       connectionString: process.env["POSTGRES_URL"],
       configuration: {

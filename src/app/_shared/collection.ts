@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("collection", {
+@Entity("Collections", {
   allowApiCrud: true
 })
 
@@ -8,22 +8,22 @@ export class Collection {
   @Fields.autoIncrement()
   id!:number
 
-//connect to artist table
-//connect to art table
+  @Fields.object()
+  artIds = [] as number[]
 
-@Fields.string()
-title? = ""
+  @Fields.string()
+  title? = ""
 
-@Fields.string()
-location? = ""
+  @Fields.string()
+  location? = ""
 
-@Fields.string()
-owner? = ""
+  @Fields.string()
+  owner? = ""
 
-@Fields.dateOnly()
-dateAcquired = new Date
+  @Fields.dateOnly()
+  dateAcquired = new Date
 
-@Fields.string()
-notes? = ""
+  @Fields.string()
+  notes? = ""
 }
 

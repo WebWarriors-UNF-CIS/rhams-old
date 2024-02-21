@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("media", {
+@Entity("Medias", {
   allowApiCrud: true
 })
 
@@ -10,11 +10,12 @@ export class Media {
 
 //connect to artist table
 
-@Fields.string()
-title? = ""
+  @Fields.string()
+  title? = ""
 
   @Fields.string()
   location? = ""
+  // do they need this or do they just want to link it to the related collection/art/exhibit?
 
   @Fields.string()
   author? = ""

@@ -42,13 +42,10 @@ export class ArtPiece {
   @Fields.object()
   type = Type.Other
 
-  // TODO: Follow after MediumTypes table is created
   @Fields.string()
   medium = ""
 
-  // Dimensions... might want to break this into multiple fields
   // What about weight?
-  // Keep these columns on this table
   @Fields.string()
   height = ""
 
@@ -58,9 +55,7 @@ export class ArtPiece {
   @Fields.string()
   depth?: string
 
-  // What do they want here? This is about Exhibitions. 
   // How detailed do they want or need this to be?
-  // Do they want to track Exhibitions and Locations?
   @Fields.string()
   location = ""
 }

@@ -9,6 +9,7 @@ export class Sale {
 
     @Fields.number()
     artId!: number;
+    // will there be multiple art pieces in a sale?
 
     @Fields.string()
     price: string = "";
