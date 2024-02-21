@@ -24,7 +24,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     width: '',
     depth: '',
     location: '',
-    salesIds: []
+    salesIds: [],
+    exhibitIds: []
   });
   const [artist, setArtist] = useState<Artist>();
   const artRepo = remult.repo(ArtPiece);

@@ -1,17 +1,18 @@
 "use client"
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { remult } from 'remult';
 import { useRouter } from 'next/navigation';
 import { ArtPiece } from '../../_shared/art';
-import { Artist } from '../../_shared/artist';
+import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
 
 export default function NewArt() {
   const [successMessage, setSuccessMessage] = useState('');
+  const [artists, setArtists] = useState<Artist[]>([]);
   const router = useRouter();
   const artRepo = remult.repo(ArtPiece);
-  const artists = remult.repo(Artist);
+  const artistRepo = remult.repo(Artist);
 
   let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,15 +30,20 @@ export default function NewArt() {
       created: new Date(form.created.value),
       description: form.description.value,
       imageUrl: form.imageUrl.value,
-      salesIds: [],
+      salesIds: [] as number[],
+      exhibitIds: [] as number[],
       type: form.artType.value,
       medium: form.medium.value,
       height: form.height.value,
       location: form.location.value
     };
-    await artRepo.save(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
+    await artRepo.insert(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
     router.push('./');
   }
+
+  useEffect(() => {
+    artistRepo.find({}).then(setArtists);
+  }, []);
 
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
@@ -66,11 +72,12 @@ return (
       </div>
       <div className='input grow'> {/* will be a dropdown of artists names */}
         <label htmlFor="artist">Artist</label>
-        <input
-          type="text"
-          id="artist"
-          placeholder='Artist'
-        />
+        <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+          <option selected>Unknown</option>
+          {artists.map(artist => (
+            <option value={artist.id} key={artist.id}>{artist.firstName + ' ' + artist.lastName}</option>
+          ))}
+        </select>
       </div>
       <div className='input'>
         <label htmlFor="aquired">Aquired</label>
@@ -106,11 +113,11 @@ return (
       </div>
       <div className='input'>
         <label htmlFor="artType">Type</label>
-        <input
-          type="text"
-          id="artType"
-          placeholder='Painting'
-        />
+        <select name="artType" id="artType" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+          {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
+            <option value={type} key={type}>{type}</option>
+          ))}
+        </select>
       </div>
       <div className='input'>
         <label htmlFor="medium">Medium</label>
