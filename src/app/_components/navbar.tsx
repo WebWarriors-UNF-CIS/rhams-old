@@ -31,7 +31,7 @@ export default function Nav() {
                 <NavLink href="/art" inner="Art"/>
                 <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
-                <NavLink href="/literature" inner="Literature"/>
+                <NavLink href="/collections" inner="Collections"/>
                 <NavLink href="/media" inner="Media"/>
                 <NavLink href="/sales" inner="Sales"/>
             </ul>
