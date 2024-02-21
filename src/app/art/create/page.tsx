@@ -43,7 +43,7 @@ export default function NewArt() {
 
   useEffect(() => {
     artistRepo.find({}).then(setArtists);
-  }, []);
+  }, [artistRepo]);
 
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
