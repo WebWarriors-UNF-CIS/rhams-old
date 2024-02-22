@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 export default function Nav() {
     const [isExpanded, setExpanded] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
     function NavLink({ href, inner }: { href: string, inner: string }) { return (
         <li className='hover:bg-emerald-500/60'>
@@ -24,7 +25,7 @@ export default function Nav() {
 
     return (
         <nav className="z-30 sticky flex top-0 justify-end md:justify-between w-full items-center px-4 bg-gradient-to-r from-emerald-800 to-[310px] to-emerald-400 font-bold text-lg">
-            <Link className="p-1 mr-32 grow shrink-0 justify-self-start" href="/">
+            <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start" href="/">
                 <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
             </Link>
             <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
@@ -33,9 +34,9 @@ export default function Nav() {
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
                 <NavLink href="/collections" inner="Collections"/>
                 <NavLink href="/media" inner="Media"/>
-                <NavLink href="/sales" inner="Sales"/>
+                { !loggedIn  && <NavLink href="/sales" inner="Sales"/> }
             </ul>
-            <Link className="z-10 p-1 ml-[6%] max-md:mr-3 shrink-0" href="/">
+            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0" href={loggedIn ? "/profile" : "/login"}>
                 <Image width={30} height={30} src={userico} alt="User Icon"/>
             </Link>
             <button id="nav-toggle" aria-controls="navigation" aria-expanded={isExpanded} onClick={toggleNav} className='z-10 md:hidden !shadow-none border-y-[0.15rem] rounded-sm w-6 h-4 p-0 border-black'>
