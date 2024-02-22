@@ -6,32 +6,31 @@ import { Entity, Fields } from "remult"
 
 export class Media {
   @Fields.autoIncrement()
-  id!:number
-
-//connect to artist table
+  id!: number
 
   @Fields.string()
   title? = ""
 
   @Fields.string()
   location? = ""
-  // do they need this or do they just want to link it to the related collection/art/exhibit?
-
+  /* do they need this or do they just want to link it to the related collection/art/exhibit/artist?
+  @Fields.number()
+  relatedId?: number
+  */
   @Fields.string()
   author? = ""
 
   @Fields.dateOnly()
   datePublished = new Date
 
-  // Make a Type table, change to mediaTypeId
   @Fields.string()
-  mediaType? = ""
+  mediaType = MediaType.Other
 
-  @Fields.string()
+  @Fields.string() //why?
   imageString? = ""
 
   @Fields.string()
-  website? = ""
+  srcUrl? = ""
 
   @Fields.string()
   videoString? = ""
@@ -41,3 +40,11 @@ export class Media {
   notes? = ""
 }
 
+// Ask Client about types of media
+export enum MediaType {
+  Book = "Book",
+  Article = "Article",
+  Video = "Video",
+  Audio = "Audio",
+  Other = "Other"
+}

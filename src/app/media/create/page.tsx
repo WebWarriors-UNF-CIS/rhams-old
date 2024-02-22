@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
 import '../../globals.css'
-import {Media} from '../../_shared/media';
+import {Media, MediaType} from '../../_shared/media';
 
 
 
@@ -15,9 +15,9 @@ export default function AddMedia() {
     location: '',
     author: '',
     datePublished: new Date,
-    mediaType: '',
+    mediaType: MediaType.Other,
     imageString: '',
-    website: '',
+    srcUrl: '',
     videoString: '',
     notes: '',
   });
@@ -126,7 +126,7 @@ export default function AddMedia() {
             id="website"
             name="website"
             placeholder='Website URL'
-            value={formData.website}
+            value={formData.srcUrl}
             onChange={handleChange}
           />
         </div>
