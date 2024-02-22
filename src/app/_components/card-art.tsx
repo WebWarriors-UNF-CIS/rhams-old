@@ -9,7 +9,7 @@ const artistRepo = remult.repo(Artist);
 
 export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: (id: number) => void}) {
   const [artist, setArtist] = useState<Artist>();
-  useEffect(() => { artistRepo.findFirst({ id: art.artistId }).then(setArtist) }, [art.artistId]);
+  useEffect(() => { setArtist(art.artist) }, [art.artist]);
   
   return (
     <div className='card min-h-[168px] grid gap-x-1 grid-cols-[auto_100px] grid-rows-[1rem_1rem_1.4rem_auto]' key={art.id} onClick={() => showModal(art.id)}>

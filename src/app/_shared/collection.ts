@@ -1,4 +1,5 @@
-import { Entity, Fields } from "remult"
+import { Entity, Fields, Relations } from "remult"
+import { ArtPiece } from "./art"
 
 @Entity("Collections", {
   allowApiCrud: true
@@ -8,8 +9,8 @@ export class Collection {
   @Fields.autoIncrement()
   id!:number
 
-  @Fields.object()
-  artIds = [] as number[]
+  @Relations.toMany(() => ArtPiece)
+  artPieces?: ArtPiece[]
 
   @Fields.string()
   title? = ""

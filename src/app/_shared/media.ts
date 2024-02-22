@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("Medias", {
+@Entity("MediaLinks", {
   allowApiCrud: true
 })
 
@@ -16,6 +16,9 @@ export class Media {
   /* do they need this or do they just want to link it to the related collection/art/exhibit/artist?
   @Fields.number()
   relatedId?: number
+
+  @Fields.string()
+  relatedType?: string
   */
   @Fields.string()
   author? = ""

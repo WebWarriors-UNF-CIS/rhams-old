@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArtPiece } from '../../_shared/art';
 import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
+import { Sale } from '../../_shared/sale';
 
 export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
@@ -13,7 +14,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     id: 0,
     catalogNum: '',
     title: '',
-    artistId: 0,
+    artist: undefined,
     aquired: new Date,
     created: new Date,
     description: '',
@@ -24,8 +25,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     width: '',
     depth: '',
     location: '',
-    salesIds: [],
-    exhibitIds: []
+    sales: undefined,
+    exhibits: []
   });
   const [artist, setArtist] = useState<Artist>();
   const artRepo = remult.repo(ArtPiece);
@@ -56,7 +57,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       ...art!,
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
-      artistId: form.artist.value,
+      artist: form.artist.value,
       aquired: new Date(form.aquired.value),
       created: new Date(form.created.value),
       description: form.description.value,
@@ -75,10 +76,10 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
   useEffect(() => {
     let artId = parseInt(params.edit);
     if (artId && typeof artId === 'number')
-      artRepo.findFirst({ id: artId }).then(setArt);
-    if (art?.artistId)
-      artistRepo.findFirst({ id: art.artistId }).then(setArtist);
-  }, [params.edit, art?.artistId, artRepo, artistRepo]);
+      artRepo.findFirst({ id: artId }, {include: { artist: true}}).then(setArt);
+    if (art.artist)
+      setArtist(art.artist);
+  }, [params.edit, artRepo, art.artist]);
 
   if (!art) {
     return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;

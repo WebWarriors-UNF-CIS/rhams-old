@@ -1,4 +1,5 @@
-import { Entity, Fields } from "remult"
+import { Entity, Fields, Relations } from "remult"
+import { Exhibit } from "./exhibit"
 
 @Entity("Artists", {
   allowApiCrud: true
@@ -36,8 +37,8 @@ export class Artist {
   @Fields.string()
   biography? = ""
 
-  @Fields.json()
-  knownExhibits = [] as number[]
+  @Relations.toMany(() => Exhibit)
+  exhibits?: Exhibit[]
 
   @Fields.string()
   notes? = ""

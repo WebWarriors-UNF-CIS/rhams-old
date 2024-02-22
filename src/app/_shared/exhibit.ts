@@ -1,4 +1,5 @@
-import { Entity, Fields } from "remult"
+import { Entity, Fields, Relations } from "remult"
+import { ArtPiece } from "./art"
 
 @Entity("Exhibits", {
   allowApiCrud: true
@@ -20,6 +21,6 @@ export class Exhibit {
     @Fields.dateOnly()
     endDate = new Date
 
-    @Fields.json()
-    artIds = [] as number []
+    @Relations.toMany(() => ArtPiece)
+    artPieces?: ArtPiece[]
 }

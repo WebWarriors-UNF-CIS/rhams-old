@@ -1,4 +1,5 @@
-import { Entity, Fields } from "remult";
+import { Entity, Fields, Relations } from "remult";
+import { ArtPiece } from "./art";
 
 @Entity("Sales", {
   allowApiCrud: true
@@ -7,8 +8,8 @@ export class Sale {
     @Fields.autoIncrement()
     id = 0;
 
-    @Fields.number()
-    artId!: number;
+    @Relations.toOne(() => ArtPiece)
+    artPiece?: ArtPiece;
     // will there be multiple art pieces in a sale?
 
     @Fields.string()
@@ -32,4 +33,8 @@ export class Sale {
 
     @Fields.string()
     notes: string = "";
+
+    /* may be nice to have a relation
+
+    */
 }
