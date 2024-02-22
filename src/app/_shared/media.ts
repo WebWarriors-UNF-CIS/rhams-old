@@ -1,6 +1,6 @@
 import { Entity, Fields } from "remult"
 
-@Entity("Medias", {
+@Entity("MediaLinks", {
   allowApiCrud: true
 })
 
@@ -34,7 +34,6 @@ export class Media {
 
   @Fields.string()
   videoString? = ""
-
 
   @Fields.string()
   notes? = ""

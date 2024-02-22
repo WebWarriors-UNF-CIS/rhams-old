@@ -1,4 +1,6 @@
-import { Entity, Fields } from "remult"
+import { Entity, Fields, Relations } from "remult"
+import { Exhibit } from "./exhibit"
+import { ArtPiece } from "./art"
 
 @Entity("Artists", {
   allowApiCrud: true
@@ -23,7 +25,6 @@ export class Artist {
   @Fields.string()
   nationality? = ""
 
-  // Make a Type table, change to primaryTypeId
   @Fields.object()
   primaryType?: Type
 
@@ -37,7 +38,15 @@ export class Artist {
   biography? = ""
 
   @Fields.json()
-  knownExhibits = [] as number[]
+  exhibitIds?: number[]
+  @Relations.toMany(() => Exhibit, "id")
+  exhibits?: Exhibit[]
+
+  @Relations.toMany(() => ArtPiece, {
+    field: "id",
+    defaultIncluded: true,
+  })
+  artworks?: ArtPiece[]
 
   @Fields.string()
   notes? = ""

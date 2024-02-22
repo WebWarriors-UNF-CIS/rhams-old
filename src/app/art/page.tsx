@@ -11,16 +11,10 @@ import { ArtPiece } from "../_shared/art"
 const artRepo = remult.repo(ArtPiece)
 const artistRepo = remult.repo(Artist);
 
-function convertDate(date: Date) {
-  // original format: weekday mmm yyyy dd hh:mm:ss GMT-0000 (Coordinated Universal Time)
-  // new format: yyyy
-  return date.toString().split(' ')[3]
-}
 
 export default function ManageArt() {
   const [Art, setArts] = useState<ArtPiece[]>([]);
   const [modalArt, setModalArt] = useState<ArtPiece>();
-  const [modalArtist, setModalArtist] = useState<Artist>();
   const router = useRouter();
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
@@ -39,6 +33,10 @@ export default function ManageArt() {
     filters?.classList.toggle("hidden");
     filters?.classList.toggle("grid");
   }
+  
+  // original format: weekday mmm yyyy dd hh:mm:ss GMT-0000 (Coordinated Universal Time)
+  // new format: yyyy
+  function convertDate(date: Date) { return date.toString().split(' ')[3] }
 
   async function typeFilter(filter: string) {
     setTitle('');     setArtist('');    setAquired('');   setCreated('');
@@ -63,15 +61,9 @@ export default function ManageArt() {
     }
   }
 
-  async function showModal(id: number) {
-    setModalArt(Art.find(art => art.id === id));
-    await artistRepo.findFirst({ id: modalArt?.artistId }).then(setModalArtist);
-  }
+  async function showModal(id: number) { setModalArt(Art.find(art => art.id === id)) }
   
-  function hideModal() {
-    setModalArt(undefined);
-    setModalArtist(undefined);
-  }
+  function hideModal() { setModalArt(undefined) }
 
   useEffect(() => {
     artRepo.find({ where: {
@@ -191,7 +183,7 @@ export default function ManageArt() {
             <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />
             <h1 className='font-bold text-2xl'>{modalArt.title}</h1>
             <div>Catalog # {modalArt.catalogNum}</div>
-            <div>Artist: {modalArtist?.firstName + ' ' + modalArtist?.lastName}</div>
+            { modalArt.artist && <div>Artist: {modalArt.artist.firstName + ' ' + modalArt.artist.lastName}</div>}
             <div>{Object.values(modalArt.type)}</div>
             <div>{modalArt.medium}</div>
             <div>Height: {modalArt.height}</div>

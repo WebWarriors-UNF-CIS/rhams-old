@@ -1,5 +1,7 @@
-import { Entity, Fields } from "remult"
-import { Type } from "./artist"
+import { Entity, Fields, Relations } from "remult"
+import { Artist, Type } from "./artist"
+import { Sale } from "./sale"
+import { Exhibit } from "./exhibit"
 
 @Entity("Artworks", {
   allowApiCrud: true
@@ -9,13 +11,13 @@ export class ArtPiece {
   id = 0
 
   @Fields.integer()
-  catalogNum = ""
+  catalogNum?: number
 
   @Fields.string()
   title = ""
 
-  @Fields.number()
-  artistId?: number
+  @Relations.toOne(() => Artist, { defaultIncluded: true})
+  artist?: Artist
 
   @Fields.string()
   aquired?: Date
@@ -34,10 +36,17 @@ export class ArtPiece {
   imageUrl = ""
 
   @Fields.json()
-  salesIds = [] as number[]
+  saleIds?: number[]
+  @Relations.toMany(() => Sale, {
+    defaultIncluded: true
+  })
+  sales?: Sale[]
 
-  @Fields.json()
-  exhibitIds = [] as number[]
+  @Relations.toMany(() => Exhibit, {
+    field: "id",
+    defaultIncluded: true
+  })
+  exhibits?: Exhibit[]
 
   @Fields.object()
   type = Type.Other

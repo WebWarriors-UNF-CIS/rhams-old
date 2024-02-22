@@ -1,4 +1,5 @@
-import { Entity, Fields } from "remult";
+import { Entity, Fields, Relations } from "remult";
+import { ArtPiece } from "./art";
 
 @Entity("Sales", {
   allowApiCrud: true
@@ -7,8 +8,8 @@ export class Sale {
     @Fields.autoIncrement()
     id = 0;
 
-    @Fields.number()
-    artId!: number;
+    @Relations.toOne(() => ArtPiece)
+    artPiece?: ArtPiece;
     // will there be multiple art pieces in a sale?
 
     @Fields.string()
@@ -18,7 +19,7 @@ export class Sale {
     date: string = "";
 
     @Fields.string()
-    foundry: string = ""; // what is this?
+    foundry: string = ""; // what is this? does she want to store more information about the foundry?
 
     @Fields.string()
     buyer: string = ""; // does she want to store more information about the buyer? or just the name?
