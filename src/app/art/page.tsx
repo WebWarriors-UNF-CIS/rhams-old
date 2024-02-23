@@ -18,7 +18,7 @@ export default function ManageArt() {
   const [modalArt, setModalArt] = useState<ArtPiece>();
   const router = useRouter();
   const [title, setTitle] = useState('');
-  const [artist, setArtist] = useState<Artist>();
+  const [artist, setArtist] = useState('');
   const [aquired, setAquired] = useState('');
   const [created, setCreated] = useState('');
   const [type, setType] = useState('');
@@ -40,7 +40,7 @@ export default function ManageArt() {
   function convertDate(date: Date) { return date.toString().split(' ')[3] }
 
   async function typeFilter(filter: string) {
-    setTitle('');     setArtist(undefined);    setAquired('');   setCreated('');
+    setTitle('');     setArtist('');    setAquired('');   setCreated('');
     setType(filter);  setMedium('');    setHeight('');    setWidth('');
     setDepth('');     setLocation('');  setExhibit('');   
     await artRepo.find({ where: { type: { $contains:filter } } }).then(setArts);
@@ -50,7 +50,7 @@ export default function ManageArt() {
     const {name, value} = e.target;
     switch (name) {
       case 'title': setTitle(value); break;
-      case 'artist': await artistRepo.findFirst({ id: parseInt(value) }).then(setArtist); break;
+      case 'artist': setArtist(value); break;
       case 'aquired': setAquired(value); break;
       case 'created': setCreated(value); break;
       case 'medium': setMedium(value); break;
@@ -67,18 +67,27 @@ export default function ManageArt() {
   function hideModal() { setModalArt(undefined) }
 
   useEffect(() => {
-    artRepo.find({ include: {/* artist: artist ? { where: { id: artist.id }} : true // trying to filter by artist id when artist is selected and set to true when unkown is selected*/}, where: {
-      title: { $contains:title },
-      //aquired: { $contains:aquired },
-      //created: { $contains:created },
-      type: { $contains:type },
-      medium: { $contains:medium },
-      height: { $contains:height },
-      width: { $contains:width },
-      depth: { $contains:depth },
-      location: { $contains:location },
-      //exhibit: { $contains:exhibit
-    }}).then(setArts);
+    artRepo.find({ 
+      include: {// not working, but i think this is the right idea
+        artist: { 
+          where: {
+            name: { $contains:artist }
+          }
+        }
+      }, 
+      where: {
+        title: { $contains:title },
+        //aquired: { $contains:aquired },
+        //created: { $contains:created },
+        type: { $contains:type },
+        medium: { $contains:medium },
+        height: { $contains:height },
+        width: { $contains:width },
+        depth: { $contains:depth },
+        location: { $contains:location },
+        //exhibit: { $contains:exhibit
+      }
+    }).then(setArts);
     artistRepo.find({}).then(setArtists);
   }, [title, medium, location, type, height, width, depth])
   
@@ -96,80 +105,81 @@ export default function ManageArt() {
         <div>
           <label htmlFor="title" className="m-3 p-1"> Title </label>
           <input
-          type="text"
-          name="title"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="title"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="artist" className="m-3 p-1"> Artist </label>
-          <select name="artist" id="artist" onChange={filterChanged} className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option selected value={undefined}>Unknown</option>
-            {artists.map(artist => (
-              <option value={artist.id} key={artist.id}>{artist.firstName + ' ' + artist.lastName}</option>
-            ))}
-          </select>
+          <input
+            name="artist"
+            id="artist"
+            list="artists"
+            type="text"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         {/*<div>
           <label htmlFor="aquired" className="m-3 p-1"> Aquired </label>
           <input
-          type="date"
-          name="aquired"
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="date"
+            name="aquired"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="created" className="m-3 p-1"> Created </label>
           <input
-          type="date"
-          name="created"
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="date"
+            name="created"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>*/}
         <div>
           <label htmlFor="medium" className="m-3 p-1"> Medium </label>
           <input
-          type="text"
-          name="medium"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="medium"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="height" className="m-3 p-1"> Height </label>
           <input
-          type="text"
-          name="height"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="height"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="width" className="m-3 p-1"> Width </label>
           <input
-          type="text"
-          name="width"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="width"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="depth" className="m-3 p-1"> Depth </label>
           <input
-          type="text"
-          name="depth"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="depth"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="location" className="m-3 p-1"> Location </label>
           <input
-          type="text"
-          name="location"
-          onChange={filterChanged}
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="location"
+            onChange={filterChanged}
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         <div>
           <label htmlFor="exhibit" className="m-3 p-1"> Exhibit </label>
           <input
-          type="text"
-          name="exhibit"
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            type="text"
+            name="exhibit"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
       </div>
       <div className="flex flex-wrap max-sm:justify-center sm:ml-40">
@@ -187,7 +197,7 @@ export default function ManageArt() {
             <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />
             <h1 className='font-bold text-2xl'>{modalArt.title}</h1>
             <div>Catalog # {modalArt.catalogNum}</div>
-            { modalArt.artist && <div>Artist: {modalArt.artist.firstName + ' ' + modalArt.artist.lastName}</div>}
+            { modalArt.artist && <div>Artist: {modalArt.artist.name}</div>}
             <div>{Object.values(modalArt.type)}</div>
             <div>{modalArt.medium}</div>
             <div>Height: {modalArt.height}</div>
@@ -204,6 +214,13 @@ export default function ManageArt() {
           </div>
         </div>
       }
+      <datalist id="artists">
+        <option selected value={undefined}>Select</option>
+        {artists.map(artist => (
+          <option value={artist.name} key={artist.id}></option>
+        ))}
+        <option selected value={'Unknown'}>Unknown</option>
+      </datalist>
     </main>
   )
 }
