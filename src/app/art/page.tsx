@@ -14,10 +14,11 @@ const artistRepo = remult.repo(Artist);
 
 export default function ManageArt() {
   const [Art, setArts] = useState<ArtPiece[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [modalArt, setModalArt] = useState<ArtPiece>();
   const router = useRouter();
   const [title, setTitle] = useState('');
-  const [artist, setArtist] = useState('');
+  const [artist, setArtist] = useState<Artist>();
   const [aquired, setAquired] = useState('');
   const [created, setCreated] = useState('');
   const [type, setType] = useState('');
@@ -39,17 +40,17 @@ export default function ManageArt() {
   function convertDate(date: Date) { return date.toString().split(' ')[3] }
 
   async function typeFilter(filter: string) {
-    setTitle('');     setArtist('');    setAquired('');   setCreated('');
+    setTitle('');     setArtist(undefined);    setAquired('');   setCreated('');
     setType(filter);  setMedium('');    setHeight('');    setWidth('');
     setDepth('');     setLocation('');  setExhibit('');   
     await artRepo.find({ where: { type: { $contains:filter } } }).then(setArts);
   }
 
-  async function filterChanged(e: React.ChangeEvent<HTMLInputElement>) {
+  async function filterChanged(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> ) {
     const {name, value} = e.target;
     switch (name) {
       case 'title': setTitle(value); break;
-      case 'artist': setArtist(value); break;
+      case 'artist': await artistRepo.findFirst({ id: parseInt(value) }).then(setArtist); break;
       case 'aquired': setAquired(value); break;
       case 'created': setCreated(value); break;
       case 'medium': setMedium(value); break;
@@ -61,12 +62,12 @@ export default function ManageArt() {
     }
   }
 
-  async function showModal(id: number) { setModalArt(Art.find(art => art.id === id)) }
+  async function showModal(id: number) { setModalArt(Art.find(art => art.id === id)); }
   
   function hideModal() { setModalArt(undefined) }
 
   useEffect(() => {
-    artRepo.find({ where: {
+    artRepo.find({ include: {/* artist: artist ? { where: { id: artist.id }} : true // trying to filter by artist id when artist is selected and set to true when unkown is selected*/}, where: {
       title: { $contains:title },
       //aquired: { $contains:aquired },
       //created: { $contains:created },
@@ -78,6 +79,7 @@ export default function ManageArt() {
       location: { $contains:location },
       //exhibit: { $contains:exhibit
     }}).then(setArts);
+    artistRepo.find({}).then(setArtists);
   }, [title, medium, location, type, height, width, depth])
   
   return (
@@ -99,14 +101,16 @@ export default function ManageArt() {
           onChange={filterChanged}
           className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
-        {/*<div>
-          <label htmlFor="artist" className="m-3 p-1"> Artist </label>
-          <input
-          type="text"
-          name="artist"
-          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>{/*should be a drop-down menu of artists/}
-        </div>*/}
         <div>
+          <label htmlFor="artist" className="m-3 p-1"> Artist </label>
+          <select name="artist" id="artist" onChange={filterChanged} className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option selected value={undefined}>Unknown</option>
+            {artists.map(artist => (
+              <option value={artist.id} key={artist.id}>{artist.firstName + ' ' + artist.lastName}</option>
+            ))}
+          </select>
+        </div>
+        {/*<div>
           <label htmlFor="aquired" className="m-3 p-1"> Aquired </label>
           <input
           type="date"
@@ -119,7 +123,7 @@ export default function ManageArt() {
           type="date"
           name="created"
           className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
+            </div>*/}
         <div>
           <label htmlFor="medium" className="m-3 p-1"> Medium </label>
           <input
