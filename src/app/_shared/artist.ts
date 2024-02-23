@@ -2,19 +2,15 @@ import { Entity, Fields, Relations } from "remult"
 import { Exhibit } from "./exhibit"
 import { ArtPiece } from "./art"
 
-@Entity("Artists", {
+@Entity("artists", {
   allowApiCrud: true
 })
-
 export class Artist {
   @Fields.autoIncrement()
   id!:number
 
   @Fields.string()
-  firstName? = ""
-
-  @Fields.string()
-  lastName? = ""
+  name? = ""
 
   @Fields.dateOnly()
   dob = new Date
@@ -37,7 +33,7 @@ export class Artist {
   @Fields.string()
   biography? = ""
 
-  @Fields.json()
+  @Fields.json()//either create function to set exhibts relation on id update or remove this
   exhibitIds?: number[]
   @Relations.toMany(() => Exhibit, "id")
   exhibits?: Exhibit[]

@@ -1,6 +1,6 @@
 import { Entity, Fields } from 'remult';
 
-@Entity("Users", {
+@Entity("users", {
   allowApiCrud: true
 })
 export class User {

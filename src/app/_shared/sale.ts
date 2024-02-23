@@ -1,7 +1,7 @@
 import { Entity, Fields, Relations } from "remult";
 import { ArtPiece } from "./art";
 
-@Entity("Sales", {
+@Entity("sales", {
   allowApiCrud: true
 })
 export class Sale {

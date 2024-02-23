@@ -1,10 +1,9 @@
 import { Entity, Fields, Relations } from "remult"
 import { ArtPiece } from "./art"
 
-@Entity("Exhibits", {
+@Entity("exhibits", {
   allowApiCrud: true
 })
-
 export class Exhibit {
     @Fields.autoIncrement()
     id!:number

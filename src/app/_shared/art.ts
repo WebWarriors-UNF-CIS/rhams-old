@@ -3,7 +3,7 @@ import { Artist, Type } from "./artist"
 import { Sale } from "./sale"
 import { Exhibit } from "./exhibit"
 
-@Entity("Artworks", {
+@Entity("artworks", {
   allowApiCrud: true
 })
 export class ArtPiece {
