@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + "h-full dark:bg-slate-900"}>
+      <body className={inter.className + "h-full dark:bg-gray-900"}>
         <Nav></Nav>
         {children}
         <SpeedInsights />
