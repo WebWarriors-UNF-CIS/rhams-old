@@ -25,6 +25,7 @@ export default function NewArt() {
     const artPiece = {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
+      artist: form.artist.value,
       aquired: new Date(form.aquired.value),
       created: new Date(form.created.value),
       description: form.description.value,
