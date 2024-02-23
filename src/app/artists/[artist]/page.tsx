@@ -24,11 +24,12 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
             artistRepo.findFirst({ id: artistId }).then(setArtist);
     }, [params.artist, artistRepo]);
 
+    if (!artist) return <div>Loading...</div>;
     return (
         <main>
             <div className="mt-8 mx-5 grid grid-cols-2 gap-5">
                 <div>
-                    <h1>{artist?.firstName} {artist?.lastName}</h1>
+                    <h1>{artist.name}</h1>
                     <Image className="max-w-xs"src={reubenPic} alt="Reuben Hale" />
                 </div>
                 <div>
@@ -67,20 +68,20 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                 <div className="mx-5 grid grid-cols-2">
                     <div className="col-span-1">
                         <h1 className="dark:text-white text-2xl">Biography</h1>
-                        <p className="dark:text-white text-lg"><h2>{artist?.biography}</h2></p><br></br>
-                        <p className="dark:text-white text-lg"><h2>Born: {artist?.dob.toDateString()}</h2></p> 
-                        <p className="dark:text-white text-lg"><h2>Died: {artist?.dod.toDateString()}</h2></p> 
-                        <p className="dark:text-white text-lg"><h2>{artist?.nationality}</h2></p><br></br>
+                        <p className="dark:text-white text-lg"><h2>{artist.biography}</h2></p><br></br>
+                        <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p> 
+                        <p className="dark:text-white text-lg"><h2>Died: {artist.dod.toDateString()}</h2></p> 
+                        <p className="dark:text-white text-lg"><h2>{artist.nationality}</h2></p><br></br>
                         <div>
                             <h2>Primary Medium:</h2>
-                            {artist?.primaryType ? Object.values(artist.primaryType) : 'Unknown' /* delete Object.values if not working */}
+                            {artist.primaryType ? Object.values(artist.primaryType) : 'Unknown' /* delete Object.values if not working */}
                         </div>
                     </div>
                 </div>
                 <div className="mx-5 grid grid-cols-2 gap-2">
                     <div className="col-span-1">
                         <h1 className="dark:text-white text-2xl">Notes</h1>
-                        <p className="dark:text-white text-lg"><h2>{artist?.notes}</h2></p>
+                        <p className="dark:text-white text-lg"><h2>{artist.notes}</h2></p>
                     </div>
                     <div className="col-span-1">
                         <h1 className="dark:text-white text-2xl">Exhibitions</h1>

@@ -70,9 +70,9 @@ return (
       <div className='input grow'> {/* will be a dropdown of artists names */}
         <label htmlFor="artist">Artist</label>
         <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
-          <option selected value={undefined}>Unknown</option>
+          <option selected value='Unknown'>Unknown</option>
           {artists.map(artist => (
-            <option value={artist.id} key={artist.id}>{artist.firstName + ' ' + artist.lastName}</option>
+            <option value={artist.id} key={artist.id}>{artist.name}</option>
           ))}
         </select>
       </div>
