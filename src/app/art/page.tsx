@@ -89,7 +89,7 @@ export default function ManageArt() {
       }
     }).then(setArts);
     artistRepo.find({}).then(setArtists);
-  }, [title, medium, location, type, height, width, depth])
+  }, [title, medium, location, type, height, width, depth, artist])
   
   return (
     <main className='dark:text-white mt-2'>

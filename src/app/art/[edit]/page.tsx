@@ -78,7 +78,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     document.getElementById(`${art.artist?.id}`)?.setAttribute('selected', 'true');
     console.log(art.artist);
     
-  }, [params.edit, artRepo, artistRepo]);
+  }, [params.edit, artRepo, artistRepo, art.artist]);
 
   if (!art) {
     return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;

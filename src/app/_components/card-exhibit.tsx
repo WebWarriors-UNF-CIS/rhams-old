@@ -60,7 +60,7 @@ const CardExhibit: React.FC<ExhibitCardProps> = ({ exhibit, canEditAndDelete, UI
   };
 
   return (
-    <div className="card" onClick={() => router.push('./exhibitions/[exhibitId]')}>
+    <div className="card" onClick={() => router.push(`./exhibitions/${exhibit.id}`)}>
             <h3>{exhibit.name}</h3>
             <p className='italic dark:text-gray-300'>{exhibit.location}</p>
             <div className='grid grid-cols-1 gap-2 mt-4'>

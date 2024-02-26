@@ -20,6 +20,9 @@ export class Exhibit {
     @Fields.dateOnly()
     endDate = new Date
     
-    @Relations.toMany(() => ArtPiece, "id")
+    @Relations.toMany(() => ArtPiece, {
+      field: "id",
+      defaultIncluded: true
+    })
     artPieces?: ArtPiece[]
 }
