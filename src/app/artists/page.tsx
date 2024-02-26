@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { Artist } from '../_shared/artist';
 import Head from 'next/head';
@@ -12,52 +11,36 @@ const artistRepo = remult.repo(Artist);
 
 export default function ArtistPage() {
   const [artists, setArtists] = useState<Artist[]>([]);
-  const router = useRouter();
+  const [filteredArtists, setFilteredArtists] = useState('');
 
-  useEffect(() => { artistRepo.find().then(setArtists) }, []);
+  useEffect(() => { artistRepo.find({ where: { name: { $contains:filteredArtists}}}).then(setArtists) }, [filteredArtists]);
 
   return (
-    <div>
+    <main className='m-10'>
       <Head>
         <title>View Artists</title>
       </Head>
-      
-      <div>
-        <h1 className="text-center justify-text-3xl font-bold p-12 dark:text-white">Artists</h1>
-        <div className="grid grid-cols-7">
-          <div className='col-span-1'>
-            <h1 className="ml-10 dark:text-white text-xl  font-semibold whitespace-nowrap pr-1 pt-2">Find an Artist</h1>
-          </div>
-          <div className="mt-3">
-            <input
-              type="text"
-              placeholder="First Name"
-              className="px-1  border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
-            />
-          </div>
-          <div className="mt-3">
-            <input
-              type="text"
-              placeholder="Last Name"
-              className="px-1 ml-3 border rounded-lg focus:outline-none focus:ring focus:border-emerald-500"
-            />
-          </div>
-          <div className="mt-3">
-            <button className="ml-3 btn-green"> Search </button>
-          </div>
-          <div className="col-span-3">
-            <Link href="../artists/create"><button className="ml-10 mt-3 btn-green"> Add Artist </button></Link>
-          </div>
+      <h1 className="text-center justify-text-3xl font-medium p-4 dark:text-white">Artists</h1>
+      <div className="grid grid-cols-3 relative">
+        <div className='col-span-2 input sm:space-x-4'>
+          <label className="dark:text-white !text-xl !inline !text-start">Search by name:</label>
+          <input
+            type="text"
+            placeholder="First Name"
+            onChange={(e) => setFilteredArtists(e.target.value)}
+            className="!w-fit sm:!inline "
+          />
         </div>
+        <Link href="../artists/create"><button className="btn-green right-0 absolute"> Add Artist </button></Link>
       </div>
 
       <div className='flex flex-col justify-around items-center mx-auto mt-10'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-8 mx-auto">
+        <div className="flex flex-wrap max-sm:justify-center gap-8 mx-auto">
           {artists.map((artist) => (
             <ArtistCard key={artist.id} artist={artist} canEditAndDelete={false} revalidate={1} UIRefresh={function (): void {} } />
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

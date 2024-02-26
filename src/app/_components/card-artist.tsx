@@ -29,16 +29,13 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) =>
         window.location.reload();
      }
     return (
-        <div className='m-4 w-72 p-4 border border-black rounded-lg' key={artist.id}/*onClick={handleCardClick}*/>
-            <h3>{artist.firstName} {artist.lastName} {artist.id}</h3><br/>
-            <div className="flex justify-center">
-                <button className="btn-green mx-5">
+        <div className='card' key={artist.id}/*onClick={handleCardClick}*/>
+            <h3>{artist.name}</h3><br/>
+            <div className="flex justify-between">
+                <button className="btn-green">
                     <Link href={`/artists/${artist.id}`}>View</Link>
                 </button>
-                <button className="btn-green mx-5">
-                    <Link href={`/artists/${artist.id}`}>Update</Link>
-                </button>
-                <button className="btn-red mx-5" onClick={deleteArtist}>Delete</button>
+                <button className="btn-red" onClick={deleteArtist}>Delete</button>
             </div>
         </div>
     );
