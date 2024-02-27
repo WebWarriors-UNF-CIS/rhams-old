@@ -25,25 +25,22 @@ export default function NewArt() {
     const artPiece = {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
-      artistId: form.artist.value,
+      artist: form.artist.value,
       aquired: new Date(form.aquired.value),
       created: new Date(form.created.value),
       description: form.description.value,
       imageUrl: form.imageUrl.value,
-      salesIds: [] as number[],
-      exhibitIds: [] as number[],
+      exhibits: undefined,
       type: form.artType.value,
       medium: form.medium.value,
       height: form.height.value,
       location: form.location.value
     };
-    await artRepo.insert(artPiece).then(() => setSuccessMessage('Exhibition created successfully!'));
+    await artRepo.insert(artPiece).then(() => setSuccessMessage('Success!'));
     router.push('./');
   }
 
-  useEffect(() => {
-    artistRepo.find({}).then(setArtists);
-  }, [artistRepo]);
+  useEffect(() => { artistRepo.find({}).then(setArtists) }, [artistRepo]);
 
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
@@ -73,9 +70,9 @@ return (
       <div className='input grow'> {/* will be a dropdown of artists names */}
         <label htmlFor="artist">Artist</label>
         <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
-          <option selected>Unknown</option>
+          <option selected value='Unknown'>Unknown</option>
           {artists.map(artist => (
-            <option value={artist.id} key={artist.id}>{artist.firstName + ' ' + artist.lastName}</option>
+            <option value={artist.id} key={artist.id}>{artist.name}</option>
           ))}
         </select>
       </div>
@@ -138,6 +135,7 @@ return (
           placeholder='Location'
         />
       </div>
+      {/* chekcbox to add exhibt and remove location option */}
       <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
       {/* create and add sale button, takes user to new sale form once art is inserted
       <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}

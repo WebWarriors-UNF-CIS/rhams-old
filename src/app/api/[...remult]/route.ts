@@ -11,9 +11,9 @@ import { Collection } from '../../_shared/collection'
 const api = remultNextApp({
     entities: [ArtPiece, User, Artist, Exhibit, Media, Sale, Collection],
     dataProvider: createPostgresDataProvider({
-      connectionString: process.env["POSTGRES_URL"],
+      connectionString: process.env["DB_URL"],
       configuration: {
-        ssl: process.env.POSTGRES_URL ? true : false
+        ssl: process.env.DB_URL ? true : false
       }
     })
 })

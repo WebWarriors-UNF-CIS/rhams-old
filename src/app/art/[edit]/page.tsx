@@ -12,7 +12,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
   const [art, setArt] = useState<ArtPiece>({
     id: 0,
-    catalogNum: '',
+    catalogNum: 0,
     title: '',
     artist: undefined,
     aquired: new Date,
@@ -25,10 +25,9 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     width: '',
     depth: '',
     location: '',
-    sales: undefined,
-    exhibits: []
+    saleIds: []
   });
-  const [artist, setArtist] = useState<Artist>();
+  const [artists, setArtists] = useState<Artist[]>();
   const artRepo = remult.repo(ArtPiece);
   const artistRepo = remult.repo(Artist);
   const router = useRouter();
@@ -54,7 +53,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     // let artist and type be dropdowns
     // imageURL be a file upload
     setArt({
-      ...art!,
+      ...art,
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
       artist: form.artist.value,
@@ -69,17 +68,27 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       depth: form.depth.value,
       location: form.location.value
     });
-    await artRepo.save(art!).then(() => setSuccessMessage('Exhibition created successfully!'));
+    await artRepo.save(art).then(() => setSuccessMessage('Exhibition created successfully!'));
     router.push('./');
   }
 
   useEffect(() => {
+<<<<<<< HEAD
     let artId = parseInt(params.edit);
     if (artId && typeof artId === 'number')
       artRepo.findFirst({ id: artId }, {include: { artist: true}}).then(setArt);
     if (art.artist)
       setArtist(art.artist);
   }, [params.edit, artRepo, art.artist]);
+=======
+    if (params.edit)
+      artRepo.findFirst({ id: parseInt(params.edit) }).then(setArt);
+    artistRepo.find({}).then(setArtists);
+    document.getElementById(`${art.artist?.id}`)?.setAttribute('selected', 'true');
+    console.log(art.artist);
+    
+  }, [params.edit, artRepo, artistRepo]);
+>>>>>>> 06eaf9fd87114569a5d731700a03ae7bfb3405f3
 
   if (!art) {
     return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
@@ -116,12 +125,12 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
         </div>
         <div className='input grow'> {/* will be a dropdown of artists names */}
           <label htmlFor="artist">Artist</label>
-          <input
-            type="text"
-            id="artist"
-            placeholder='Artist'
-        
-          />
+          <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
+            <option selected value={undefined}>Unknown</option>
+            {artists?.map(artist => (
+              <option value={artist.id} id={`${artist.id}`} key={artist.id}>{artist.name}</option>
+            ))}
+          </select>
         </div>
         <div className='input'>
           <label htmlFor="aquired">Aquired</label>

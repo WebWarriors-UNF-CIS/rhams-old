@@ -20,7 +20,7 @@ export default function AddArtist() {
     imageString: '',
     website: '',
     biography: '',
-    knownExhibits: [] as number[],
+    exhibitIds: [] as number[] || undefined,
     notes: '',
   });
   const [exhibits, setExhibits] = useState<Exhibit[]>([]);
@@ -36,12 +36,23 @@ export default function AddArtist() {
       }));
     };
 
-  const handleSubmit = async (e: React.FormEvent) => 
-  {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    artistRepo.insert(formData);
-    router.push('/artists/');
+    const submitData = {
+      name: `${formData.firstName} ${formData.lastName}`,
+      dob: formData.dob,
+      dod: formData.dod,
+      nationality: formData.nationality,
+      primaryType: formData.primaryType,
+      imageString: formData.imageString,
+      website: formData.website,
+      biography: formData.biography,
+      exhibitIds: formData.exhibitIds,
+      notes: formData.notes,
+    };
+    await artistRepo.insert(submitData);
     setSuccessMessage('Artist profile created successfully!');
+    router.push('/artists');
   };
 
   useEffect(() => {
@@ -164,7 +175,7 @@ export default function AddArtist() {
         <label htmlFor="exhibits">Known Exhibits </label>
         <select
           name="exhibits"
-          onChange={(e) => setFormData({ ...formData, knownExhibits: [parseInt(e.target.value)] })}
+          onChange={(e) => setFormData({ ...formData, exhibitIds: [parseInt(e.target.value)] })}
           className="bg-white border border-emerald-950 text-sm rounded focus:outline-none
           focus:ring-black focus:border-emerald-500 block w-full p-1.5 
           dark:bg-gray-700 dark:border-gray-600 dark:text-white"

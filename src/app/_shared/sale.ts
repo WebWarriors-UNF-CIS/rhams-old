@@ -1,7 +1,7 @@
 import { Entity, Fields, Relations } from "remult";
 import { ArtPiece } from "./art";
 
-@Entity("Sales", {
+@Entity("sales", {
   allowApiCrud: true
 })
 export class Sale {
@@ -19,7 +19,7 @@ export class Sale {
     date: string = "";
 
     @Fields.string()
-    foundry: string = ""; // what is this?
+    foundry: string = ""; // what is this? does she want to store more information about the foundry?
 
     @Fields.string()
     buyer: string = ""; // does she want to store more information about the buyer? or just the name?

@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react';
 import { remult } from 'remult';
 import Image from 'next/image';
 
-const artistRepo = remult.repo(Artist);
-
 export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: (id: number) => void}) {
   const [artist, setArtist] = useState<Artist>();
   useEffect(() => { setArtist(art.artist) }, [art.artist]);
@@ -18,7 +16,7 @@ export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: 
         <Image src={art.imageUrl} width={100} height={100} alt={art.description} className='relative peer border border-black' priority={true} />
         <p className='hidden group-hover:block absolute top-0 bg-slate-900/80 text-white p-1'>{art.description}</p>
       </div>
-      <p>{artist?.firstName}</p>
+      <p>{artist?.name}</p>
       <p>{art.medium}</p>
       <p>{art.location}</p>
     </div>

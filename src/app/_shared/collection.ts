@@ -1,15 +1,14 @@
 import { Entity, Fields, Relations } from "remult"
 import { ArtPiece } from "./art"
 
-@Entity("Collections", {
+@Entity("collections", {
   allowApiCrud: true
 })
-
 export class Collection {
   @Fields.autoIncrement()
   id!:number
 
-  @Relations.toMany(() => ArtPiece)
+  @Relations.toMany(() => ArtPiece, { defaultIncluded: true})
   artPieces?: ArtPiece[]
 
   @Fields.string()

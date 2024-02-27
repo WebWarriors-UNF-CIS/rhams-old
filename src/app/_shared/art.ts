@@ -3,7 +3,7 @@ import { Artist, Type } from "./artist"
 import { Sale } from "./sale"
 import { Exhibit } from "./exhibit"
 
-@Entity("Artworks", {
+@Entity("artworks", {
   allowApiCrud: true
 })
 export class ArtPiece {
@@ -11,12 +11,12 @@ export class ArtPiece {
   id = 0
 
   @Fields.integer()
-  catalogNum = ""
+  catalogNum?: number
 
   @Fields.string()
   title = ""
 
-  @Relations.toOne(() => Artist)
+  @Relations.toOne(() => Artist, { defaultIncluded: true})
   artist?: Artist
 
   @Fields.string()
@@ -35,10 +35,17 @@ export class ArtPiece {
   @Fields.string()
   imageUrl = ""
 
-  @Relations.toMany(() => Sale)
+  @Fields.json()
+  saleIds?: number[]
+  @Relations.toMany(() => Sale, {
+    defaultIncluded: true
+  })
   sales?: Sale[]
 
-  @Relations.toMany(() => Exhibit)
+  @Relations.toMany(() => Exhibit, {
+    field: "id",
+    defaultIncluded: true
+  })
   exhibits?: Exhibit[]
 
   @Fields.object()

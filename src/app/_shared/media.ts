@@ -1,9 +1,8 @@
 import { Entity, Fields } from "remult"
 
-@Entity("MediaLinks", {
+@Entity("medialinks", {
   allowApiCrud: true
 })
-
 export class Media {
   @Fields.autoIncrement()
   id!: number
@@ -37,7 +36,6 @@ export class Media {
 
   @Fields.string()
   videoString? = ""
-
 
   @Fields.string()
   notes? = ""
