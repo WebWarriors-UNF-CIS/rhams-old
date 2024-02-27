@@ -204,6 +204,9 @@ export default function ManageArt() {
             <div>Width: {modalArt.width}</div>
             <div>Depth: {modalArt.depth}</div>
             <div>Location: {modalArt.location}</div>
+            {modalArt.exhibits && 
+              modalArt.exhibits.map(exhibit => ( <Link href={`/exhibitions/${exhibit.id}`} key={exhibit.id}>{exhibit.name}</Link> ))
+            }
             <div>{modalArt.description}</div>
             {modalArt.aquired && <div>Aquired: {convertDate(modalArt.aquired)}</div>}
             <div id='buttons' className="fixed right-3 bottom-3">
@@ -219,7 +222,7 @@ export default function ManageArt() {
         {artists.map(artist => (
           <option value={artist.name} key={artist.id}></option>
         ))}
-        <option selected value={'Unknown'}>Unknown</option>
+        <option value={'Unknown'}>Unknown</option>
       </datalist>
     </main>
   )
