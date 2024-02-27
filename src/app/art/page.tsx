@@ -67,34 +67,25 @@ export default function ManageArt() {
   function hideModal() { setModalArt(undefined) }
 
   useEffect(() => {
-    artRepo.find({ 
-      include: {// not working, but i think this is the right idea
-        artist: { 
-          where: {
-            name: { $contains:artist }
-          }
-        }
-      }, 
-      where: {
-        title: { $contains:title },
-        //aquired: { $contains:aquired },
-        //created: { $contains:created },
-        type: { $contains:type },
-        medium: { $contains:medium },
-        height: { $contains:height },
-        width: { $contains:width },
-        depth: { $contains:depth },
-        location: { $contains:location },
-        //exhibit: { $contains:exhibit
-      }
-    }).then(setArts);
+    artRepo.find({ where: {
+      title: { $contains:title },
+      //aquired: { $contains:aquired },
+      //created: { $contains:created },
+      type: { $contains:type },
+      medium: { $contains:medium },
+      height: { $contains:height },
+      width: { $contains:width },
+      depth: { $contains:depth },
+      location: { $contains:location },
+      //exhibit: { $contains:exhibit
+    }}).then(setArts);
     artistRepo.find({}).then(setArtists);
   }, [title, medium, location, type, height, width, depth, artist])
   
   return (
     <main className='dark:text-white mt-2'>
-      <button className="relative p-1 px-2 m-2 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
-      <Link href="/art/create" className="absolute my-2 right-5"><button className="btn-green">New Art</button></Link>
+      <button className="relative p-1 px-2 m-3 btn-gray ml-4" onClick={toggleFilters}> Filters </button>
+      <Link href="/art/create" className="absolute my-3 right-4"><button className="btn-green">Add Art</button></Link>
       <div className="max-sm:hidden absolute float-left ml-4 mr-3 mt-2 border-[3px] border-black dark:border-slate-400 rounded-lg">
         {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
           <div className="cursor-pointer text-center m-1 p-2 text-lg hover:bg-slate-200 dark:hover:bg-slate-700 border-y border-black dark:border-slate-400 first:!mt-0 first:border-0 first:border-b" onClick={() => typeFilter(type as string)} key={type}> {type} </div>

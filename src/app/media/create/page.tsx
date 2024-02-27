@@ -2,10 +2,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
-import '../../globals.css'
 import {Media, MediaType} from '../../_shared/media';
-
-
 
 const mediaRepo = remult.repo(Media);
 
@@ -48,6 +45,7 @@ export default function AddMedia() {
   
   return (
     <main className="flex flex-col justify-center items-center mx-auto mt-10">
+      <button type="button" className="btn-gray absolute right-4 top-20" onClick={() => router.push('./')}>Back</button>
       <h1>Enter New Media</h1>
       {successMessage && (
         <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
@@ -152,10 +150,7 @@ export default function AddMedia() {
             onChange={handleChange}
           />
         </div>
-        <div className="sm:col-span-2 flex flex-row justify-between">
-          <button type="submit" className="btn-green">Add Media</button>
-          <button type="button" className="btn-gray" onClick={() => router.push('/media')}>Back</button>
-        </div>
+        <button type="submit" className="btn-green self-end justify-self-end">Add</button>
       </form>
     </main>
   )

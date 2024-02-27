@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { User } from '../_shared/user';
-import '../globals.css'
 import Link from 'next/link';
 
 const userRepo = remult.repo(User);

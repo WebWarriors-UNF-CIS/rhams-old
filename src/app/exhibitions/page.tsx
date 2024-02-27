@@ -7,7 +7,6 @@ import Head from 'next/head';
 import ExhibitCard from '../_components/card-exhibit';
 import { ExhibitSort } from '../_components/sort/ExhibitSort';
 import { ExhibitFilter } from '../_components/filter/ExhibitFilter';
-import '../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
 
@@ -18,16 +17,7 @@ export default function ExhibitPage() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filter, setFilter] = useState({ startDate: '', endDate: '', location: '' });
 
-  useEffect(() => {
-    const fetchExhibits = async () => {
-      const fetchedExhibits = await remult.repo(Exhibit).find({
-        orderBy: { [sortField]: sortOrder },
-      });
-      setExhibits(fetchedExhibits);
-    };
-
-    fetchExhibits();
-  }, [sortField, sortOrder, filter]);
+  useEffect(() => { remult.repo(Exhibit).find({ orderBy: { [sortField]: sortOrder } }).then(setExhibits) }, [sortField, sortOrder, filter]);
   
   const handleSortChange = (field: string, order: 'asc' | 'desc') => {
     setSortField(field);

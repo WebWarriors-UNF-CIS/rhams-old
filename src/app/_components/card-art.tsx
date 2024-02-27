@@ -10,7 +10,7 @@ export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: 
   useEffect(() => { setArtist(art.artist) }, [art.artist]);
   
   return (
-    <div className='card min-h-[168px] grid gap-x-1 grid-cols-[auto_100px] grid-rows-[1rem_1rem_1.4rem_auto]' key={art.id} onClick={() => showModal(art.id)}>
+    <div className='card min-h-[168px] grid gap-x-1 grid-cols-[auto_100px] grid-rows-[1.6rem_1.1rem_1.1rem_auto]' key={art.id} onClick={() => showModal(art.id)}>
       <h3 className='whitespace-pre'>{art.title}</h3>
       <div className="group relative row-span-3">
         <Image src={art.imageUrl} width={100} height={100} alt={art.description} className='relative peer border border-black' priority={true} />

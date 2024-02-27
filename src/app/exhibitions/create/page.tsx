@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { Exhibit } from '../../_shared/exhibit';
-import '../../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
 
@@ -37,7 +36,8 @@ export default function ExhibitRegistration()
     };
   
     return (
-      <div className="flex flex-col justify-center items-center mx-auto mt-10">
+      <main className="flex flex-col justify-center items-center mx-auto mt-10">
+        <button type="button" className="btn-gray absolute right-4 top-20" onClick={() => router.push('./')}>Back</button>
         <h1>Add Exhibition</h1>
         {successMessage && (
           <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
@@ -95,11 +95,8 @@ export default function ExhibitRegistration()
               required
             />
           </div>
-          <div className="sm:col-span-2 flex flex-row justify-between">
-            <button type="submit" className="btn-green">Add</button>
-            <button type="button" className="btn-gray" onClick={() => router.push('/exhibitions/manage')}>Back</button>
-          </div>
+          <button type="submit" className="btn-green col-span-2 self-end justify-self-end">Add</button>
         </form>
-      </div>
+      </main>
     );
   }

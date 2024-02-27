@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
-import '../../globals.css'
 import { Collection } from '../../_shared/collection';
 
 
@@ -43,6 +42,7 @@ export default function AddCollection() {
   
   return (
     <main className="flex flex-col justify-center items-center mx-auto mt-10">
+      <button type="button" className="btn-gray absolute right-4 top-20" onClick={() => router.push('./')}>Back</button>
       <h1>Enter New Collection</h1>
       {successMessage && (
         <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
@@ -103,10 +103,7 @@ export default function AddCollection() {
             onChange={handleChange}
           />
         </div>
-        <div className="sm:col-span-2 flex flex-row justify-between">
-          <button type="submit" className="btn-green">Add Collection</button>
-          <button type="button" className="btn-gray" onClick={() => router.push('/collection')}>Back</button>
-        </div>
+          <button type="submit" className="btn-green self-end justify-self-end">Add</button>
       </form>
     </main>
   )
