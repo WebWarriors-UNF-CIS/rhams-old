@@ -5,7 +5,6 @@ import { remult } from 'remult';
 import { Exhibit } from '../../_shared/exhibit';
 import Head from 'next/head';
 import ExhibitCard from '../../_components/card-exhibit';
-import '../../globals.css'
 
 const exhibitRepo = remult.repo(Exhibit);
 

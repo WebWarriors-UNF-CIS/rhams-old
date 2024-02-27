@@ -25,7 +25,7 @@ export default function UserPage({params} : { params: {name: string}}) {
 
     return (
         <main>
-            <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
+            <button type="button" className="absolute btn-gray right-4 top-20" onClick={() => router.push('./')}>Back</button>
             <h1 className="margin-auto my-8 flex justify-center items-center text-3xl font-medium">Edit User</h1>
             <div className="float-left ml-6 flex flex-col w-40 border-2 border-black rounded-xl">
                 <p className="text-center p-4">ID: {user.id} </p>

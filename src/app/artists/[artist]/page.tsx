@@ -2,20 +2,16 @@
 import { remult } from "remult"
 import { useEffect, useState } from 'react';
 import { Artist } from '../../_shared/artist';
-//import { ArtPiece } from '../../_shared/art';
 import React from 'react';
 import Image from 'next/image'
 import reubenPic from '/public/images/reuben.png'
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
-//import { Type } from '../../_shared/artist';
 
 
 export default function ArtistPage({ params }: { params: { artist: string } }) {
     const [artist, setArtist] = useState<Artist>();
-    //const [art, setArt] = useState<ArtPiece>();
     const artistRepo = remult.repo(Artist);
-    //const artRepo = remult.repo(ArtPiece);
     const router = useRouter();
     
     useEffect(() => {
@@ -24,9 +20,11 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
             artistRepo.findFirst({ id: artistId }).then(setArtist);
     }, [params.artist, artistRepo]);
 
-    if (!artist) return <div>Loading...</div>;
+    if (!artist) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
+
     return (
         <main>
+            <button type="button" className="btn-gray absolute right-4 top-20" onClick={() => router.push('./')}>Back</button>
             <div className="mt-8 mx-5 grid grid-cols-2 gap-5">
                 <div>
                     <h1>{artist.name}</h1>
@@ -39,8 +37,8 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                         <tr className="border border-solid ">
                             <th className="border border-solid p-4">Title</th>
                             <th className="border border-solid p-4">Date</th>
-                            <th className="border border-solid p-4">Medium</th>
-                            <td className="border border-solid p-4"></td>
+                            <th className="border border-solid p-4">Type</th>
+                            <td className="border border-solid p-4">Medium</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -48,18 +46,22 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                             <td className="border border-solid p-4">Sculpture of a Woman</td>
                             <td className="border border-solid p-4">1973</td>
                             <td className="border border-solid p-4">Clay Sculpture</td>
-                            <td className='border border-solid p-4 px-4 py-2'>
-                                <Link href="../art"><button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button></Link>
-                            </td>
+                            <td className='border border-solid p-4 px-4 py-2'></td>
                         </tr>
                         <tr>
                             <td className="border border-solid p-4">Painting of a Prince</td>
                             <td className="border border-solid p-4">1984</td>
                             <td className="border border-solid p-4">Oil on Canvas</td>
-                            <td className='border border-solid p-4 px-4 py-2'>
-                                <Link href="../art"><button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button></Link>
-                            </td>
+                            <td className='border border-solid p-4 px-4 py-2'></td>
                         </tr>
+                        { artist.artworks && artist.artworks.map((art) => (
+                            <tr key={art.id} onClick={() => router.push(`/art/${art.id}`)} className="hover:cursor-pointer hover:bg-slate-100">
+                                <td className="border border-solid p-4">{art.title}</td>
+                                <td className="border border-solid p-4">{}</td>
+                                <td className="border border-solid p-4">{art.type}</td>
+                                <td className="border border-solid p-4">{art.medium}</td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>

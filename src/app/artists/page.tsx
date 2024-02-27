@@ -4,7 +4,6 @@ import { remult } from 'remult';
 import { Artist } from '../_shared/artist';
 import Head from 'next/head';
 import ArtistCard from '../_components/card-artist';
-import '../globals.css'
 import Link from 'next/link';
 
 const artistRepo = remult.repo(Artist);
@@ -16,11 +15,12 @@ export default function ArtistPage() {
   useEffect(() => { artistRepo.find({ where: { name: { $contains:filteredArtists}}}).then(setArtists) }, [filteredArtists]);
 
   return (
-    <main className='m-10'>
+    <main>
       <Head>
         <title>View Artists</title>
       </Head>
-      <h1 className="text-center justify-text-3xl font-medium p-4 dark:text-white">Artists</h1>
+      <Link href="../artists/create"><button className="btn-green right-4 top-20 absolute"> Add Artist </button></Link>
+      <h1 className="text-center justify-text-3xl font-medium p-4 m-10 dark:text-white">Artists</h1>
       <div className="grid grid-cols-3 relative">
         <div className='col-span-2 input sm:space-x-4'>
           <label className="dark:text-white !text-xl !inline !text-start">Search by name:</label>
@@ -31,7 +31,6 @@ export default function ArtistPage() {
             className="!w-fit sm:!inline "
           />
         </div>
-        <Link href="../artists/create"><button className="btn-green right-0 absolute"> Add Artist </button></Link>
       </div>
 
       <div className='flex flex-col justify-around items-center mx-auto mt-10'>

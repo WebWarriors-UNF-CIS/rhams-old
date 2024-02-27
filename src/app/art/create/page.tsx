@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useState } from 'react';
 import { remult } from 'remult';
 import { useRouter } from 'next/navigation';
@@ -47,10 +46,8 @@ export default function NewArt() {
 return (
   <main className="flex flex-col justify-center items-center mx-auto mt-10">
     <h1>Add an Artwork</h1>
-      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-24" onClick={() => router.push('./')}>Back</button>
-        {successMessage && (
-          <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
-        )}
+    <button type="button" className="fixed btn-gray h-fit self-end right-4 top-20" onClick={() => router.push('./')}>Back</button>
+    { successMessage && <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div> }
     <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
       <div className='input w-32'>
         <label htmlFor="catalogNum">Catalog Number</label>
@@ -138,7 +135,7 @@ return (
         />
       </div>
       {/* chekcbox to add exhibt and remove location option */}
-      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
+      <button type="submit" className="btn-green h-fit self-end justify-self-end">Add</button>
       {/* create and add sale button, takes user to new sale form once art is inserted
       <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
     </form>

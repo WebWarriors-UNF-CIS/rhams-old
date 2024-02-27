@@ -15,7 +15,7 @@ export default function UserDashboard() {
 
     return (
         <main className='mx-8 h-full'>
-            <Link href="/users/create" className='absolute right-5'><button className="btn-green">Create User</button></Link>
+            <Link href="/users/create"><button className="absolute right-4 top-20 btn-green">Add User</button></Link>
             <h1 className="margin-auto my-8 text-3xl text-black ">Manage Users</h1>
             <table className="w-10/12 mt-3 border-collapse border-black table-auto">
                 <thead className="bg-slate-200">

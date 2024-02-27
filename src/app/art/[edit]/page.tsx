@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { ArtPiece } from '../../_shared/art';
 import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
-import { Sale } from '../../_shared/sale';
 
 export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
@@ -80,9 +79,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
   
     }, [params.edit, artRepo, artistRepo, art.artist?.id]);
 
-  if (!art) {
-    return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
-  }
+  if (!art) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
   
   return (
     <main className="mx-auto p-10">
