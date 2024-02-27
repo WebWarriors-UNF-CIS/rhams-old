@@ -89,7 +89,7 @@ export default function ManageArt() {
       }
     }).then(setArts);
     artistRepo.find({}).then(setArtists);
-  }, [title, medium, location, type, height, width, depth])
+  }, [title, medium, location, type, height, width, depth, artist])
   
   return (
     <main className='dark:text-white mt-2'>
@@ -97,9 +97,9 @@ export default function ManageArt() {
       <Link href="/art/create" className="absolute my-2 right-5"><button className="btn-green">New Art</button></Link>
       <div className="max-sm:hidden absolute float-left ml-4 mr-3 mt-2 border-[3px] border-black dark:border-slate-400 rounded-lg">
         {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
-          <div className="cursor-pointer text-center m-1 p-2 text-lg hover:bg-slate-200 border-y border-black dark:border-slate-400 first:!mt-0 first:border-0 first:border-b" onClick={() => typeFilter(type as string)} key={type}> {type} </div>
+          <div className="cursor-pointer text-center m-1 p-2 text-lg hover:bg-slate-200 dark:hover:bg-slate-700 border-y border-black dark:border-slate-400 first:!mt-0 first:border-0 first:border-b" onClick={() => typeFilter(type as string)} key={type}> {type} </div>
         ))}
-        <div className="cursor-pointer text-center m-1 mb-0 p-2 text-lg hover:bg-slate-200 border-t border-black dark:border-slate-400" onClick={() => typeFilter('')}> All </div>
+        <div className="cursor-pointer text-center m-1 mb-0 p-2 text-lg hover:bg-slate-200 dark:hover:bg-slate-700 border-t border-black dark:border-slate-400" onClick={() => typeFilter('')}> All </div>
       </div>
       <div className="grid-cols-2 my-2 sm:ml-[170px] p-2 max-sm:mx-4 sm:w-2/3 md:w-3/4 max-sm:max-h-52 md:grid-cols-3 gap-x-2 max-sm:overflow-y-scroll bg-slate-100 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 hidden rounded-lg" id="filters">
         <div>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import logo from '/public/images/temp-logo.png'
 import userico from '/public/images/user-icon-lg-b.png'
+import usericoDark from '/public/images/user-icon-lg-w.png'
 import { useState } from 'react';
 
 export default function Nav() {
@@ -24,11 +25,11 @@ export default function Nav() {
     };
 
     return (
-        <nav className="z-30 sticky flex top-0 justify-end md:justify-between w-full items-center px-4 bg-gradient-to-r from-emerald-800 dark:from-emerald-950 to-[310px] to-emerald-400 dark:to-emerald-600 font-bold text-lg">
+        <nav className="z-30 sticky flex top-0 justify-end md:justify-between w-full items-center px-4 bg-gradient-to-r from-emerald-800 dark:from-emerald-950 to-[310px] to-emerald-400 dark:to-emerald-700 dark:text-white font-medium text-lg">
             <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start" href="/">
                 <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
             </Link>
-            <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
+            <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400 dark:max-md:bg-emerald-700 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
                 <NavLink href="/art" inner="Art"/>
                 <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
@@ -36,12 +37,15 @@ export default function Nav() {
                 <NavLink href="/media" inner="Media"/>
                 { !loggedIn  && <NavLink href="/sales" inner="Sales"/> }
             </ul>
-            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0" href={loggedIn ? "/profile" : "/login"}>
+            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 dark:hidden" href={loggedIn ? "/profile" : "/login"}>
                 <Image width={30} height={30} src={userico} alt="User Icon"/>
             </Link>
-            <button id="nav-toggle" aria-controls="navigation" aria-expanded={isExpanded} onClick={toggleNav} className='z-10 md:hidden !shadow-none border-y-[0.15rem] rounded-sm w-6 h-4 p-0 border-black'>
+            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 hidden dark:inline" href={loggedIn ? "/profile" : "/login"}>
+                <Image width={30} height={30} src={usericoDark} alt="User Icon"/>
+            </Link>
+            <button id="nav-toggle" aria-controls="navigation" aria-expanded={isExpanded} onClick={toggleNav} className='z-10 md:hidden !shadow-none border-y-[0.15rem] rounded-sm w-6 h-4 p-0 border-black dark:border-white'>
                 <span className="sr-only">Menu</span>
-                <span className="block h-0.5 w-6 rounded-2xl bg-black"></span>
+                <span className="block h-0.5 w-6 rounded-2xl bg-black dark:bg-white"></span>
             </button>
         </nav>
     );

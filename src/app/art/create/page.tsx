@@ -33,7 +33,9 @@ export default function NewArt() {
       exhibits: undefined,
       type: form.artType.value,
       medium: form.medium.value,
-      height: form.height.value,
+      height: form.height.value + ' ' + form.heightUnits.value,
+      width: form.width.value + ' ' + form.widthUnits.value,
+      depth: form.depth.value + ' ' + form.depthUnits.value,
       location: form.location.value
     };
     await artRepo.insert(artPiece).then(() => setSuccessMessage('Success!'));
@@ -103,7 +105,7 @@ return (
         <textarea
           id="description"
           placeholder='Description'
-          className="border border-black text-sm rounded-md focus:outline-none
+          className="border border-black text-sm rounded focus:outline-none
           focus:ring-black focus:border-emerald-500 block w-full p-2.5 
           dark:bg-gray-700 dark:border-gray-600 dark:text-white !min-h-[52px]"
         />
@@ -116,7 +118,7 @@ return (
           ))}
         </select>
       </div>
-      <div className='input'>
+      <div className='input grow'>
         <label htmlFor="medium">Medium</label>
         <input
           type="text"
@@ -127,7 +129,7 @@ return (
       <SizeInput id='Height' />
       <SizeInput id='Width' />
       <SizeInput id='Depth' />
-      <div className='input'>
+      <div className='input grow'>
         <label htmlFor="location">Location</label>
         <input
           type="text"

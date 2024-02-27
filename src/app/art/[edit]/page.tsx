@@ -73,22 +73,12 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
   }
 
   useEffect(() => {
-<<<<<<< HEAD
-    let artId = parseInt(params.edit);
-    if (artId && typeof artId === 'number')
-      artRepo.findFirst({ id: artId }, {include: { artist: true}}).then(setArt);
-    if (art.artist)
-      setArtist(art.artist);
-  }, [params.edit, artRepo, art.artist]);
-=======
     if (params.edit)
       artRepo.findFirst({ id: parseInt(params.edit) }).then(setArt);
     artistRepo.find({}).then(setArtists);
     document.getElementById(`${art.artist?.id}`)?.setAttribute('selected', 'true');
-    console.log(art.artist);
-    
+  
   }, [params.edit, artRepo, artistRepo]);
->>>>>>> 06eaf9fd87114569a5d731700a03ae7bfb3405f3
 
   if (!art) {
     return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;

@@ -5,13 +5,11 @@ import { Exhibit } from '../../_shared/exhibit';
 import { ArtPiece } from '../../_shared/art';
 import Image from 'next/image';
 
-const ExhibitionView = ({params} : {params: {exhibitId: number}}) => {
+const ExhibitionView = ({params}: {params: { exhibitId: string}}) => {
   const [exhibit, setExhibit] = useState<Exhibit | null>(null);
   const [arts, setArts] = useState<ArtPiece[]>([]);
-  useEffect(() => {
-    remult.repo(Exhibit).findFirst({  id: params.exhibitId }, { include: { artPieces: true}}).then(setExhibit);
-    setArts(exhibit?.artPieces ?? []); //if exhibit.artPieces is undefined, sets to empty array
-  }, [params.exhibitId, exhibit?.artPieces]);
+
+  useEffect(() => { remult.repo(Exhibit).findFirst({ id: parseInt(params.exhibitId) }).then(setExhibit) }, [params.exhibitId]);
 
   if (!exhibit) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
 
