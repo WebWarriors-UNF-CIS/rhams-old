@@ -218,7 +218,7 @@ export default function ManageArt() {
         </div>
       }
       <datalist id="artists">
-        <option selected value={undefined}>Select</option>
+        <option value={undefined}>Select</option>
         {artists.map(artist => (
           <option value={artist.name} key={artist.id}></option>
         ))}
