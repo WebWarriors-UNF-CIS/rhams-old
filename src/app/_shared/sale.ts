@@ -33,4 +33,8 @@ export class Sale {
 
     @Fields.string()
     notes: string = "";
+
+    /* may be nice to have a relation
+
+    */
 }

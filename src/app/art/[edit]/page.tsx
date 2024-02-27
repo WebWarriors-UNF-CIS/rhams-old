@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArtPiece } from '../../_shared/art';
 import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
+import { Sale } from '../../_shared/sale';
 
 export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
@@ -76,9 +77,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       artRepo.findFirst({ id: parseInt(params.edit) }).then(setArt);
     artistRepo.find({}).then(setArtists);
     document.getElementById(`${art.artist?.id}`)?.setAttribute('selected', 'true');
-    console.log(art.artist);
-    
-  }, [params.edit, artRepo, artistRepo, art.artist]);
+  
+    }, [params.edit, artRepo, artistRepo, art.artist?.id]);
 
   if (!art) {
     return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
