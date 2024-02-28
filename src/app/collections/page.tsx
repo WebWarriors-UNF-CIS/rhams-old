@@ -9,20 +9,22 @@ import Link from 'next/link';
 const collectionRepo = remult.repo(Collection);
 
 export default function CollectionPage() {
-  const [collection, setCollection] = useState<Collection[]>([]);
+  const [collections, setCollections] = useState<Collection[]>([]);
   
-  useEffect(() => {collectionRepo.find().then(setCollection) }, []);
+  useEffect(() => {collectionRepo.find().then(setCollections) }, []);
 
+  if (!collections) return <div>Loading...</div>;
+  if (collections.length === 0) return <div>No collections found</div>;
   return (
     <main>
       <Head>
         <title>View Collection</title>
       </Head>
       <Link href="/collections/create"><button className="btn-green absolute right-4 top-20"> Add Collection </button></Link>
-      <h1 className="text-center justify-text-3xl font-medium p-12 dark:text-white">Collections will go here!</h1>
+      <h1 className="text-center justify-text-3xl font-medium p-12 dark:text-white">Collections</h1>
       <div className="col-span-3">
-        {collection.map((collection) => (
-          <CollectionCard key={collection.id} collection={collection} canEditAndDelete={false} revalidate={1} UIRefresh={function (): void {} } />
+        {collections.map((collection) => (
+          <CollectionCard key={collection.id} collection={collection} />
         ))}
       </div>
     </main>
