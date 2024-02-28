@@ -8,7 +8,7 @@ export class Collection {
   @Fields.autoIncrement()
   id!:number
 
-  @Relations.toMany(() => ArtPiece, { defaultIncluded: true})
+  @Relations.toMany(() => ArtPiece, { defaultIncluded: true, field: "id"})
   artPieces?: ArtPiece[]
 
   @Fields.string()

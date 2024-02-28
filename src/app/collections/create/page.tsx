@@ -1,62 +1,42 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
 import { Collection } from '../../_shared/collection';
 
-
 const collectionRepo = remult.repo(Collection);
 
 export default function AddCollection() {
-  const [formData, setFormData] = useState({
-    title: '',
-    location: '',
-    dateAcquired: new Date,
-    owner: '',
-    notes: '',
-  });
-  const [collections, setCollection] = useState<Collection[]>([]);
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
-    {
-      const {name, value} = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
-
-  const handleSubmit = async (e: React.FormEvent) => 
-  {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    collectionRepo.insert(formData);
-    router.push('/collection/');
-    setSuccessMessage('Collection created successfully!');
+    const form = e.currentTarget;
+    const collection = {
+      title: form.collectionTitle.value,
+      location: form.location.value,
+      dateAcquired: form.dateAcquired.value,
+      owner: form.owner.value,
+      notes: form.notes.value,
+    }
+    await collectionRepo.insert(collection).then(() => setSuccessMessage('Collection created successfully!'));
+    router.push('./');
   };
-
-  useEffect(() => {
-    collectionRepo.find().then(setCollection);
-  }, []);
   
   return (
     <main className="flex flex-col justify-center items-center mx-auto mt-10">
       <button type="button" className="btn-gray absolute right-4 top-20" onClick={() => router.push('./')}>Back</button>
       <h1>Enter New Collection</h1>
-      {successMessage && (
-        <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
-      )}
+      {successMessage && <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>}
       <form className="form" onSubmit={handleSubmit}>
         <div className="input">
-          <label htmlFor="titile"> Title </label>
+          <label htmlFor="collectionTitle"> Title </label>
           <input
             type="text"
-            id="title"
-            name="title"
+            id="collectionTitle"
+            name="collectionTitle"
             placeholder='Title'
-            value={formData.title}
-            onChange={handleChange}
             required
           />
         </div>
@@ -67,9 +47,6 @@ export default function AddCollection() {
             id="location"
             name="location"
             placeholder='Location'
-            value={formData.location}
-            onChange={handleChange}
-            required
           />
         </div>
         <div className="input">
@@ -78,7 +55,6 @@ export default function AddCollection() {
             type="date"
             id="dateAcquired"
             name="dateAcquired"
-            onChange={handleChange}
           />
         </div>
         <div className="input">
@@ -88,8 +64,6 @@ export default function AddCollection() {
             id="owner"
             name="owner"
             placeholder='Owned By'
-            value={formData.owner}
-            onChange={handleChange}
           />
         </div>
         <div className="input">
@@ -99,8 +73,6 @@ export default function AddCollection() {
             id="notes"
             name="notes"
             placeholder='TODO-WIP'
-            value={formData.notes}
-            onChange={handleChange}
           />
         </div>
           <button type="submit" className="btn-green self-end justify-self-end">Add</button>
