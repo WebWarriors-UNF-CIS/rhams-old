@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArtPiece } from '../../_shared/art';
 import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
+import YearPicker from '../../_components/yearPicker';
 
 export default function NewArt() {
   const [successMessage, setSuccessMessage] = useState('');
@@ -25,8 +26,8 @@ export default function NewArt() {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
       artist: form.artist.value,
-      aquired: new Date(form.aquired.value),
-      created: new Date(form.created.value),
+      aquired: form.aquired.value,
+      created: form.created.value,
       description: form.description.value,
       imageUrl: form.imageUrl.value,
       exhibits: undefined,
@@ -66,7 +67,7 @@ return (
           placeholder='Title'
         />
       </div>
-      <div className='input grow'> {/* will be a dropdown of artists names */}
+      <div className='input grow'>
         <label htmlFor="artist">Artist</label>
         <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
           <option selected value='Unknown'>Unknown</option>
@@ -75,21 +76,9 @@ return (
           ))}
         </select>
       </div>
-      <div className='input'>
-        <label htmlFor="aquired">Aquired</label>
-        <input
-          type="date"
-          id="aquired"
-        />
-      </div>
-      <div className='input'>
-        <label htmlFor="created">Created</label>
-        <input
-          type="date"
-          id="created"
-        />
-      </div>
-      <div className='input grow'>
+      <YearPicker id='Aquired' />
+      <YearPicker id='Created' />
+      <div className='input grow w-32'>
         <label htmlFor="imageUrl">Image URL</label>
         <input
           type="url"
