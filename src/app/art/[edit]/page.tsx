@@ -86,7 +86,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       {successMessage && (
         <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
       )}
-      <Image src={art.imageUrl} width={200} height={200} alt={art.title} className='float-right mt-14 border border-black' priority={true} />
+      {art.imageUrl && <Image src={art.imageUrl} width={200} height={200} alt={art.title} className='float-right mt-14 border border-black' priority={true} />}
       <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
         <div className='input w-32'>
           <label htmlFor="catalogNum">Catalog Number</label>

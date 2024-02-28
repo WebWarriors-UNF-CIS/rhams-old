@@ -33,7 +33,7 @@ export class ArtPiece {
   // HEY add another table... ArtImages... with ArtId, ImageUrl, and maybe a caption
   // What about videos?
   @Fields.string()
-  imageUrl = ""
+  imageUrl? = ""
 
   @Relations.toMany(() => Sale, {
     defaultIncluded: true

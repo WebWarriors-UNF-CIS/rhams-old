@@ -185,7 +185,7 @@ export default function ManageArt() {
       {modalArt && 
         <div id='modal' className='fixed w-screen h-screen top-0 right-0 bg-black/80'>
           <div tabIndex={-1} onBlur={hideModal} className='absolute w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-4 border border-black rounded-lg focus-visible:outline-none'>
-            <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />
+            { modalArt.imageUrl && <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />}
             <h1 className='font-medium text-3xl'>{modalArt.title}</h1>
             { modalArt.artist && <div className="text-lg pb-2">Artist: {modalArt.artist.name}</div>}
             <div>{Object.values(modalArt.type)}</div>

@@ -2,13 +2,11 @@
 import { useEffect, useState } from 'react';
 import { remult } from 'remult';
 import { Exhibit } from '../../_shared/exhibit';
-import { ArtPiece } from '../../_shared/art';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const ExhibitionView = ({params}: {params: { exhibitId: string}}) => {
   const [exhibit, setExhibit] = useState<Exhibit | null>(null);
-  const [arts, setArts] = useState<ArtPiece[]>([]);
   const router = useRouter();
 
   useEffect(() => { remult.repo(Exhibit).findFirst({ id: parseInt(params.exhibitId) }).then(setExhibit) }, [params.exhibitId]);
@@ -22,9 +20,9 @@ const ExhibitionView = ({params}: {params: { exhibitId: string}}) => {
       <p>{`Location: ${exhibit?.location}`}</p>
       <p>{`Start Date: ${exhibit?.startDate} - End Date: ${exhibit?.endDate}`}</p>
       <div className="grid grid-cols-3 gap-4">
-        {arts.map((art, index) => (
+        {exhibit.artPieces && exhibit.artPieces.map((art, index) => (
           <div key={index}>
-            <Image src={art.imageUrl} alt={art.title} width={300} height={300} />
+            {art.imageUrl && <Image src={art.imageUrl} alt={art.title} width={300} height={300} />}
             <p>{art.title}</p>
           </div>
         ))}
