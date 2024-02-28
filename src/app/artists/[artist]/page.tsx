@@ -7,10 +7,15 @@ import Image from 'next/image'
 import reubenPic from '/public/images/reuben.png'
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
+import { ArtPiece } from "../../_shared/art"
+
+//import { Type } from '../../_shared/artist';
 
 
 export default function ArtistPage({ params }: { params: { artist: string } }) {
     const [artist, setArtist] = useState<Artist>();
+    const [Art, setArts] = useState<ArtPiece[]>([]);
+    //const [art, setArt] = useState<ArtPiece>();
     const artistRepo = remult.repo(Artist);
     const router = useRouter();
     
