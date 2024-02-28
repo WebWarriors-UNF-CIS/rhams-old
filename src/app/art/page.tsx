@@ -186,20 +186,22 @@ export default function ManageArt() {
         <div id='modal' className='fixed w-screen h-screen top-0 right-0 bg-black/80'>
           <div tabIndex={-1} onBlur={hideModal} className='absolute w-3/4 h-3/4 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 p-4 border border-black rounded-lg focus-visible:outline-none'>
             <Image src={modalArt.imageUrl} width={200} height={200} alt={modalArt.title} className='float-right top-0 border border-black' />
-            <h1 className='font-bold text-2xl'>{modalArt.title}</h1>
-            <div>Catalog # {modalArt.catalogNum}</div>
-            { modalArt.artist && <div>Artist: {modalArt.artist.name}</div>}
+            <h1 className='font-medium text-3xl'>{modalArt.title}</h1>
+            { modalArt.artist && <div className="text-lg pb-2">Artist: {modalArt.artist.name}</div>}
             <div>{Object.values(modalArt.type)}</div>
             <div>{modalArt.medium}</div>
             <div>Height: {modalArt.height}</div>
             <div>Width: {modalArt.width}</div>
             <div>Depth: {modalArt.depth}</div>
+            <div>Catalog # {modalArt.catalogNum}</div>
             <div>Location: {modalArt.location}</div>
             {modalArt.exhibits && 
               modalArt.exhibits.map(exhibit => ( <Link href={`/exhibitions/${exhibit.id}`} key={exhibit.id}>{exhibit.name}</Link> ))
             }
-            <div>{modalArt.description}</div>
+            {modalArt.created && <div>Created: {modalArt.created}</div>}
             {modalArt.aquired && <div>Aquired: {modalArt.aquired}</div>}
+            {modalArt.sales && <div>Sales: {modalArt.sales.length}</div>}
+            <div>{modalArt.description}</div>
             <div id='buttons' className="fixed right-3 bottom-3">
               <button className="btn-green" onClick={() => router.push(`/sales/${modalArt.id}`)}>Add Sale</button>
               <button className="btn-green mx-4" onClick={() => router.push(`/art/${modalArt.id}`)}>Update</button>
