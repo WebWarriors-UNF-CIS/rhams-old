@@ -10,31 +10,29 @@ export class Artist {
   id!:number
 
   @Fields.string()
-  name? = ""
+  name?: string = ""
 
   @Fields.dateOnly()
-  dob = new Date
+  dob?: Date
 
   @Fields.dateOnly()
-  dod = new Date
+  dod?: Date
   
   @Fields.string()
-  nationality? = ""
+  nationality?: string = ""
 
   @Fields.object()
   primaryType?: Type
 
   @Fields.string()
-  imageString? = ""
+  imageString?: string = ""
 
   @Fields.string()
-  website? = ""
+  website?: string = ""
 
   @Fields.string()
-  biography? = ""
+  biography?: string = ""
 
-  @Fields.json()//either create function to set exhibts relation on id update or remove this
-  exhibitIds?: number[]
   @Relations.toMany(() => Exhibit, "id")
   exhibits?: Exhibit[]
 
@@ -45,7 +43,7 @@ export class Artist {
   artworks?: ArtPiece[]
 
   @Fields.string()
-  notes? = ""
+  notes?: string = ""
 }
 
 export enum Type {

@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { remult } from 'remult';
 import { User } from '../../_shared/user';
-import '../../globals.css'
 
 const userRepo = remult.repo(User);
 
@@ -27,7 +26,7 @@ export default function UserRegistration() {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      await userRepo.insert(formData as User);
+      await userRepo.insert(formData);
       router.push('/artists');
       setSuccessMessage('User account created successfully!');
     };

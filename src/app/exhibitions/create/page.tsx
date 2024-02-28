@@ -30,7 +30,7 @@ export default function ExhibitRegistration()
     const handleSubmit = async (e: React.FormEvent) => 
     {
       e.preventDefault();
-      exhibitRepo.insert(formData as Exhibit);
+      exhibitRepo.insert(formData);
       router.push('/exhibitions/manage');
       setSuccessMessage('Exhibition created successfully!');
     };

@@ -8,10 +8,10 @@ export class Media {
   id!: number
 
   @Fields.string()
-  title? = ""
+  title?: string = ""
 
   @Fields.string()
-  location? = ""
+  location?: string = ""
   /* do they need this or do they just want to link it to the related collection/art/exhibit/artist?
   @Fields.number()
   relatedId?: number
@@ -20,25 +20,25 @@ export class Media {
   relatedType?: string
   */
   @Fields.string()
-  author? = ""
+  author?: string = ""
 
   @Fields.dateOnly()
-  datePublished = new Date
+  datePublished?: Date
 
   @Fields.string()
   mediaType = MediaType.Other
 
   @Fields.string() //why?
-  imageString? = ""
+  imageString?: string = ""
 
   @Fields.string()
-  srcUrl? = ""
+  srcUrl?: string = ""
 
   @Fields.string()
-  videoString? = ""
+  videoString?: string = ""
 
   @Fields.string()
-  notes? = ""
+  notes?: string = ""
 }
 
 // Ask Client about types of media

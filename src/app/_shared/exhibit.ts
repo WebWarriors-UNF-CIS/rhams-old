@@ -9,16 +9,16 @@ export class Exhibit {
     id!:number
 
     @Fields.string()
-    name? = ""
+    name?: string = ""
 
     @Fields.string()
-    location? = ""
+    location?: string = ""
 
     @Fields.dateOnly()
-    startDate = new Date
+    startDate?: Date 
 
     @Fields.dateOnly()
-    endDate = new Date
+    endDate?: Date
     
     @Relations.toMany(() => ArtPiece, {
       field: "id",

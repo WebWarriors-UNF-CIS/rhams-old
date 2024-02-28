@@ -199,7 +199,7 @@ export default function ManageArt() {
               modalArt.exhibits.map(exhibit => ( <Link href={`/exhibitions/${exhibit.id}`} key={exhibit.id}>{exhibit.name}</Link> ))
             }
             <div>{modalArt.description}</div>
-            {modalArt.aquired && <div>Aquired: {convertDate(modalArt.aquired)}</div>}
+            {modalArt.aquired && <div>Aquired: {modalArt.aquired}</div>}
             <div id='buttons' className="fixed right-3 bottom-3">
               <button className="btn-green" onClick={() => router.push(`/sales/${modalArt.id}`)}>Add Sale</button>
               <button className="btn-green mx-4" onClick={() => router.push(`/art/${modalArt.id}`)}>Update</button>

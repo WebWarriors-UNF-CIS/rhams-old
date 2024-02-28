@@ -14,20 +14,20 @@ export class ArtPiece {
   catalogNum?: number
 
   @Fields.string()
-  title = ""
+  title: string = ""
 
   @Relations.toOne(() => Artist, { defaultIncluded: true})
   artist?: Artist
 
   @Fields.string()
-  aquired?: Date
+  aquired?: string
 
   // will only be a year
   @Fields.string()
-  created?: Date
+  created?: string
   
   @Fields.string()
-  description = ""
+  description: string = ""
 
   // Do they want multiple Images?
   // HEY add another table... ArtImages... with ArtId, ImageUrl, and maybe a caption
@@ -35,8 +35,6 @@ export class ArtPiece {
   @Fields.string()
   imageUrl = ""
 
-  @Fields.json()
-  saleIds?: number[]
   @Relations.toMany(() => Sale, {
     defaultIncluded: true
   })
@@ -52,19 +50,19 @@ export class ArtPiece {
   type = Type.Other
 
   @Fields.string()
-  medium = ""
+  medium: string = ""
 
   // What about weight?
   @Fields.string()
-  height = ""
+  height: string = ""
 
   @Fields.string()
-  width = ""
+  width: string = ""
 
   @Fields.string()
   depth?: string
 
   // How detailed do they want or need this to be?
   @Fields.string()
-  location = ""
+  location: string = ""
 }

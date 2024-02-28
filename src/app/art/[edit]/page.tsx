@@ -14,8 +14,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     catalogNum: 0,
     title: '',
     artist: undefined,
-    aquired: new Date,
-    created: new Date,
+    aquired: '',
+    created: '',
     description: '',
     imageUrl: '',
     type: Type.Painting,
@@ -23,8 +23,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
     height: '',
     width: '',
     depth: '',
-    location: '',
-    saleIds: []
+    location: ''
   });
   const [artists, setArtists] = useState<Artist[]>();
   const artRepo = remult.repo(ArtPiece);
@@ -56,8 +55,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       catalogNum: form.catalogNum.value,
       title: form.artTitle.value,
       artist: form.artist.value,
-      aquired: new Date(form.aquired.value),
-      created: new Date(form.created.value),
+      aquired: form.aquired.value,
+      created: form.created.value,
       description: form.description.value,
       imageUrl: form.imageUrl.value,
       type: form.artType.value,

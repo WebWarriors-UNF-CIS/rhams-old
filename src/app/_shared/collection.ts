@@ -12,16 +12,16 @@ export class Collection {
   artPieces?: ArtPiece[]
 
   @Fields.string()
-  title? = ""
+  title?: string = ""
 
   @Fields.string()
-  location? = ""
+  location?: string = ""
 
   @Fields.string()
-  owner? = ""
+  owner?: string = ""
 
-  @Fields.dateOnly()
-  dateAcquired = new Date
+  @Fields.dateOnly() // full date or... what format?
+  dateAcquired?: Date
 
   @Fields.string()
   notes? = ""

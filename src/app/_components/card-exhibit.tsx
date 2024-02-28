@@ -66,11 +66,11 @@ const CardExhibit: React.FC<ExhibitCardProps> = ({ exhibit, canEditAndDelete, UI
             <div className='grid grid-cols-1 gap-2 mt-4'>
                 <div className='flex gap-2'>
                     <span className='chip'> Start </span>
-                    <p>{exhibit.startDate.toDateString()}</p>
+                    { exhibit.startDate && <p>{exhibit.startDate.toDateString()}</p>}
                 </div>
                 <div className='flex gap-2'>
                     <span className='chip'> End </span>
-                    <p>{exhibit.endDate.toDateString()}</p>
+                    { exhibit.endDate && <p>{exhibit.endDate.toDateString()}</p>}
                 </div>
             </div>
             {canEditAndDelete && (

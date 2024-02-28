@@ -71,8 +71,8 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                     <div className="col-span-1">
                         <h1 className="dark:text-white text-2xl">Biography</h1>
                         <p className="dark:text-white text-lg"><h2>{artist.biography}</h2></p><br></br>
-                        <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p> 
-                        <p className="dark:text-white text-lg"><h2>Died: {artist.dod.toDateString()}</h2></p> 
+                        {artist.dob && <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p>} 
+                        {artist.dod && <p className="dark:text-white text-lg"><h2>Died: {artist.dod.toDateString()}</h2></p>}
                         <p className="dark:text-white text-lg"><h2>{artist.nationality}</h2></p><br></br>
                         <div>
                             <h2>Primary Medium:</h2>
