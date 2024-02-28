@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Exhibit A",
+    "location": "everywhere",
+    "startDate": "2024-02-02",
+    "endDate": "2024-02-16",
+    "id": 1
+  },
+  {
+    "name": "Exhibit B",
+    "location": "here",
+    "startDate": "2024-01-28",
+    "endDate": "2024-02-01",
+    "id": 2
+  },
+  {
+    "name": "EXhibit C",
+    "location": "Towneville",
+    "startDate": "2024-02-07",
+    "endDate": "2024-02-09",
+    "id": 3
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "catalogNum": 5,
+    "title": "Reuben's art",
+    "artist": 2,
+    "aquired": "2018",
+    "created": "1995",
+    "description": "this is a test",
+    "imageUrl": "https://static.thenounproject.com/png/4066324-200.png",
+    "type": "Sculpture",
+    "medium": "web",
+    "height": "20 in",
+    "width": "20 in",
+    "depth": "20 in",
+    "location": "everywhere",
+    "id": 1
+  },
+  {
+    "catalogNum": 86,
+    "title": "delete me",
+    "artist": 0,
+    "aquired": "2000",
+    "created": "1990",
+    "description": "",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Key_delete.jpg",
+    "type": "Other",
+    "medium": "web",
+    "height": " in",
+    "width": " in",
+    "depth": " in",
+    "location": "...",
+    "id": 2
+  }
+]

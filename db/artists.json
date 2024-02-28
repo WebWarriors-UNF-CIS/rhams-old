@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pablo Picasso",
+    "dob": "2024-02-02",
+    "dod": "2024-02-02",
+    "nationality": "Spain",
+    "primaryType": 0,
+    "imageString": "",
+    "website": "",
+    "biography": "I am awesome",
+    "notes": "My mom is great!",
+    "id": 1
+  },
+  {
+    "name": "Reuben Hale",
+    "dob": "1927-01-14",
+    "dod": "2018-07-16",
+    "nationality": "Americain",
+    "primaryType": 0,
+    "imageString": "picofme.jpg",
+    "website": "www.reubenhale.com",
+    "biography": "Reuben Hale is a versatile artist. In addition to his sculptural work, Reuben has pursued work in various other mediums. His body of work also includes pieces completed in paint, photography, printmaking (etchings, lithographs, and monoprints) and holography. In sculpture he has worked in wood, stone, steel, concrete, bronze and polyester plastics. He is inventive and experimental, and his work shows control and understanding of each medium",
+    "notes": "Original Artist for Reuben Hale Museum.",
+    "id": 2
+  }
+]
