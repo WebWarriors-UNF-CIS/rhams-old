@@ -1,4 +1,4 @@
-import { Entity, Fields, Relations } from "remult"
+import { Entity, Fields, Filter, Relations, SqlDatabase } from "remult"
 import { Artist, Type } from "./artist"
 import { Sale } from "./sale"
 import { Exhibit } from "./exhibit"
@@ -36,6 +36,7 @@ export class ArtPiece {
   imageUrl? = ""
 
   @Relations.toMany(() => Sale, {
+    field: "id",
     defaultIncluded: true
   })
   sales?: Sale[]
@@ -65,4 +66,19 @@ export class ArtPiece {
   // How detailed do they want or need this to be?
   @Fields.string()
   location: string = ""
+
+  static getArtbyArtist = Filter.createCustom<ArtPiece, { name: string}>(
+    async (name) => {
+      const sql = SqlDatabase.getDb();
+      const r = await sql.execute(
+        `SELECT artworks.*
+        FROM artworks
+        JOIN artists ON artworks.artist_id = artists.id
+        WHERE artists.name = 'Artist Name';`
+      )
+      return SqlDatabase.rawFilter((whereFragment) => {
+        whereFragment.sql = `artist.name = ${name}`
+      })
+    }
+  )
 }
