@@ -82,7 +82,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
   
   return (
     <main className="mx-auto p-10">
-      <button type="button" className="fixed btn-gray h-fit self-end right-3 top-16" onClick={() => router.push('./')}>Back</button>
+      <button type="button" className="fixed btn-gray h-fit self-end right-4 top-20" onClick={() => router.push('./')}>Back</button>
       {successMessage && (
         <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
       )}
@@ -109,7 +109,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
             onChange={handleChange}
           />
         </div>
-        <div className='input grow'> {/* will be a dropdown of artists names */}
+        <div className='input grow'>
           <label htmlFor="artist">Artist</label>
           <select name="artist" id="artist" className='bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white'>
             <option selected value={undefined}>Unknown</option>
@@ -190,14 +190,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
         <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
         <button className="btn-red fixed h-fit self-end right-3 top-[104px]" onClick={deleteArt}>Delete</button>
         {/* create and add sale button, takes user to new sale form once art is inserted
-        <button type="button" onClick={createAndSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
+        <button type="button" onClick={createAndAddSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
       </form>
-    {/*
-      <h1 className='font-bold text-2xl'>{art.title}</h1>
-      artist
-      aquired and created dates
-      size values
-    */}
   </main>
   );
 }
