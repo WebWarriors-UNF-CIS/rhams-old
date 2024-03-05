@@ -14,7 +14,6 @@ export default function CollectionPage() {
   useEffect(() => {collectionRepo.find().then(setCollections) }, []);
 
   if (!collections) return <div>Loading...</div>;
-  if (collections.length === 0) return <div>No collections found</div>;
   return (
     <main>
       <Head>
@@ -23,7 +22,8 @@ export default function CollectionPage() {
       <Link href="/collections/create"><button className="btn-green absolute right-4 top-20"> Add Collection </button></Link>
       <h1 className="text-center justify-text-3xl font-medium p-12 dark:text-white">Collections</h1>
       <div className="col-span-3">
-        {collections.map((collection) => (
+        { collections.length === 0 ? <div className="text-center text-white p-8 text-xl">No collections found</div> :
+        collections.map((collection) => (
           <CollectionCard key={collection.id} collection={collection} />
         ))}
       </div>

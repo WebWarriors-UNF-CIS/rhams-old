@@ -8,8 +8,8 @@ import { remult } from 'remult';
 export default function CollectionCard({ collection } : {collection: Collection}) {
     const router = useRouter();
     return (
-        <div className='card' onClick = {() => router.push(`/collections/${collection.id}`)}>
-            {collection.title}
+        <div className='card dark:text-white' onClick = {() => router.push(`/collections/${collection.id}`)}>
+            <h3 className='font-medium text-2xl'>{collection.title}</h3>
             <div>{collection.owner}</div>
             <div>{collection.dateAcquired?.toString()}</div>
             <div>{collection.location}</div>
