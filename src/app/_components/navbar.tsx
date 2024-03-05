@@ -5,10 +5,13 @@ import logo from '/public/images/temp-logo.png'
 import userico from '/public/images/user-icon-lg-b.png'
 import usericoDark from '/public/images/user-icon-lg-w.png'
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function Nav() {
     const [isExpanded, setExpanded] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
+    const { data: session } = useSession();
+    if (session) setLoggedIn(true);
 
     function NavLink({ href, inner }: { href: string, inner: string }) { return (
         <li className='hover:bg-emerald-500/60'>
@@ -35,12 +38,12 @@ export default function Nav() {
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
                 <NavLink href="/collections" inner="Collections"/>
                 <NavLink href="/media" inner="Media"/>
-                { !loggedIn  && <NavLink href="/sales" inner="Sales"/> }
+                { loggedIn  && <NavLink href="/sales" inner="Sales"/> }
             </ul>
-            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 dark:hidden" href={loggedIn ? "/profile" : "/login"}>
+            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 dark:hidden" href={loggedIn ? "/profile" : "/api/auth/signIn"}>
                 <Image width={30} height={30} src={userico} alt="User Icon"/>
             </Link>
-            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 hidden dark:inline" href={loggedIn ? "/profile" : "/login"}>
+            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 hidden dark:inline" href={loggedIn ? "/profile" : "/api/auth/signIn"}>
                 <Image width={30} height={30} src={usericoDark} alt="User Icon"/>
             </Link>
             <button id="nav-toggle" aria-controls="navigation" aria-expanded={isExpanded} onClick={toggleNav} className='z-10 md:hidden !shadow-none border-y-[0.15rem] rounded-sm w-6 h-4 p-0 border-black dark:border-white'>
