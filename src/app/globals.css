@@ -34,7 +34,7 @@
   }
   .btn-gray /* We can add in back/edit icons for gray buttons as well - H */
   {
-    @apply bg-gray-500  dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-800
+    @apply bg-gray-500  dark:bg-gray-600 hover:bg-gray-600 dark:hover:bg-gray-700
   }
   .btn-green 
   {
