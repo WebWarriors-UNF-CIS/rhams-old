@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArtPiece } from '../../_shared/art';
 import { Artist, Type } from '../../_shared/artist';
 import SizeInput from '../../_components/sizeInput';
+import YearPicker from '../../_components/yearPicker';
 
 export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
@@ -93,6 +94,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
           <input
             type="text"
             id="catalogNum"
+            name="catalogNum"
             placeholder='001'
             className="text-center"
             value={art.catalogNum}
@@ -104,6 +106,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
           <input
             type="text"
             id="artTitle"
+            name="artTitle"
             placeholder='Title'
             value={art.title}
             onChange={handleChange}
@@ -118,20 +121,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
             ))}
           </select>
         </div>
-        <div className='input'>
-          <label htmlFor="aquired">Aquired</label>
-          <input
-            type="date"
-            id="aquired"
-          />
-        </div>
-        <div className='input'>
-          <label htmlFor="created">Created</label>
-          <input
-            type="date"
-            id="created"
-          />
-        </div>
+        <YearPicker id="Aquired" />
+        <YearPicker id="Created" />
         <div className='input grow'>
           <label htmlFor="imageUrl">Image URL</label>
           <input
