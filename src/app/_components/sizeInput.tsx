@@ -8,6 +8,7 @@ export default function SizeInput({ id }: { id: string}) {
         id={id.toLowerCase()}
         placeholder='20'
         min="0"
+        step='.01'
         className="!inline !w-16 shrink !border-none !outline-none appearance-none"
       />
       <div>
