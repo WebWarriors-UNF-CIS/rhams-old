@@ -16,6 +16,8 @@ export class ArtPiece {
   @Fields.string()
   title: string = ""
 
+  @Fields.string()
+  artist_name?: string =""
   @Relations.toOne(() => Artist, { defaultIncluded: true})
   artist?: Artist
 
@@ -31,7 +33,6 @@ export class ArtPiece {
 
   // Do they want multiple Images?
   // HEY add another table... ArtImages... with ArtId, ImageUrl, and maybe a caption
-  // What about videos?
   @Fields.string()
   imageUrl? = ""
 

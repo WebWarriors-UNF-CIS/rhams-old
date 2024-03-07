@@ -50,14 +50,6 @@ export default function AddCollection() {
           />
         </div>
         <div className="input">
-          <label htmlFor="dateAcquired"> Date Acquired </label>
-          <input
-            type="date"
-            id="dateAcquired"
-            name="dateAcquired"
-          />
-        </div>
-        <div className="input">
           <label htmlFor="owner"> Owned By </label>
           <input
             type="text"

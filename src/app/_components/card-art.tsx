@@ -2,7 +2,6 @@
 import { ArtPiece } from '../_shared/art';
 import { Artist } from '../_shared/artist';
 import { useState, useEffect } from 'react';
-import { remult } from 'remult';
 import Image from 'next/image';
 
 export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: (id: number) => void}) {
@@ -17,8 +16,6 @@ export default function ArtCard({ art, showModal }: { art: ArtPiece, showModal: 
         <p className='hidden group-hover:block absolute top-0 bg-slate-900/80 text-white p-1'>{art.description}</p>
       </div>
       <p>{artist?.name}</p>
-      <p>{art.medium}</p>
-      <p>{art.location}</p>
     </div>
   )
 }

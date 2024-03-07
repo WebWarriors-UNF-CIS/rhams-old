@@ -10,7 +10,6 @@ export default function UpdateCollection({params} : { params: {edit: string}}) {
   const [collection, setCollection] = useState<Collection>({
     title: '',
     owner: '',
-    dateAcquired: new Date(),
     location: '',
     id: 0
   })
@@ -39,7 +38,6 @@ export default function UpdateCollection({params} : { params: {edit: string}}) {
       ...collection,
       title: form.collectionTitle.value,
       owner: form.owner.value,
-      dateAcquired: form.dateAcquired.value,
       location: form.location.value
     });
     await collectionRepo.save(collection).then(() => setSuccessMessage('Exhibition created successfully!'));
@@ -69,10 +67,6 @@ export default function UpdateCollection({params} : { params: {edit: string}}) {
         <div className="input">
           <label htmlFor="owner">Owner</label>
           <input type="text" id="owner" name="owner" value={collection.owner} onChange={handleChange} />
-        </div>
-        <div className="input">
-          <label htmlFor="dateAcquired">Date Acquired</label>
-          <input type="date" id="dateAcquired" name="dateAcquired" value={collection.dateAcquired?.toString()} onChange={handleChange} />
         </div>
         <div className="input">
           <label htmlFor="location">Location</label>

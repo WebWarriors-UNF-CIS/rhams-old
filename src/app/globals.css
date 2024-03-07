@@ -46,7 +46,7 @@
   }
   .card
   {
-    @apply m-2 p-2 w-60 border rounded-md border-slate-400 dark:border-slate-600 hover:border-slate-600 hover:bg-slate-200/90 dark:hover:bg-slate-600/90 dark:hover:border-slate-300 bg-slate-100 dark:bg-slate-700 cursor-pointer
+    @apply m-2 p-2 w-fit border rounded-md border-slate-400 dark:border-slate-600 hover:border-slate-600 hover:bg-slate-200/90 dark:hover:bg-slate-600/90 dark:hover:border-slate-300 bg-slate-100 dark:bg-slate-700 cursor-pointer
   }
   .chip
   {
