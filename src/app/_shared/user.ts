@@ -19,7 +19,9 @@ export class User {
     password?: string
 
     @Fields.object()
-    roles? = [Role.Admin] // default is admin for V1, since those will be the only users
+    //roles? = [Role.Admin] 
+    roles?: Role[] = [Role.Admin]
+    // default is admin for V1, since those will be the only users
     // we assign it as Role.Admin, but it is stored as 0, to make the roles anonymous. It also saves space in the database.
 }
 
