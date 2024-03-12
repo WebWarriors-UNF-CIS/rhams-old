@@ -41,10 +41,10 @@ export default function ArtistPage() {
   </div>
   {artists.map((artist) => (
     <div key={artist.id} className="flex justify-between items-center p-4 border-t border-gray-200">
-      <div className="text-lg">{artist.name}</div>
-      <button className="btn-green">
-        <Link href={`/artists/${artist.id}`}>View</Link>
-      </button>
+      
+      {/* <button className="btn-green"> */}
+        <Link href={`/artists/${artist.id}`}><div className="text-lg">{artist.name}</div></Link>
+      {/* </button> */}
     </div>
   ))}
 </div>
