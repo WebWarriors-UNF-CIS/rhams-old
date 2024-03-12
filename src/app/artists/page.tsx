@@ -33,13 +33,21 @@ export default function ArtistPage() {
         </div>
       </div>
 
-      <div className='flex flex-col justify-around items-center mx-auto mt-10'>
-        <div className="flex flex-wrap max-sm:justify-center gap-8 mx-auto">
-          {artists.map((artist) => (
-            <ArtistCard key={artist.id} artist={artist} canEditAndDelete={false} revalidate={1} UIRefresh={function (): void {} } />
-          ))}
-        </div>
-      </div>
+      <div className="w-full overflow-hidden shadow-md mb-4">
+  <div className="bg-gray-100 p-4">
+    <div className="flex justify-between items-center">
+      <div className="text-lg font-medium">Artist Name</div>
+    </div>
+  </div>
+  {artists.map((artist) => (
+    <div key={artist.id} className="flex justify-between items-center p-4 border-t border-gray-200">
+      <div className="text-lg">{artist.name}</div>
+      <button className="btn-green">
+        <Link href={`/artists/${artist.id}`}>View</Link>
+      </button>
+    </div>
+  ))}
+</div>
     </main>
   );
 }

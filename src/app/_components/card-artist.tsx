@@ -22,22 +22,22 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ artist }) =>
     const handleCardClick = () => {
         router.push('./view');
      };
-     const deleteArtist = (event: { stopPropagation: () => void; }) => 
-     {
-        event.stopPropagation();
-        artistRepo.delete(artist);
-        window.location.reload();
-     }
+    //  const deleteArtist = (event: { stopPropagation: () => void; }) => 
+    //  {
+    //     event.stopPropagation();
+    //     artistRepo.delete(artist);
+    //     window.location.reload();
+    //  }
     return (
-        <div className='card' key={artist.id}/*onClick={handleCardClick}*/>
-            <h3>{artist.name}</h3><br/>
-            <div className="flex justify-between">
-                <button className="btn-green">
-                    <Link href={`/artists/${artist.id}`}>View</Link>
-                </button>
-                <button className="btn-red" onClick={deleteArtist}>Delete</button>
-            </div>
-        </div>
+        <div className='card flex justify-between items-center' key={artist.id} /*onClick={handleCardClick}*/>
+    <h3>{artist.name}</h3>
+    <div>
+        <button className="btn-green">
+            <Link href={`/artists/${artist.id}`}>View</Link>
+        </button>
+        {/* <button className="btn-red" onClick={deleteArtist}>Delete</button> */}
+    </div>
+</div>
     );
 };
 
