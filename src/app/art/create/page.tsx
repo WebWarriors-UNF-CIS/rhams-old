@@ -13,6 +13,17 @@ export default function NewArt() {
   const router = useRouter();
   const artRepo = remult.repo(ArtPiece);
   const artistRepo = remult.repo(Artist);
+  const [formData, setFormData] = useState({
+    artist: '',
+  });
+
+  function handleChange (e: React.ChangeEvent<HTMLInputElement>) {
+    const {name, value} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
 
   let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,7 +60,7 @@ return (
     <h1>Add an Artwork</h1>
     <button type="button" className="fixed btn-gray h-fit self-end right-4 top-20" onClick={() => router.push('./')}>Back</button>
     { successMessage && <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div> }
-    <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
+    <form className='!flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
       <div className='input w-32'>
         <label htmlFor="catalogNum">Catalog Number</label>
         <input
@@ -76,7 +87,7 @@ return (
           ))}
         </select>
       </div>
-      <YearPicker id='Aquired' />
+      { formData.artist != 'ReubenHale' && <YearPicker id='Aquired' />}
       <YearPicker id='Created' />
       <div className='input grow w-32'>
         <label htmlFor="imageUrl">Image URL</label>
@@ -104,7 +115,7 @@ return (
           ))}
         </select>
       </div>
-      <div className='input grow'>
+      <div className='input'>
         <label htmlFor="medium">Medium</label>
         <input
           type="text"
@@ -112,9 +123,6 @@ return (
           placeholder='Oil'
         />
       </div>
-      <SizeInput id='Height' />
-      <SizeInput id='Width' />
-      <SizeInput id='Depth' />
       <div className='input grow'>
         <label htmlFor="location">Location</label>
         <input
@@ -122,6 +130,11 @@ return (
           id="location"
           placeholder='Location'
         />
+      </div>
+      <div className='flex flex-wrap w-full gap-6'>
+        <SizeInput id='Height' />
+        <SizeInput id='Width' />
+        <SizeInput id='Depth' />
       </div>
       {/* chekcbox to add exhibt and remove location option */}
       <button type="submit" className="btn-green h-fit self-end justify-self-end">Add</button>

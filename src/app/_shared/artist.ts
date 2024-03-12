@@ -17,12 +17,6 @@ export class Artist {
 
   @Fields.dateOnly()
   dod?: Date
-  
-  @Fields.string()
-  nationality?: string = ""
-
-  @Fields.object()
-  primaryType?: Type
 
   @Fields.string()
   imageString?: string = ""

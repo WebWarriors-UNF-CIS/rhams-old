@@ -21,13 +21,14 @@ export default function ManageArt() {
   const [artist, setArtist] = useState('');
   const [aquired, setAquired] = useState('');
   const [created, setCreated] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState('none');
   const [medium, setMedium] = useState('');
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
   const [depth, setDepth] = useState('');
   const [location, setLocation] = useState('');
   const [exhibit, setExhibit] = useState('');
+  const filters = [ 'Title', 'Aquired', 'Created', 'Medium', 'Height', 'Width', 'Depth', 'Location', 'Exhibit' ]
 
   function toggleFilters() {
     let filters = document.getElementById("filters");
@@ -69,8 +70,8 @@ export default function ManageArt() {
   useEffect(() => {
     artRepo.find({ where: {
       title: { $contains:title },
-      //aquired: { $contains:aquired },
-      //created: { $contains:created },
+      aquired: { $contains:aquired },
+      created: { $contains:created },
       type: { $contains:type },
       medium: { $contains:medium },
       height: { $contains:height },
@@ -92,15 +93,7 @@ export default function ManageArt() {
         ))}
         <div className="cursor-pointer text-center m-1 mb-0 p-2 text-lg hover:bg-slate-200 dark:hover:bg-slate-700 border-t border-black dark:border-slate-400" onClick={() => typeFilter('')}> All </div>
       </div>
-      <div className="grid-cols-2 my-2 sm:ml-[170px] p-2 max-sm:mx-4 sm:w-2/3 md:w-3/4 max-sm:max-h-52 md:grid-cols-3 gap-x-2 max-sm:overflow-y-scroll bg-slate-100 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 hidden rounded-lg" id="filters">
-        <div>
-          <label htmlFor="title" className="m-3 p-1"> Title </label>
-          <input
-            type="text"
-            name="title"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
+      <div className="grid-cols-2 max-w-[880px] my-2 sm:ml-[170px] p-2 max-sm:mx-4 sm:w-2/3 max-sm:max-h-52 md:grid-cols-3 xl:grid-cols-4 gap-x-2 max-sm:overflow-y-scroll bg-slate-100 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 hidden rounded-lg" id="filters">
         <div>
           <label htmlFor="artist" className="m-3 p-1"> Artist </label>
           <input
@@ -109,78 +102,28 @@ export default function ManageArt() {
             list="artists"
             type="text"
             onChange={filterChanged}
-            className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 dark:text-white dark:bg-slate-600 dark:border-slate-500 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
-        {/*<div>
-          <label htmlFor="aquired" className="m-3 p-1"> Aquired </label>
-          <input
-            type="date"
-            name="aquired"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label htmlFor="created" className="m-3 p-1"> Created </label>
-          <input
-            type="date"
-            name="created"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-            </div>*/}
-        <div>
-          <label htmlFor="medium" className="m-3 p-1"> Medium </label>
-          <input
-            type="text"
-            name="medium"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label htmlFor="height" className="m-3 p-1"> Height </label>
-          <input
-            type="text"
-            name="height"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label htmlFor="width" className="m-3 p-1"> Width </label>
-          <input
-            type="text"
-            name="width"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label htmlFor="depth" className="m-3 p-1"> Depth </label>
-          <input
-            type="text"
-            name="depth"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
-        <div>
-          <label htmlFor="location" className="m-3 p-1"> Location </label>
-          <input
-            type="text"
-            name="location"
-            onChange={filterChanged}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
-        </div>
+        {filters.map(filter => (
+          <div>
+            <label htmlFor={filter.toLowerCase()} className="m-3 p-1"> {filter} </label>
+            <input
+              type="text"
+              name={filter.toLowerCase()}
+              onChange={filterChanged}
+              className="shadow border rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-slate-600 dark:border-slate-500 leading-tight focus:outline-none focus:shadow-outline"/>
+          </div>
+        ))}
         <div>
           <label htmlFor="exhibit" className="m-3 p-1"> Exhibit </label>
           <input
             type="text"
             name="exhibit"
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 dark:text-white dark:bg-slate-600 dark:border-slate-500 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
       </div>
       <div className="flex flex-wrap max-sm:justify-center sm:ml-40">
-        {Art.map(art => {
-          return (
-            <div key={art.id}>
-              <ArtCard art={art} showModal={showModal}/>
-            </div>
-          )
-        })}
+        {Art.map(art => { return <ArtCard key={art.id} art={art} showModal={showModal}/> })}
       </div>
       {modalArt && 
         <div id='modal' className='fixed w-screen h-screen top-0 right-0 bg-black/80'>

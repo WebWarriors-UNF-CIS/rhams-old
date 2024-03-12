@@ -28,12 +28,11 @@ const api = remultNextApp({
         {
           catalogNum: 5,
           title: "Reuben's art",
+          artist_name: "Reuben Hale",
           artist: {
             name: "Reuben Hale",
             dob: new Date("1927-01-14"),
             dod: new Date("2018-07-16"),
-            nationality: "Americain",
-            primaryType: 0,
             imageString: "picofme.jpg",
             website: "www.reubenhale.com",
             biography: "Reuben Hale is a versatile artist. In addition to his sculptural work, Reuben has pursued work in various other mediums. His body of work also includes pieces completed in paint, photography, printmaking (etchings, lithographs, and monoprints) and holography. In sculpture he has worked in wood, stone, steel, concrete, bronze and polyester plastics. He is inventive and experimental, and his work shows control and understanding of each medium",
@@ -83,12 +82,11 @@ const api = remultNextApp({
         },{
           catalogNum: 86,
           title: "delete me",
+          artist_name: "Pablo Picasso",
           artist: {
             name: "Pablo Picasso",
             dob: new Date("2024-02-02"),
             dod: new Date("2024-02-02"),
-            nationality: "Spain",
-            primaryType: 0,
             imageString: "",
             website: "",
             biography: "I am awesome",
@@ -123,6 +121,32 @@ const api = remultNextApp({
               id: 3
             }
           ]
+        },
+        {
+          catalogNum: 1,
+          title: "The Scream",
+          artist_name: "Edvard Munch",
+          artist: {
+            name: "Edvard Munch",
+            dob: new Date("1863-12-12"),
+            dod: new Date("1944-01-23"),
+            imageString: "",
+            website: "",
+            biography: "I am awesome",
+            notes: "My mom is great!",
+            id: 3,
+            exhibits: [],
+          },
+          aquired: "2000",
+          created: "1893",
+          description: "The scream is a painting by Edvard Munch",
+          imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f4/The_Scream.jpg",
+          type: Type.Painting,
+          medium: "Oil, tempera, pastel and crayon on cardboard",
+          height: "36 in",
+          width: "28 in",
+          location: "National Gallery, Oslo",
+          exhibits: []
         }
       ]);
     }
@@ -133,8 +157,6 @@ const api = remultNextApp({
           name: "Pablo Picasso",
           dob: new Date("2024-02-02"),
           dod: new Date("2024-02-02"),
-          nationality: "Spain",
-          primaryType: 0,
           imageString: "",
           website: "",
           biography: "I am awesome",
@@ -152,8 +174,6 @@ const api = remultNextApp({
           name: "Reuben Hale",
           dob: new Date("1927-01-14"),
           dod: new Date("2018-07-16"),
-          nationality: "Americain",
-          primaryType: 0,
           imageString: "picofme.jpg",
           website: "www.reubenhale.com",
           biography: "Reuben Hale is a versatile artist. In addition to his sculptural work, Reuben has pursued work in various other mediums. His body of work also includes pieces completed in paint, photography, printmaking (etchings, lithographs, and monoprints) and holography. In sculpture he has worked in wood, stone, steel, concrete, bronze and polyester plastics. He is inventive and experimental, and his work shows control and understanding of each medium",

@@ -10,6 +10,7 @@ export class Collection {
 
   @Relations.toMany(() => ArtPiece, { defaultIncluded: true, field: "id"})
   artPieces?: ArtPiece[]
+  // add a date for each collection
 
   @Fields.string()
   title?: string = ""
@@ -19,9 +20,6 @@ export class Collection {
 
   @Fields.string()
   owner?: string = ""
-
-  @Fields.dateOnly() // full date or... what format?
-  dateAcquired?: Date
 
   @Fields.string()
   notes? = ""
