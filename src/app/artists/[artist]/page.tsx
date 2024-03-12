@@ -95,10 +95,8 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                         <p className="dark:text-white text-lg"><h2>{artist.biography}</h2></p><br></br>
                         {artist.dob && <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p>} 
                         {artist.dod && <p className="dark:text-white text-lg"><h2>Died: {artist.dod.toDateString()}</h2></p>}
-                        <p className="dark:text-white text-lg"><h2>{artist.nationality}</h2></p><br></br>
                         <div>
                             <h2>Primary Medium:</h2>
-                            {artist.primaryType ? Object.values(artist.primaryType) : 'Unknown' /* delete Object.values if not working */}
                         </div>
                     </div>
                 </div>
@@ -133,11 +131,21 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                                 </td>
                             </tr>
                             <button
-            onClick={() => deleteArtist(artist.id)}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Delete Artist
-          </button>
+                                className="bg-blue-400 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mr-20"
+                                 >
+                                Update
+                            </button>
+                            <br></br>
+
+                            <br></br>
+
+
+                            <button
+                                onClick={() => deleteArtist(artist.id)}
+                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                 >
+                                Delete Artist
+                            </button>
                             </tbody>
                         </table>
                         

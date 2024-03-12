@@ -46,7 +46,7 @@ export default function ArtistPage() {
               <div className="text-lg font-medium">Artist Name</div>
             </div>
           </div>
-          {artists.map((artist) => (
+                    {artists.map((artist) => (
             <div key={artist.id} className="flex justify-between items-center p-4 border-t border-gray-200">
               <Link href={`/artists/${artist.id}`}><div className="text-lg hover:bg-gray-200 ">{artist.name}</div></Link>
             </div>

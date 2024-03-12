@@ -92,7 +92,7 @@ const ExhibitPage = () => {
 
   useEffect(() => {
     fetchExhibits();
-  }, [selectedLocations, sortField, sortDirection]);
+  }, [selectedLocations, sortField, sortDirection, fetchExhibits  ]);
 
   const handleRowClick = (exhibit: Exhibit) => {
     setSelectedExhibit(exhibit);
@@ -115,7 +115,7 @@ const ExhibitPage = () => {
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4 dark:text-white">Confirm Deletion</h2>
-          <p className="mb-4">Are you sure you want to delete the exhibit "{exhibit.name}"?</p>
+          <p className="mb-4">Are you sure you want to delete the exhibit &quot{exhibit.name}&quot?</p>
           <div className="flex justify-end">
             <button onClick={onDelete} className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-md">Delete</button>
             <button onClick={onCancel} className="mr-2 px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-md">Cancel</button>

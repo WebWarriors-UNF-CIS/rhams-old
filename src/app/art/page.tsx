@@ -81,7 +81,7 @@ export default function ManageArt() {
       //exhibit: { $contains:exhibit
     }}).then(setArts);
     artistRepo.find({}).then(setArtists);
-  }, [title, medium, location, type, height, width, depth, artist])
+  }, [title, medium, location, type, height, width, depth, artist, aquired, created])
   
   return (
     <main className='dark:text-white mt-2'>
@@ -105,7 +105,7 @@ export default function ManageArt() {
             className="shadow border rounded w-full py-[0.46rem] px-3 text-gray-700 dark:text-white dark:bg-slate-600 dark:border-slate-500 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
         {filters.map(filter => (
-          <div>
+          <div key={filter}>
             <label htmlFor={filter.toLowerCase()} className="m-3 p-1"> {filter} </label>
             <input
               type="text"

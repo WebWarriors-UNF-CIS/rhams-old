@@ -80,7 +80,7 @@ const ExhibitPage = () => {
 
   useEffect(() => {
     fetchExhibits();
-  }, [selectedLocations, sortField, sortDirection]);
+  }, [selectedLocations, sortField, sortDirection, fetchExhibits]);
 
   const handleRowClick = (exhibit: Exhibit) => {
     setSelectedExhibit(exhibit);
