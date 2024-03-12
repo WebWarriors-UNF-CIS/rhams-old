@@ -10,6 +10,7 @@ const userRepo = remult.repo(User);
 export default function UserDashboard() {
     const [users, setUsers] = useState<User[]>([]);
     const router = useRouter();
+    const [hoverRow, setHoverRow] = useState<number | null>(null);
     
     useEffect(() => { userRepo.find().then(setUsers) }, []);
 
@@ -28,7 +29,13 @@ export default function UserDashboard() {
                 </thead>
                 <tbody className="bg-slate-50">
                     {users.map((user) => (
-                        <tr className="border border-solid even:bg-slate-100" key={user.id}>
+                        <tr 
+                            className="border border-solid even:bg-slate-100" 
+                            key={user.id}
+                            style={{ backgroundColor : hoverRow === user.id ? '#f0f0f0' : 'inherit' }}
+                            onMouseEnter={() => setHoverRow(user.id)}
+                            onMouseLeave={() => setHoverRow(null)}
+                        >
                             <td className='px-1'>{user.name}</td>
                             <td className='px-1'>{user.email}</td>
                             <td className='px-1'>{user.roles}</td>
