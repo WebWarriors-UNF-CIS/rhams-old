@@ -10,6 +10,7 @@ import Link from "next/link";
 import { ArtPiece } from "../../_shared/art"
 
 //import { Type } from '../../_shared/artist';
+const artistRepo = remult.repo(Artist);
 
 
 export default function ArtistPage({ params }: { params: { artist: string } }) {
@@ -19,11 +20,27 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
     const artistRepo = remult.repo(Artist);
     const router = useRouter();
     
+    
+
     useEffect(() => {
         let artistId = parseInt(params.artist);
         if (artistId && typeof artistId === 'number')
             artistRepo.findFirst({ id: artistId }).then(setArtist);
     }, [params.artist, artistRepo]);
+    
+    // Function to handle deletion of an artist with confirmation
+  const deleteArtist = async (artistId: number) => {
+    // Show confirmation dialog
+    const isConfirmed = window.confirm('Are you sure you want to delete this artist?');
+    
+    if (isConfirmed) {
+      await artistRepo.delete(artistId);
+      // Optionally, refetch the artists list or update the state here
+      
+      // Navigate to the artists page after deletion
+      router.push('/artists'); // Adjust the path as needed
+    }
+  };
 
     if (!artist) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
 
@@ -115,6 +132,12 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                                     <Link href="../exhibitions"><button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button></Link>
                                 </td>
                             </tr>
+                            <button
+            onClick={() => deleteArtist(artist.id)}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Delete Artist
+          </button>
                             </tbody>
                         </table>
                         
