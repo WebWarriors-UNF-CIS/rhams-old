@@ -40,13 +40,3 @@ export class Artist {
   notes?: string = ""
 }
 
-export enum Type {
-  Painting,
-  Sculpture,
-  Photography,
-  Drawing,
-  Printmaking,
-  MixedMedia,
-  Furniture,
-  Other
-}

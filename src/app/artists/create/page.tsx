@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { remult } from "remult"
-import { Artist, Type } from '../../_shared/artist';
+import { Artist} from '../../_shared/artist';
 import { Exhibit } from "../../_shared/exhibit";
 
 const artistRepo = remult.repo(Artist);
@@ -14,8 +14,6 @@ export default function AddArtist() {
     lastName: '',
     dob: new Date,
     dod: new Date,
-    nationality: '',
-    primaryType: Type.Painting,
     imageString: '',
     website: '',
     biography: '',
@@ -41,8 +39,6 @@ export default function AddArtist() {
       name: `${formData.firstName} ${formData.lastName}`,
       dob: formData.dob,
       dod: formData.dod,
-      nationality: formData.nationality,
-      primaryType: formData.primaryType,
       imageString: formData.imageString,
       website: formData.website,
       biography: formData.biography,
@@ -108,32 +104,7 @@ export default function AddArtist() {
             onChange={handleChange}
           />
         </div>
-        <div className="input">
-          <label htmlFor="nationality"> Nationality </label>
-          <input
-            type="text"
-            id="nationality"
-            name="nationality"
-            placeholder='Country of Origin'
-            value={formData.nationality}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input">
-        <label htmlFor="primaryType">Primary Art Type </label>
-          <select
-            className="bg-white border border-emerald-950 text-sm rounded focus:outline-none focus:ring-black focus:border-emerald-500 block w-full p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            name="primaryType"
-            onChange={(e) => setFormData({ ...formData, primaryType: e.target.value as unknown as Type})}
-          >
-            {Object.values(Type).filter(value => isNaN(Number(value))).map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-            <option value={Type.Drawing}>Drawing</option>
-          </select>
-        </div>
+        
         <div className="input">
         <label htmlFor="imageString">
                 Image String
