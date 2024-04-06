@@ -10,7 +10,7 @@ import YearPicker from '../../_components/yearPicker';
 
 export default function UpdateArt({params} : { params: {edit: string}}) {
   const [successMessage, setSuccessMessage] = useState('');
-  const [art, setArt] = useState<ArtPiece>({
+  const [art, setArt] = useState<Partial<ArtPiece>>({
     id: 0,
     catalogNum: 0,
     title: '',
@@ -76,18 +76,18 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
       artRepo.findFirst({ id: parseInt(params.edit) }).then(setArt);
     artistRepo.find({}).then(setArtists);
     document.getElementById(`${art.artist?.id}`)?.setAttribute('selected', 'true');
-  
-    }, [params.edit, artRepo, artistRepo, art.artist?.id]);
-
+  }, [params.edit, artRepo, artistRepo, art.artist?.id]);
+ 
   if (!art) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
   
   return (
     <main className="mx-auto p-10">
-      <button type="button" className="fixed btn-gray h-fit self-end right-4 top-20" onClick={() => router.push('./')}>Back</button>
+      <button className="fixed btn-gray h-fit self-end right-4 top-20" onClick={() => router.push('./')}>Back</button>
+      <button className="btn-red fixed right-4 bottom-4" onClick={deleteArt}>Delete</button>
       {successMessage && (
         <div className="bg-green-500 text-white p-4 mb-4">{successMessage}</div>
       )}
-      {art.imageUrl && <Image src={art.imageUrl} width={200} height={200} alt={art.title} className='float-right mt-14 border border-black' priority={true} />}
+      {art.imageUrl && <Image src={art.imageUrl} width={200} height={200} alt={art.title!} className='float-right mt-14 border border-black' priority={true} />}
       <form className='form !flex flex-wrap w-3/5 md:w-[600px]' onSubmit={handleSubmit}>
         <div className='input w-32'>
           <label htmlFor="catalogNum">Catalog Number</label>
@@ -97,7 +97,7 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
             name="catalogNum"
             placeholder='001'
             className="text-center"
-            value={art.catalogNum}
+            value={art.catalogNum || ''}
             onChange={handleChange}
           />
         </div>
@@ -108,8 +108,8 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
             id="artTitle"
             name="artTitle"
             placeholder='Title'
-            value={art.title}
-            onChange={handleChange}
+            value={art.title || ''}
+            onChange={(e) => setArt({ ...art, title: e.target.value })}
           />
         </div>
         <div className='input grow'>
@@ -124,12 +124,10 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
         <YearPicker id="Aquired" />
         <YearPicker id="Created" />
         <div className='input grow'>
-          <label htmlFor="imageUrl">Image URL</label>
+          <label htmlFor="image">Image Upload</label>
           <input
-            type="url"
-            id="imageUrl"
-            placeholder='Image URL'
-            value={art.imageUrl}
+            type="file"
+            id="image"
             className='overflow-visible'
             onChange={handleChange}
           />
@@ -179,7 +177,6 @@ export default function UpdateArt({params} : { params: {edit: string}}) {
           />
         </div>
         <button type="submit" className="btn-green h-fit self-end justify-self-end">Add Art</button>
-        <button className="btn-red fixed h-fit self-end right-3 top-[104px]" onClick={deleteArt}>Delete</button>
         {/* create and add sale button, takes user to new sale form once art is inserted
         <button type="button" onClick={createAndAddSale} className="btn-green h-fit self-end justify-self-end">Add Sale</button> */}
       </form>
