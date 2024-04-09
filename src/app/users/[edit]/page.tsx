@@ -28,8 +28,12 @@ export default function UserPage({params} : { params: {name: string}}) {
             setEditedUser(undefined);
         }
     }
-
-    useEffect(() => { userRepo.findFirst({name: params.name}).then(setUser) }, [params.name]);
+    
+    useEffect(() => { 
+        setUser(undefined);
+        setEditedUser(undefined);
+        userRepo.findFirst({name: params.name}).then(setUser);
+    }, [params.name]);    
 
     if (!user) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
 
