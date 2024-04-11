@@ -43,7 +43,7 @@ const ManageExhibitsPage = () => {
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4 dark:text-white">Confirm Deletion</h2>
-          <p className="mb-4">Are you sure you want to delete the exhibit <br/>"{exhibit.name}"?</p>
+          <p className="mb-4">Are you sure you want to delete <br/>&quot;{exhibit.name}&quot;?</p>
           <div className="flex justify-between">
             <button onClick={confirmDeleteExhibit} className="btn-red">Delete</button>
             <button onClick={() => setExhibitToDelete(null)} className="btn-gray">Cancel</button>
