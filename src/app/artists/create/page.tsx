@@ -110,7 +110,7 @@ export default function AddArtist() {
                 Image String
               </label>
               <input
-                type="text"
+                type="url"
                 id="imageString"
                 name="imageString"
                 placeholder='TODO-WIP'

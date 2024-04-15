@@ -8,6 +8,10 @@ import reubenPic from '/public/images/reuben.png'
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import { ArtPiece } from "../../_shared/art"
+import { Exhibit } from "../../_shared/exhibit";    
+import ExhibitRow from "../../_components/row-exhibit";
+import ArtistModal from '../../_components/editmodal-artist';
+
 
 //import { Type } from '../../_shared/artist';
 const artistRepo = remult.repo(Artist);
@@ -17,8 +21,11 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
     const [artist, setArtist] = useState<Artist>();
     const [Art, setArts] = useState<ArtPiece[]>([]);
     //const [art, setArt] = useState<ArtPiece>();
+    const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const artistRepo = remult.repo(Artist);
     const router = useRouter();
+    const [selectedExhibit, setSelectedExhibit] = useState<Exhibit | null>(null);
+    const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
     
     
 
@@ -41,7 +48,10 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
       router.push('/artists'); // Adjust the path as needed
     }
   };
-
+  const handleSaveArtist = async (updatedArtist: Artist) => {
+    await artistRepo.save(updatedArtist);
+    setSelectedExhibit(null);
+  };
     if (!artist) return <div className='flex font-bold text-2xl items-center justify-center h-96 max-w-'><div>Loading...</div></div>;
 
     return (
@@ -50,40 +60,26 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
             <div className="mt-8 mx-5 grid grid-cols-2 gap-5">
                 <div>
                     <h1>{artist.name}</h1>
-                    <Image className="max-w-xs"src={reubenPic} alt="Reuben Hale" />
+                    {artist.imageString && <Image src={artist.imageString} width={200} height={200} alt={artist.name!} className='float-right mt-14 border border-black' priority={true} />}
                 </div>
                 <div>
                     <h1 className="dark:text-white text-2xl">Artworks</h1>
                     <table>
                         <thead>
-                        <tr className="border border-solid ">
-                            <th className="border border-solid p-4">Title</th>
-                            <th className="border border-solid p-4">Date</th>
-                            <th className="border border-solid p-4">Type</th>
-                            <td className="border border-solid p-4">Medium</td>
-                        </tr>
+                            <tr className="border border-solid ">
+                                <th className="border border-solid p-4">Title</th>
+                                <th className="border border-solid p-4">Type</th>
+                                <td className="border border-solid p-4">Medium</td>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td className="border border-solid p-4">Sculpture of a Woman</td>
-                            <td className="border border-solid p-4">1973</td>
-                            <td className="border border-solid p-4">Clay Sculpture</td>
-                            <td className='border border-solid p-4 px-4 py-2'></td>
-                        </tr>
-                        <tr>
-                            <td className="border border-solid p-4">Painting of a Prince</td>
-                            <td className="border border-solid p-4">1984</td>
-                            <td className="border border-solid p-4">Oil on Canvas</td>
-                            <td className='border border-solid p-4 px-4 py-2'></td>
-                        </tr>
-                        { artist.artworks && artist.artworks.map((art) => (
-                            <tr key={art.id} onClick={() => router.push(`/art/${art.id}`)} className="hover:cursor-pointer hover:bg-slate-100">
-                                <td className="border border-solid p-4">{art.title}</td>
-                                <td className="border border-solid p-4">{}</td>
-                                <td className="border border-solid p-4">{art.type}</td>
-                                <td className="border border-solid p-4">{art.medium}</td>
-                            </tr>
-                        ))}
+                            {artist.artworks && artist.artworks.map((art: ArtPiece) => (
+                                <tr key={art.id} onClick={() => router.push(`/art/${art.id}`)} className="hover:cursor-pointer hover:bg-slate-100">
+                                    <td className="border border-solid p-4">{art.title}</td>
+                                    <td className="border border-solid p-4">{art.type}</td>
+                                    <td className="border border-solid p-4">{art.medium}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
@@ -93,11 +89,8 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                     <div className="col-span-1">
                         <h1 className="dark:text-white text-2xl">Biography</h1>
                         <p className="dark:text-white text-lg"><h2>{artist.biography}</h2></p><br></br>
-                        {artist.dob && <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p>} 
+                        {artist.dob && <p className="dark:text-white text-lg"><h2>Born: {artist.dob.toDateString()}</h2></p>}
                         {artist.dod && <p className="dark:text-white text-lg"><h2>Died: {artist.dod.toDateString()}</h2></p>}
-                        <div>
-                            <h2>Primary Medium:</h2>
-                        </div>
                     </div>
                 </div>
                 <div className="mx-5 grid grid-cols-2 gap-2">
@@ -109,46 +102,42 @@ export default function ArtistPage({ params }: { params: { artist: string } }) {
                         <h1 className="dark:text-white text-2xl">Exhibitions</h1>
                         <table>
                             <thead>
-                            <tr className="border border-solid ">
-                                <th className="border border-solid p-4">Exhibit</th>
-                                <th className="border border-solid p-4">Location</th>
-                                <td className="border border-solid p-4"></td>
-                            </tr>
+                                <tr className="border border-solid ">
+                                    <th className="border border-solid p-4">Name</th>
+                                    <th className="border border-solid p-4">Location</th>
+                                    <td className="border border-solid p-4"></td>
+                                </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td className="border border-solid p-4">Cummer Museum</td>
-                                <td className="border border-solid p-4">Jacksonville, FL</td>
-                                <td className='border border-solid p-4 px-4 py-2'>
-                                    <Link href="../exhibitions"><button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button></Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="border border-solid p-4">Museum of Art</td>
-                                <td className="border border-solid p-4">Nashville, TN</td>
-                                <td className='border border-solid p-4 px-4 py-2'>
-                                    <Link href="../exhibitions"><button  className="bg-blue-300 hover:bg-blue-700 text-white font-bold py-1 px-1 rounded">View</button></Link>
-                                </td>
-                            </tr>
-                            <button
-                                className="bg-blue-400 hover:bg-red-400 text-white font-bold py-2 px-4 rounded mr-20"
-                                 >
-                                Update
-                            </button>
-                            <br></br>
-
-                            <br></br>
-
-
-                            <button
-                                onClick={() => deleteArtist(artist.id)}
-                                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                                 >
-                                Delete Artist
-                            </button>
+                            <tbody className="text-gray-700 dark:text-gray-300">
+                                {Array.isArray(exhibits) ? (
+                                    exhibits.map((exhibit: Exhibit) => (
+                                        <div key={exhibit.id}>
+                                            <ExhibitRow exhibit={exhibit} onClick={() => setSelectedExhibit(exhibit)} />
+                                            <h1>{exhibit.location}</h1>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <tr><td>Loading...</td></tr>
+                                )}
                             </tbody>
                         </table>
-                        
+                        <div>
+                        {selectedExhibit && (
+                        <ArtistModal 
+                        artist={selectedArtist} 
+                        onClose={() => setSelectedArtist(null)} 
+                        onSave={handleSaveArtist}
+                        />
+                        )}
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <button
+                            onClick={() => deleteArtist(artist.id)}
+                            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Delete Artist
+                        </button>
                     </div>
                 </div>
             </div>
