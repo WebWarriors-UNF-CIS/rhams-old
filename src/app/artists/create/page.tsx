@@ -13,7 +13,7 @@ export default function AddArtist() {
     firstName: '',
     lastName: '',
     dob: new Date,
-    dod: new Date,
+    dod: null,
     imageString: '',
     website: '',
     biography: '',
@@ -101,6 +101,7 @@ export default function AddArtist() {
             type="date"
             id="dod"
             name="dod"
+            value= {formData.dod ? formData.dod.toString() : ""}
             onChange={handleChange}
           />
         </div>
@@ -110,7 +111,7 @@ export default function AddArtist() {
                 Image String
               </label>
               <input
-                type="text"
+                type="url"
                 id="imageString"
                 name="imageString"
                 placeholder='TODO-WIP'

@@ -1,7 +1,8 @@
 "use client"
 import Link from 'next/link';
 import Image from 'next/image'
-import logo from '/public/images/temp-logo.png'
+import blogo from '/public/images/logo-b.png'
+import wlogo from '/public/images/logo-w.png'
 import userico from '/public/images/user-icon-lg-b.png'
 import usericoDark from '/public/images/user-icon-lg-w.png'
 import { useState } from 'react';
@@ -29,8 +30,11 @@ export default function Nav() {
 
     return (
         <nav className="z-30 sticky flex top-0 justify-end md:justify-between w-full items-center px-4 bg-gradient-to-r from-emerald-800 dark:from-emerald-950 to-[310px] to-emerald-400 dark:to-emerald-700 dark:text-white font-medium text-lg">
-            <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start" href="/">
-                <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
+            <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start dark:hidden" href="/">
+                <Image width={100} height={100} src={blogo} alt="Black Logo"/>
+            </Link>
+            <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start dark:inline" href="/">
+                <Image width={100} height={100} src={wlogo} alt="White Logo"/>
             </Link>
             <ul id="navigation" className={`md:flex max-w-[750px] flex-grow justify-between items-center text-l max-md:bg-emerald-400 dark:max-md:bg-emerald-700 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
                 <NavLink href="/art" inner="Art"/>
