@@ -9,15 +9,4 @@ export const config = {
     '/((?!api|_next/static|_next/image|favicon.ico|users|art).*)',
   ],
 }
-export function middleware(req: NextRequest) {
-  //logic to disallow access to update and delete routes unless role is admin
-  //any route deeper than /art, /artists, /collections, /exhibitions
-  if (req.nextUrl.pathname.startsWith('/art') ||
-      req.nextUrl.pathname.startsWith('/artists') ||
-      req.nextUrl.pathname.startsWith('/collections') ||
-      req.nextUrl.pathname.startsWith('/exhibitions')) {
-    //if (req.locals.user?.role !== 'admin')
-    //  return NextResponse.redirect('/login');
-  }
-  return NextResponse.next();
-}
+export { auth as middleware } from "./auth"

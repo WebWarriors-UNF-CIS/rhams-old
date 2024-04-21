@@ -5,7 +5,7 @@ import logo from '/public/images/temp-logo.png'
 import userico from '/public/images/user-icon-lg-b.png'
 import usericoDark from '/public/images/user-icon-lg-w.png'
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut, signIn } from 'next-auth/react';
 
 export default function Nav() {
     const [isExpanded, setExpanded] = useState(false);
@@ -32,7 +32,7 @@ export default function Nav() {
             <Link className="p-1 mr-24 max-md:grow shrink-0 justify-self-start" href="/">
                 <Image width={100} height={100} src={logo} alt="Temporary Logo"/>
             </Link>
-            <ul id="navigation" className={`md:flex flex-grow justify-between items-center text-l max-md:bg-emerald-400 dark:max-md:bg-emerald-700 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
+            <ul id="navigation" className={`md:flex max-w-[750px] flex-grow justify-between items-center text-l max-md:bg-emerald-400 dark:max-md:bg-emerald-700 max-md:top-0 max-md:pt-[58px] max-md:h-screen max-md:absolute max-md:inset max-md:right-0 ${isExpanded ? '' : 'max-md:hidden'}`}>
                 <NavLink href="/art" inner="Art"/>
                 <NavLink href="/artists" inner="Artists"/>
                 <NavLink href="/exhibitions" inner="Exhibitions"/>
@@ -40,12 +40,20 @@ export default function Nav() {
                 <NavLink href="/media" inner="Media"/>
                 { loggedIn  && <NavLink href="/sales" inner="Sales"/> }
             </ul>
-            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 dark:hidden" href={loggedIn ? "/profile" : "/api/auth/signIn"}>
-                <Image width={30} height={30} src={userico} alt="User Icon"/>
-            </Link>
-            <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 hidden dark:inline" href={loggedIn ? "/profile" : "/api/auth/signIn"}>
-                <Image width={30} height={30} src={usericoDark} alt="User Icon"/>
-            </Link>
+            <div className='flex group'>
+                {loggedIn ? 
+                    <div className="flex group">
+                        <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 dark:hidden" href="/profile">
+                            <Image width={30} height={30} src={userico} alt="User Icon"/>
+                        </Link>
+                        <Link className="z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0 hidden dark:inline" href="/profile">
+                            <Image width={30} height={30} src={usericoDark} alt="User Icon"/>
+                        </Link>
+                        {loggedIn && <button onClick={()=> signOut()} className="hidden group-hover:block fixed right-4 top-[3rem] btn-red">Logout</button>}
+                    </div> : 
+                    <div className="hover: z-10 p-1 ml-3 lg:ml-[5%] max-md:mr-3 shrink-0" onClick={() => signIn()}>Login</div>
+                }
+            </div>
             <button id="nav-toggle" aria-controls="navigation" aria-expanded={isExpanded} onClick={toggleNav} className='z-10 md:hidden !shadow-none border-y-[0.15rem] rounded-sm w-6 h-4 p-0 border-black dark:border-white'>
                 <span className="sr-only">Menu</span>
                 <span className="block h-0.5 w-6 rounded-2xl bg-black dark:bg-white"></span>

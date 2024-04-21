@@ -14,24 +14,17 @@ function findUser(name?: string | null) {
 
 export const { handlers: { GET, POST }, auth, signIn, signOut } = NextAuth({
   providers: [
-    Credentials({
-      // The name to display on the sign in form (e.g. "Sign in with...")
-      name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page: /api/auth/signin
-      // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        name: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: {  label: "Password", type: "password" }
-      },
-      authorize: (credentials) => findUser(credentials?.name as string) || null
-    })
+    Credentials
   ],
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user }) {
       const existingUser = await remult.repo(User).findFirst({ id: parseInt(user.id!) });
       if (!existingUser) return false;
 
       return true;
     }
+  },
+  pages: {
+    signIn: '/login'
   }
 })
